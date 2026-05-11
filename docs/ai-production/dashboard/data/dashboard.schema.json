@@ -1,0 +1,367 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dashboard.schema.json",
+  "title": "Red Ball AI Production Live Dashboard Data",
+  "type": "object",
+  "required": ["schemaVersion", "version", "updatedAt", "project", "liveAgents", "events", "tasks"],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Monotonically increasing version for polling clients."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "generatedBy": {
+      "type": "string"
+    },
+    "polling": {
+      "type": "object",
+      "properties": {
+        "recommendedIntervalMs": {
+          "type": "integer",
+          "minimum": 1000
+        },
+        "cacheBust": {
+          "type": "boolean"
+        },
+        "changeDetection": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "project": {
+      "type": "object",
+      "required": ["name", "workspace", "dashboardMode"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "workspace": {
+          "type": "string"
+        },
+        "remote": {
+          "type": "string"
+        },
+        "dashboardMode": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "liveAgents": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/agent"
+      }
+    },
+    "agents": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/agent"
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    },
+    "transcriptSnippets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/transcriptSnippet"
+      }
+    },
+    "agentConversations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/agentConversation"
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/task"
+      }
+    },
+    "meetingNotes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/workflowItem"
+      }
+    },
+    "groomingQueue": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/workflowItem"
+      }
+    },
+    "pmDecisionLog": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decision"
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "artifactLinks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artifactLink"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "status": {
+      "type": "string",
+      "enum": ["thinking", "running", "done", "blocked", "idle"]
+    },
+    "agent": {
+      "type": "object",
+      "required": ["id", "role", "agent", "status"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "agent": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "statusSince": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "taskId": {
+          "type": "string"
+        },
+        "task": {
+          "type": "string"
+        },
+        "lastUpdate": {
+          "type": "string"
+        },
+        "lastMessageAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "blocker": {
+          "type": "string"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "indicator": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "showThinkingLogo": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "event": {
+      "type": "object",
+      "required": ["id", "time", "speaker", "kind", "message"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "displayTime": {
+          "type": "string"
+        },
+        "speaker": {
+          "type": "string"
+        },
+        "agentId": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "transcriptSnippet": {
+      "type": "object",
+      "required": ["id", "time", "speaker", "snippet"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "speaker": {
+          "type": "string"
+        },
+        "agentId": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "snippet": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "task": {
+      "type": "object",
+      "required": ["id", "title", "status"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "string"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "agentConversation": {
+      "type": "object",
+      "required": ["agentId", "entries"],
+      "properties": {
+        "agentId": {
+          "type": "string"
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/event"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "workflowItem": {
+      "type": "object",
+      "required": ["id", "title"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "decision": {
+      "type": "object",
+      "required": ["id", "time", "area", "decision"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "area": {
+          "type": "string"
+        },
+        "decision": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "artifactLink": {
+      "type": "object",
+      "required": ["id", "label", "type", "href"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        },
+        "taskId": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

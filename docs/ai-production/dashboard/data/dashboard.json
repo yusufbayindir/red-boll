@@ -1,0 +1,653 @@
+{
+  "schemaVersion": "1.0.0",
+  "version": 5,
+  "updatedAt": "2026-05-12T01:08:00+03:00",
+  "generatedBy": "realtime-dashboard-engineer",
+  "polling": {
+    "recommendedIntervalMs": 1000,
+    "cacheBust": true,
+    "changeDetection": ["version", "updatedAt", "events[].id"]
+  },
+  "project": {
+    "name": "Red Ball AI Production",
+    "workspace": "/Users/yusufbayindir/Desktop/ai game/red_ball",
+    "remote": "https://github.com/yusufbayindir/red-boll.git",
+    "dashboardMode": "local-http-json-polling",
+    "summary": "Local live dashboard data for PM moderation, active agent state, task progress, conversation snippets, and production artifacts."
+  },
+  "statusLegend": {
+    "thinking": "Agent is reasoning or preparing output; show a subtle thinking indicator.",
+    "running": "Agent is actively producing work or speaking; show as active/live.",
+    "done": "Agent completed the current task or historical assignment.",
+    "blocked": "Agent cannot proceed without input, dependency, or QA evidence.",
+    "idle": "Agent is available but not currently active."
+  },
+  "liveAgents": [
+    {
+      "id": "pm-moderator",
+      "role": "PM / Moderator",
+      "agent": "PM",
+      "status": "thinking",
+      "statusSince": "2026-05-12T00:35:00+03:00",
+      "taskId": "TASK-0015",
+      "task": "Set live dashboard direction and acceptance criteria without direct coding.",
+      "lastUpdate": "PM has delegated implementation ownership to the realtime dashboard engineer.",
+      "lastMessageAt": "2026-05-12T00:58:00+03:00",
+      "indicator": {
+        "label": "Thinking",
+        "showThinkingLogo": true
+      }
+    },
+    {
+      "id": "codex-realtime-dashboard-engineer",
+      "role": "Realtime Dashboard Engineer",
+      "agent": "Codex",
+      "status": "done",
+      "statusSince": "2026-05-12T00:53:00+03:00",
+      "taskId": "TASK-0015",
+      "task": "Implement local-server polling, live sidebar state, event streams, task state, and PM decision rendering.",
+      "lastUpdate": "Agent conversation console, local outbound queue, workflow board, and no-refresh polling smoke are complete.",
+      "lastMessageAt": "2026-05-12T01:08:00+03:00",
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
+    },
+    {
+      "id": "pascal-dashboard-runtime",
+      "role": "Live Dashboard Runtime/UI",
+      "agent": "Pascal",
+      "status": "thinking",
+      "statusSince": "2026-05-12T00:52:00+03:00",
+      "taskId": "TASK-0015",
+      "task": "Build browser-visible live dashboard runtime/UI with automatic polling.",
+      "lastUpdate": "Runtime/UI ownership stays with Pascal; data layer now exposes versioned polling-friendly state.",
+      "lastMessageAt": "2026-05-12T00:52:00+03:00",
+      "indicator": {
+        "label": "Thinking",
+        "showThinkingLogo": true
+      }
+    },
+    {
+      "id": "carson-asset-pipeline",
+      "role": "Asset Pipeline",
+      "agent": "Carson",
+      "status": "thinking",
+      "statusSince": "2026-05-12T00:36:00+03:00",
+      "taskId": "TASK-0013",
+      "task": "Plan/download license-safe assets for the current product direction.",
+      "lastUpdate": "Reviewing asset research and Trickline/checkpoint/UI needs.",
+      "lastMessageAt": "2026-05-12T00:36:00+03:00",
+      "indicator": {
+        "label": "Thinking",
+        "showThinkingLogo": true
+      }
+    },
+    {
+      "id": "franklin-marketing-production",
+      "role": "Marketing Production",
+      "agent": "Franklin",
+      "status": "thinking",
+      "statusSince": "2026-05-12T00:36:00+03:00",
+      "taskId": "TASK-0014",
+      "task": "Produce store copy, ASO, screenshot storyboard, and short video scripts.",
+      "lastUpdate": "Turning marketing research into practical launch assets.",
+      "lastMessageAt": "2026-05-12T00:36:00+03:00",
+      "indicator": {
+        "label": "Thinking",
+        "showThinkingLogo": true
+      }
+    },
+    {
+      "id": "hooke-git-release",
+      "role": "Git / Release",
+      "agent": "Hooke",
+      "status": "blocked",
+      "statusSince": "2026-05-12T00:36:00+03:00",
+      "taskId": "TASK-0008",
+      "task": "Prepare safe repo init, commit, and push workflow.",
+      "lastUpdate": "Waiting for PM/user approval before any repo initialization or push action.",
+      "lastMessageAt": "2026-05-12T00:36:00+03:00",
+      "blocker": "No git repository exists in /Users/yusufbayindir/Desktop/ai game/red_ball; repo actions require explicit approval.",
+      "indicator": {
+        "label": "Blocked",
+        "showThinkingLogo": false
+      }
+    }
+  ],
+  "agents": [
+    {
+      "id": "kant-gameplay",
+      "role": "Developer Gameplay",
+      "agent": "Kant",
+      "status": "done",
+      "taskId": "TASK-0001",
+      "task": "Modular architecture plan and first split",
+      "output": "Extracted RedBallPlayer into its own module.",
+      "links": ["../../tasks/TASK-0001-modular-architecture-first-split.md"]
+    },
+    {
+      "id": "leibniz-menu",
+      "role": "UI/Menu Designer",
+      "agent": "Leibniz",
+      "status": "done",
+      "taskId": "TASK-0002",
+      "task": "Menu and UI redesign direction",
+      "output": "Playable Hill Menu direction.",
+      "links": ["../../reports/TASK-0002-menu-ui-redesign-direction.md"]
+    },
+    {
+      "id": "aristotle-ui-polish",
+      "role": "Developer UI / Polish",
+      "agent": "Aristotle",
+      "status": "done",
+      "taskId": "TASK-0002",
+      "task": "UI implementation breakdown",
+      "output": "Recommended one RedBallUi bridge before broader UI modularization.",
+      "links": ["../../reports/TASK-0002-menu-ui-redesign-implementation-breakdown.md"]
+    },
+    {
+      "id": "zeno-assets",
+      "role": "Asset Researcher",
+      "agent": "Zeno",
+      "status": "done",
+      "taskId": "TASK-0003",
+      "task": "Free asset research report",
+      "output": "CC0-first asset report.",
+      "links": ["../../reports/asset-research.md"]
+    },
+    {
+      "id": "mencius-retention",
+      "role": "Game Design / Retention",
+      "agent": "Mencius",
+      "status": "done",
+      "taskId": "TASK-0004",
+      "task": "Differentiation and retention design",
+      "output": "Mastery Badge Loop recommendation.",
+      "links": ["../../reports/retention-mastery-badge-loop.md"]
+    },
+    {
+      "id": "erdos-differentiation",
+      "role": "Game Design / Differentiation",
+      "agent": "Erdos",
+      "status": "done",
+      "taskId": "TASK-0004",
+      "task": "Differentiation challenger",
+      "output": "Red Ball: Trickline direction.",
+      "links": ["../../reports/differentiation-challenger-red-ball-trickline.md"]
+    },
+    {
+      "id": "banach-level-design",
+      "role": "Level Designer",
+      "agent": "Banach",
+      "status": "done",
+      "taskId": "TASK-0005",
+      "task": "Level design expansion pack",
+      "output": "20-level plan; checkpoints before long levels.",
+      "links": ["../../reports/level-design-expansion-plan.md"]
+    },
+    {
+      "id": "carver-ads",
+      "role": "Ads Pipeline Architect",
+      "agent": "Carver",
+      "status": "done",
+      "taskId": "TASK-0006",
+      "task": "Ads pipeline architecture",
+      "output": "Rewarded heart recovery architecture.",
+      "links": ["../../reports/ads-pipeline-architecture.md"]
+    },
+    {
+      "id": "chandrasekhar-marketing",
+      "role": "Marketing Researcher",
+      "agent": "Chandrasekhar",
+      "status": "done",
+      "taskId": "TASK-0007",
+      "task": "Marketing and launch research",
+      "output": "Clean rolling line launch positioning.",
+      "links": ["../../reports/marketing-launch-research.md"]
+    },
+    {
+      "id": "averroes-git",
+      "role": "Git Repo Controller",
+      "agent": "Averroes",
+      "status": "done",
+      "taskId": "TASK-0008",
+      "task": "Git repo control setup",
+      "output": "Repo init/push plan; exclude Unity generated folders.",
+      "links": ["../../tasks/TASK-0008-git-repo-control-setup.md"]
+    },
+    {
+      "id": "socrates-qa",
+      "role": "QA",
+      "agent": "Socrates",
+      "status": "done",
+      "taskId": "QA",
+      "task": "QA checklist",
+      "output": "Compile plus play-mode smoke closure gates.",
+      "links": ["../../reports/qa-checklist.md"]
+    }
+  ],
+  "events": [
+    {
+      "id": "evt-20260512-003500-user-live-dashboard",
+      "time": "2026-05-12T00:35:00+03:00",
+      "displayTime": "2026-05-12 00:35",
+      "speaker": "User",
+      "agentId": "pm-moderator",
+      "kind": "request",
+      "message": "Requested a Codex-like live dashboard that updates without manual refresh and shows agent thinking/status, PM logs, tasks, transcripts, and artifacts."
+    },
+    {
+      "id": "evt-20260512-003600-dashboard-worker-start",
+      "time": "2026-05-12T00:36:00+03:00",
+      "displayTime": "2026-05-12 00:36",
+      "speaker": "PM",
+      "agentId": "pascal-dashboard-runtime",
+      "kind": "agent-start",
+      "message": "Live dashboard runtime/UI work started; current data file remains the local JSON source."
+    },
+    {
+      "id": "evt-20260512-004900-dashboard-ui-shell",
+      "time": "2026-05-12T00:49:00+03:00",
+      "displayTime": "2026-05-12 00:49",
+      "speaker": "PM",
+      "agentId": "pascal-dashboard-runtime",
+      "kind": "implementation-note",
+      "message": "Dashboard frontend has a Codex-style app shell and polls dashboard.json through the local HTTP launcher."
+    },
+    {
+      "id": "evt-20260512-011200-data-layer-ready",
+      "time": "2026-05-12T00:52:00+03:00",
+      "displayTime": "2026-05-12 00:52",
+      "speaker": "Agent State Recorder",
+      "agentId": "pm-moderator",
+      "kind": "data-update",
+      "message": "Dashboard data expanded with schemaVersion, version, polling hints, status enum, transcript snippets, task states, PM decisions, and artifact links."
+    },
+    {
+      "id": "evt-20260512-005800-current-pm-instruction",
+      "time": "2026-05-12T00:58:00+03:00",
+      "displayTime": "2026-05-12 00:58",
+      "speaker": "User",
+      "agentId": "pm-moderator",
+      "kind": "requirement",
+      "message": "Current PM instruction: PM must not code directly; realtime dashboard engineer owns implementation and must deliver automatic local live updates."
+    },
+    {
+      "id": "evt-20260512-005900-realtime-engineer-reply",
+      "time": "2026-05-12T00:59:00+03:00",
+      "displayTime": "2026-05-12 00:59",
+      "speaker": "Codex",
+      "agentId": "codex-realtime-dashboard-engineer",
+      "kind": "agent-reply",
+      "message": "Dashboard runtime is being wired to poll dashboard.json every second and update sidebar agent status, event history, task state, and PM decisions without manual refresh."
+    },
+    {
+      "id": "evt-20260512-010500-agent-console-requirement",
+      "time": "2026-05-12T01:05:00+03:00",
+      "displayTime": "2026-05-12 01:05",
+      "speaker": "User",
+      "agentId": "codex-realtime-dashboard-engineer",
+      "kind": "requirement",
+      "message": "New priority: clicking agent cards should open that agent's conversation, provide a message box, queue outbound messages locally, and show meeting/grooming/decision workflow."
+    },
+    {
+      "id": "evt-20260512-010800-browser-smoke-passed",
+      "time": "2026-05-12T01:08:00+03:00",
+      "displayTime": "2026-05-12 01:08",
+      "speaker": "Codex",
+      "agentId": "codex-realtime-dashboard-engineer",
+      "kind": "verification",
+      "message": "Headless Chrome smoke passed for agent selection, selected transcript rendering, local PM dispatch pending queue, workflow board rendering, and no-refresh polling update."
+    }
+  ],
+  "transcriptSnippets": [
+    {
+      "id": "trn-20260512-user-live-dashboard",
+      "time": "2026-05-12T00:35:00+03:00",
+      "speaker": "User",
+      "agentId": "pm-moderator",
+      "kind": "requirement",
+      "snippet": "Dashboard must update automatically when an agent responds and show a small thinking/logo indicator while an agent is reasoning."
+    },
+    {
+      "id": "trn-20260512-pm-runtime-boundary",
+      "time": "2026-05-12T00:52:00+03:00",
+      "speaker": "PM",
+      "agentId": "pascal-dashboard-runtime",
+      "kind": "coordination",
+      "snippet": "Pascal owns dashboard runtime/UI; Agent State Recorder owns docs/ai-production/dashboard/data and dashboard state documentation."
+    },
+    {
+      "id": "trn-20260512-data-layer",
+      "time": "2026-05-12T00:52:00+03:00",
+      "speaker": "Agent State Recorder",
+      "agentId": "pm-moderator",
+      "kind": "status",
+      "snippet": "Data layer now exposes stable status values: thinking, running, done, blocked, and idle."
+    },
+    {
+      "id": "trn-20260512-implementation-owner",
+      "time": "2026-05-12T00:58:00+03:00",
+      "speaker": "Codex",
+      "agentId": "codex-realtime-dashboard-engineer",
+      "kind": "status",
+      "snippet": "Realtime dashboard implementation is owned by the dashboard engineer; PM remains a direction and acceptance role."
+    },
+    {
+      "id": "trn-20260512-agent-console",
+      "time": "2026-05-12T01:05:00+03:00",
+      "speaker": "Codex",
+      "agentId": "codex-realtime-dashboard-engineer",
+      "kind": "status",
+      "snippet": "Selected-agent conversation console is implemented as a dashboard UI/runtime feature; outbound messages are queued locally for PM dispatch."
+    },
+    {
+      "id": "trn-20260512-browser-smoke",
+      "time": "2026-05-12T01:08:00+03:00",
+      "speaker": "Codex",
+      "agentId": "codex-realtime-dashboard-engineer",
+      "kind": "verification",
+      "snippet": "Browser smoke confirmed no-refresh polling and local queued-message behavior."
+    }
+  ],
+  "agentConversations": [
+    {
+      "agentId": "codex-realtime-dashboard-engineer",
+      "entries": [
+        {
+          "id": "conv-codex-001",
+          "time": "2026-05-12T00:53:00+03:00",
+          "displayTime": "2026-05-12 00:53",
+          "speaker": "Codex",
+          "kind": "agent-reply",
+          "message": "I own the realtime dashboard runtime/UI implementation. PM remains direction and acceptance only."
+        },
+        {
+          "id": "conv-codex-002",
+          "time": "2026-05-12T01:05:00+03:00",
+          "displayTime": "2026-05-12 01:05",
+          "speaker": "Codex",
+          "kind": "agent-reply",
+          "message": "Agent card selection, transcript rendering, local pending outbound messages, and workflow board are being added without changing Unity/game code."
+        },
+        {
+          "id": "conv-codex-003",
+          "time": "2026-05-12T01:08:00+03:00",
+          "displayTime": "2026-05-12 01:08",
+          "speaker": "Codex",
+          "kind": "verification",
+          "message": "Validated local HTTP, JSON polling, agent click-through, local pending outbound queue, workflow board, and automatic no-refresh event pickup."
+        }
+      ]
+    },
+    {
+      "agentId": "pm-moderator",
+      "entries": [
+        {
+          "id": "conv-pm-001",
+          "time": "2026-05-12T00:58:00+03:00",
+          "displayTime": "2026-05-12 00:58",
+          "speaker": "PM",
+          "kind": "coordination",
+          "message": "PM will not directly code the live dashboard; implementation belongs to the realtime dashboard engineer."
+        }
+      ]
+    },
+    {
+      "agentId": "pascal-dashboard-runtime",
+      "entries": [
+        {
+          "id": "conv-pascal-001",
+          "time": "2026-05-12T00:52:00+03:00",
+          "displayTime": "2026-05-12 00:52",
+          "speaker": "Pascal",
+          "kind": "status",
+          "message": "Dashboard UI should stay browser-visible, local-server friendly, and framework-light."
+        }
+      ]
+    },
+    {
+      "agentId": "carson-asset-pipeline",
+      "entries": [
+        {
+          "id": "conv-carson-001",
+          "time": "2026-05-12T00:36:00+03:00",
+          "displayTime": "2026-05-12 00:36",
+          "speaker": "Carson",
+          "kind": "status",
+          "message": "Reviewing license-safe asset needs for checkpoint, UI, and later Trickline direction."
+        }
+      ]
+    },
+    {
+      "agentId": "franklin-marketing-production",
+      "entries": [
+        {
+          "id": "conv-franklin-001",
+          "time": "2026-05-12T00:36:00+03:00",
+          "displayTime": "2026-05-12 00:36",
+          "speaker": "Franklin",
+          "kind": "status",
+          "message": "Converting launch research into store copy, ASO metadata, screenshot storyboard, and short video scripts."
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "TASK-0001",
+      "title": "Modular architecture plan and first split",
+      "status": "QA Pending",
+      "owner": "Developer Gameplay + PM",
+      "priority": "medium",
+      "links": ["../../tasks/TASK-0001-modular-architecture-first-split.md"]
+    },
+    {
+      "id": "TASK-0010",
+      "title": "Checkpoints and warning signs",
+      "status": "Implementation Complete - QA Pending",
+      "owner": "PM",
+      "priority": "high",
+      "links": ["../../tasks/TASK-0010-checkpoints-warning-signs.md"]
+    },
+    {
+      "id": "TASK-0012",
+      "title": "RedBall UI Bridge First Slice",
+      "status": "Implementation Complete - QA Pending",
+      "owner": "PM + Developer UI/Polish",
+      "priority": "high",
+      "links": ["../../tasks/TASK-0012-redball-ui-bridge-first-slice.md"]
+    },
+    {
+      "id": "TASK-0013",
+      "title": "Asset Pipeline And Downloads",
+      "status": "In Progress",
+      "owner": "PM + Asset Pipeline",
+      "priority": "medium",
+      "links": ["../../tasks/TASK-0013-asset-pipeline-downloads.md", "../../reports/asset-download-plan.md", "../../assets-manifest.md"]
+    },
+    {
+      "id": "TASK-0014",
+      "title": "Marketing Production Assets",
+      "status": "In Progress",
+      "owner": "PM + Marketing Production",
+      "priority": "medium",
+      "links": ["../../tasks/TASK-0014-marketing-production-assets.md", "../../marketing/store-copy-v1.md", "../../marketing/aso-metadata-v1.md", "../../marketing/screenshot-storyboard-v1.md", "../../marketing/short-video-scripts-v1.md", "../../marketing/launch-checklist-v1.md"]
+    },
+    {
+      "id": "TASK-0015",
+      "title": "Live Agent Dashboard System",
+      "status": "Implementation Complete - Browser Smoke Passed",
+      "owner": "Realtime Dashboard Engineer",
+      "priority": "high",
+      "links": ["../../tasks/TASK-0015-live-agent-dashboard-system.md", "README.md", "dashboard.schema.json"]
+    }
+  ],
+  "meetingNotes": [
+    {
+      "id": "meet-live-dashboard-priority",
+      "time": "2026-05-12T01:05:00+03:00",
+      "title": "Live dashboard priority",
+      "note": "Agent cards must open a selected-agent transcript panel and keep updating through the existing one-second polling loop.",
+      "owner": "Realtime Dashboard Engineer"
+    },
+    {
+      "id": "meet-message-dispatch-gap",
+      "time": "2026-05-12T01:05:00+03:00",
+      "title": "Outbound message gap",
+      "note": "No real Codex subagent API is connected; composer messages are stored locally as pending PM dispatch items.",
+      "owner": "Realtime Dashboard Engineer"
+    }
+  ],
+  "groomingQueue": [
+    {
+      "id": "groom-agent-console",
+      "title": "Agent conversation console",
+      "status": "In implementation",
+      "priority": "high",
+      "owner": "Realtime Dashboard Engineer"
+    },
+    {
+      "id": "groom-real-dispatch-api",
+      "title": "Real agent dispatch integration",
+      "status": "Future integration gap",
+      "priority": "medium",
+      "owner": "PM + Dashboard Runtime"
+    },
+    {
+      "id": "groom-polling-data-feed",
+      "title": "Continue JSON polling live feed",
+      "status": "Implemented",
+      "priority": "high",
+      "owner": "Realtime Dashboard Engineer"
+    }
+  ],
+  "pmDecisionLog": [
+    {
+      "id": "dec-product-hook-mastery-first",
+      "time": "2026-05-11T00:00:00+03:00",
+      "area": "Product hook",
+      "decision": "Mastery-first product direction now; Trickline contracts later.",
+      "reason": "Clear, All Coins, and Clean Run are safer for the MVP than full route contracts/ghosts."
+    },
+    {
+      "id": "dec-ads-rewarded-hearts",
+      "time": "2026-05-11T00:00:00+03:00",
+      "area": "Ads",
+      "decision": "Rewarded heart recovery only, no death-pressure ads.",
+      "reason": "Physics failure should feel like practice, not scarcity pressure."
+    },
+    {
+      "id": "dec-assets-cc0-first",
+      "time": "2026-05-11T00:00:00+03:00",
+      "area": "Assets",
+      "decision": "Use a CC0-first asset pipeline with manifest tracking.",
+      "reason": "Keeps import and licensing risk low while production scope is moving."
+    },
+    {
+      "id": "dec-repo-exclusions",
+      "time": "2026-05-11T00:00:00+03:00",
+      "area": "Repository",
+      "decision": "Repo push must exclude Library, Temp, Logs, Builds, UserSettings, and root .DS_Store files.",
+      "reason": "Unity generated files and machine-local settings should not enter the first commit."
+    },
+    {
+      "id": "dec-dashboard-local-json",
+      "time": "2026-05-12T00:40:00+03:00",
+      "area": "Dashboard",
+      "decision": "Live dashboard uses a local HTTP server plus refreshable JSON, not a heavy backend yet.",
+      "reason": "Meets the browser-visible live cockpit need without introducing external infrastructure."
+    },
+    {
+      "id": "dec-dashboard-status-enum",
+      "time": "2026-05-12T00:52:00+03:00",
+      "area": "Dashboard data",
+      "decision": "Dashboard agent statuses are limited to thinking, running, done, blocked, and idle.",
+      "reason": "Gives the UI a stable visualization contract for active, completed, blocked, and waiting states."
+    },
+    {
+      "id": "dec-dashboard-pm-boundary",
+      "time": "2026-05-12T00:58:00+03:00",
+      "area": "Implementation ownership",
+      "decision": "PM must not code the dashboard directly; realtime dashboard engineer owns implementation.",
+      "reason": "Keeps PM in direction/acceptance and gives the runtime work a clear engineering owner."
+    },
+    {
+      "id": "dec-dashboard-one-second-polling",
+      "time": "2026-05-12T00:58:00+03:00",
+      "area": "Dashboard runtime",
+      "decision": "Use local HTTP plus one-second JSON polling for the live dashboard.",
+      "reason": "Meets the no-manual-refresh requirement without a heavy framework or fragile background service."
+    },
+    {
+      "id": "dec-dashboard-local-outbound-queue",
+      "time": "2026-05-12T01:05:00+03:00",
+      "area": "Agent messaging",
+      "decision": "Dashboard composer stores outbound messages in local browser queue as PM dispatch pending.",
+      "reason": "There is no real Codex subagent dispatch API available in this local static dashboard runtime."
+    }
+  ],
+  "decisions": [
+    "Mastery-first product direction now; Trickline contracts later.",
+    "Rewarded heart recovery only, no death-pressure ads.",
+    "CC0-first asset pipeline with manifest tracking.",
+    "Repo push must exclude Library, Temp, Logs, Builds, UserSettings, and root .DS_Store files.",
+    "Live dashboard uses local HTTP server plus JSON refresh, not a heavy backend yet.",
+    "Dashboard agent statuses are thinking, running, done, blocked, and idle.",
+    "PM gives direction and acceptance only; realtime dashboard engineer owns implementation.",
+    "Live dashboard runtime polls local JSON every one second through the local HTTP launcher.",
+    "Agent message composer is local queue only until a real Codex subagent dispatch API exists."
+  ],
+  "artifactLinks": [
+    {
+      "id": "artifact-dashboard-readme",
+      "label": "Dashboard data README",
+      "type": "schema-doc",
+      "href": "README.md",
+      "taskId": "TASK-0015"
+    },
+    {
+      "id": "artifact-dashboard-schema",
+      "label": "Dashboard JSON schema",
+      "type": "schema",
+      "href": "dashboard.schema.json",
+      "taskId": "TASK-0015"
+    },
+    {
+      "id": "artifact-agent-dashboard",
+      "label": "Agent dashboard record",
+      "type": "dashboard-doc",
+      "href": "../../AGENT_DASHBOARD.md",
+      "taskId": "TASK-0015"
+    },
+    {
+      "id": "artifact-status-board",
+      "label": "Production status board",
+      "type": "status-doc",
+      "href": "../../STATUS_BOARD.md",
+      "taskId": "TASK-0015"
+    },
+    {
+      "id": "artifact-task-0015",
+      "label": "TASK-0015 live dashboard task",
+      "type": "task",
+      "href": "../../tasks/TASK-0015-live-agent-dashboard-system.md",
+      "taskId": "TASK-0015"
+    },
+    {
+      "id": "artifact-store-copy",
+      "label": "Store copy v1",
+      "type": "marketing",
+      "href": "../../marketing/store-copy-v1.md",
+      "taskId": "TASK-0014"
+    },
+    {
+      "id": "artifact-asset-plan",
+      "label": "Asset download plan",
+      "type": "report",
+      "href": "../../reports/asset-download-plan.md",
+      "taskId": "TASK-0013"
+    }
+  ]
+}
