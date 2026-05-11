@@ -1,12 +1,16 @@
 {
   "schemaVersion": "1.0.0",
-  "version": 6,
-  "updatedAt": "2026-05-12T01:50:00+03:00",
-  "generatedBy": "realtime-dashboard-engineer",
+  "version": 7,
+  "updatedAt": "2026-05-12T02:15:00+03:00",
+  "generatedBy": "dashboard-state-sync-maintainer",
   "polling": {
     "recommendedIntervalMs": 1000,
     "cacheBust": true,
-    "changeDetection": ["version", "updatedAt", "events[].id"]
+    "changeDetection": [
+      "version",
+      "updatedAt",
+      "events[].id"
+    ]
   },
   "project": {
     "name": "Red Ball AI Production",
@@ -62,14 +66,22 @@
       "status": "done",
       "statusSince": "2026-05-12T01:35:00+03:00",
       "taskId": "TASK-0015",
-      "taskRefs": ["TASK-0015"],
+      "taskRefs": [
+        "TASK-0015"
+      ],
       "task": "Build Workspace menu and open-workspace endpoint for the local dashboard.",
       "lastUpdate": "Completed the Red Ball topbar menu and local relay workspace opener without alerts or notifications.",
       "lastMessage": "Workspace menu/open-workspace endpoint is complete; Build Workspace opens the discovered Unity .xcworkspace or returns needs-build silently.",
       "lastMessageAt": "2026-05-12T01:35:00+03:00",
-      "links": ["../../tasks/TASK-0015-live-agent-dashboard-system.md"],
-      "artifactRefs": ["artifact-task-0015"],
-      "transcriptRefs": ["trn-20260512-raman-workspace-menu"],
+      "links": [
+        "../../tasks/TASK-0015-live-agent-dashboard-system.md"
+      ],
+      "artifactRefs": [
+        "artifact-task-0015"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-raman-workspace-menu"
+      ],
       "codexChat": {
         "label": "Open Codex Chat",
         "scheme": "codex",
@@ -91,14 +103,24 @@
       "status": "done",
       "statusSince": "2026-05-12T01:40:00+03:00",
       "taskId": "TASK-0019",
-      "taskRefs": ["TASK-0019", "TASK-0021"],
+      "taskRefs": [
+        "TASK-0019",
+        "TASK-0021"
+      ],
       "task": "Complete Sprint 01 MVP gameplay integration; play-mode QA remains pending.",
       "lastUpdate": "Sprint 01 MVP implementation completed and handed to QA.",
       "lastMessage": "Gameplay Sprint 01 MVP is implementation-complete; QA should run play-mode coverage before closure.",
       "lastMessageAt": "2026-05-12T01:40:00+03:00",
-      "links": ["../../tasks/TASK-0019-sprint-01-unity-implementation.md", "../../tasks/TASK-0021-sprint-01-qa-playtest.md"],
-      "artifactRefs": ["artifact-sprint-01-implementation-plan"],
-      "transcriptRefs": ["trn-20260512-goodall-sprint-01"],
+      "links": [
+        "../../tasks/TASK-0019-sprint-01-unity-implementation.md",
+        "../../tasks/TASK-0021-sprint-01-qa-playtest.md"
+      ],
+      "artifactRefs": [
+        "artifact-sprint-01-implementation-plan"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-goodall-sprint-01"
+      ],
       "codexChat": {
         "label": "Open Codex Chat",
         "scheme": "codex",
@@ -120,14 +142,23 @@
       "status": "done",
       "statusSince": "2026-05-12T01:42:00+03:00",
       "taskId": "TASK-0021",
-      "taskRefs": ["TASK-0021"],
+      "taskRefs": [
+        "TASK-0021"
+      ],
       "task": "Complete Sprint 01 QA matrix and scenario design.",
       "lastUpdate": "QA matrix completed for Sprint 01 playtest coverage.",
       "lastMessage": "Sprint 01 QA scenario matrix is ready for play-mode execution.",
       "lastMessageAt": "2026-05-12T01:42:00+03:00",
-      "links": ["../../tasks/TASK-0021-sprint-01-qa-playtest.md", "../../reports/sprint-01-qa-test-plan.md"],
-      "artifactRefs": ["artifact-sprint-01-qa-plan"],
-      "transcriptRefs": ["trn-20260512-kierkegaard-qa-matrix"],
+      "links": [
+        "../../tasks/TASK-0021-sprint-01-qa-playtest.md",
+        "../../reports/sprint-01-qa-test-plan.md"
+      ],
+      "artifactRefs": [
+        "artifact-sprint-01-qa-plan"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-kierkegaard-qa-matrix"
+      ],
       "codexChat": {
         "label": "Open Codex Chat",
         "scheme": "codex",
@@ -149,14 +180,23 @@
       "status": "done",
       "statusSince": "2026-05-12T01:25:00+03:00",
       "taskId": "TASK-0015",
-      "taskRefs": ["TASK-0015"],
+      "taskRefs": [
+        "TASK-0015"
+      ],
       "task": "Re-test dashboard relay integration after frontend fix.",
       "lastUpdate": "PASS: browser relay test confirmed state polling, message queueing, SSE update path, and outbox cleanup.",
       "lastMessage": "Dashboard Re-QA passed; relay-backed browser composer and live state update are verified.",
       "lastMessageAt": "2026-05-12T01:25:00+03:00",
-      "links": ["../../tasks/TASK-0015-live-agent-dashboard-system.md", "../../reports/TASK-0015-dashboard-re-qa-report.md"],
-      "artifactRefs": ["artifact-task-0015"],
-      "transcriptRefs": ["trn-20260512-hubble-re-qa"],
+      "links": [
+        "../../tasks/TASK-0015-live-agent-dashboard-system.md",
+        "../../reports/TASK-0015-dashboard-re-qa-report.md"
+      ],
+      "artifactRefs": [
+        "artifact-task-0015"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-hubble-re-qa"
+      ],
       "codexChat": {
         "label": "Open Codex Chat",
         "scheme": "codex",
@@ -178,14 +218,22 @@
       "status": "done",
       "statusSince": "2026-05-12T01:23:00+03:00",
       "taskId": "TASK-0015",
-      "taskRefs": ["TASK-0015"],
+      "taskRefs": [
+        "TASK-0015"
+      ],
       "task": "Wire dashboard frontend to /api/state, /api/events, and /api/messages.",
       "lastUpdate": "Completed frontend relay integration fix for live state and PM message queueing.",
       "lastMessage": "Frontend relay path is fixed; dashboard now prefers server state and posts composer messages through /api/messages.",
       "lastMessageAt": "2026-05-12T01:23:00+03:00",
-      "links": ["../../tasks/TASK-0015-live-agent-dashboard-system.md"],
-      "artifactRefs": ["artifact-task-0015"],
-      "transcriptRefs": ["trn-20260512-tesla-relay-fix"],
+      "links": [
+        "../../tasks/TASK-0015-live-agent-dashboard-system.md"
+      ],
+      "artifactRefs": [
+        "artifact-task-0015"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-tesla-relay-fix"
+      ],
       "codexChat": {
         "label": "Open Codex Chat",
         "scheme": "codex",
@@ -258,6 +306,167 @@
         "label": "Blocked",
         "showThinkingLogo": false
       }
+    },
+    {
+      "id": "019e1942-4970-78c1-9e69-045cdce75024",
+      "agentPath": "019e1942-4970-78c1-9e69-045cdce75024",
+      "codexAgentId": "019e1942-4970-78c1-9e69-045cdce75024",
+      "role": "Unity Test Harness Developer",
+      "agent": "James",
+      "status": "done",
+      "statusSince": "2026-05-12T02:00:00+03:00",
+      "taskId": "TASK-0022",
+      "taskRefs": [
+        "TASK-0022",
+        "TASK-0021"
+      ],
+      "task": "Complete Unity Play/EditMode smoke harness and record passing evidence.",
+      "lastUpdate": "Completed TASK-0022 with EditMode smoke 6/6 PASS; TD-0006 remains open for full PlayMode traversal evidence.",
+      "lastMessage": "Unity smoke harness completed: 6/6 EditMode tests pass for level count, badge mask helper, UI badge summary, and Level 1/14/15 construction.",
+      "lastMessageAt": "2026-05-12T02:00:00+03:00",
+      "links": [
+        "../../tasks/TASK-0022-unity-playmode-smoke-harness.md",
+        "../../reports/unity-playmode-smoke-harness.md",
+        "../../../../TestResults/editmode-smoke-results.xml"
+      ],
+      "artifactRefs": [
+        "artifact-task-0022",
+        "artifact-editmode-smoke-results",
+        "artifact-unity-smoke-report"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-james-smoke-harness"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct James chat deep link unavailable; fallback opens Codex."
+      },
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
+    },
+    {
+      "id": "019e194b-43cd-7e33-b11f-603706ecc1a1",
+      "agentPath": "019e194b-43cd-7e33-b11f-603706ecc1a1",
+      "codexAgentId": "019e194b-43cd-7e33-b11f-603706ecc1a1",
+      "role": "Monetization / Ads Pipeline Lead",
+      "agent": "Arendt",
+      "status": "done",
+      "statusSince": "2026-05-12T02:04:00+03:00",
+      "taskId": "TASK-0023",
+      "taskRefs": [
+        "TASK-0023"
+      ],
+      "task": "Document Sprint 01 monetization/ad boundary without SDK import.",
+      "lastUpdate": "Completed TASK-0023 docs-only ads pipeline recommendation; no SDK/import work, ads deferred beyond Sprint 01.",
+      "lastMessage": "Ads pipeline is docs-only for Sprint 01: no SDK import, no real ads, and no monetization claims until future approval gates.",
+      "lastMessageAt": "2026-05-12T02:04:00+03:00",
+      "links": [
+        "../../tasks/TASK-0023-ads-monetization-pipeline.md",
+        "../../reports/ads-monetization-pipeline-v1.md"
+      ],
+      "artifactRefs": [
+        "artifact-task-0023",
+        "artifact-ads-monetization-pipeline"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-arendt-ads-pipeline"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Arendt chat deep link unavailable; fallback opens Codex."
+      },
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
+    },
+    {
+      "id": "019e194b-751f-7342-8cbf-cc929c88d55a",
+      "agentPath": "019e194b-751f-7342-8cbf-cc929c88d55a",
+      "codexAgentId": "019e194b-751f-7342-8cbf-cc929c88d55a",
+      "role": "Marketing Alignment Producer",
+      "agent": "Hume",
+      "status": "done",
+      "statusSince": "2026-05-12T02:07:00+03:00",
+      "taskId": "TASK-0014",
+      "taskRefs": [
+        "TASK-0014"
+      ],
+      "task": "Align marketing materials to Sprint 01 implementation and QA gates.",
+      "lastUpdate": "Completed Sprint 01 marketing alignment for TASK-0014/TASK-0024-ish scope; capture and public claims remain gated by QA.",
+      "lastMessage": "Marketing is aligned to Sprint 01 mastery badge, Clean Run, skill route, Level 14 lift, and Level 15 crumbling tile claims, with real-play capture still gated.",
+      "lastMessageAt": "2026-05-12T02:07:00+03:00",
+      "links": [
+        "../../tasks/TASK-0014-marketing-production-assets.md",
+        "../../reports/marketing-sprint-01-alignment.md",
+        "../../marketing/screenshot-storyboard-v1.md"
+      ],
+      "artifactRefs": [
+        "artifact-marketing-sprint-01-alignment",
+        "artifact-store-copy"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-hume-marketing-alignment"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Hume chat deep link unavailable; fallback opens Codex."
+      },
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
+    },
+    {
+      "id": "019e1950-0889-79e1-8fff-5de3ca3e9fcf",
+      "agentPath": "019e1950-0889-79e1-8fff-5de3ca3e9fcf",
+      "codexAgentId": "019e1950-0889-79e1-8fff-5de3ca3e9fcf",
+      "role": "Docs Follow-up Git Pusher",
+      "agent": "Wegener",
+      "status": "done",
+      "statusSince": "2026-05-12T02:12:00+03:00",
+      "taskId": "TASK-0008",
+      "taskRefs": [
+        "TASK-0008",
+        "SPRINT-01-DOCS-FOLLOW-UP"
+      ],
+      "task": "Push Sprint 01 docs follow-up after release documentation updates.",
+      "lastUpdate": "Completed docs follow-up git push; commit 5811a55 is recorded after the primary Sprint 01 release push.",
+      "lastMessage": "Docs follow-up push completed at commit 5811a55; dashboard roster now needs manual sync to stay current until TD-0007/TD-0008 are closed.",
+      "lastMessageAt": "2026-05-12T02:12:00+03:00",
+      "links": [
+        "../../tasks/TASK-0008-git-repo-control-setup.md",
+        "../../reports/sprint-01-git-release-report.md"
+      ],
+      "artifactRefs": [
+        "artifact-sprint-01-git-release-report",
+        "artifact-status-board"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-wegener-docs-follow-up-push"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Wegener chat deep link unavailable; fallback opens Codex."
+      },
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
     }
   ],
   "agents": [
@@ -269,7 +478,9 @@
       "taskId": "TASK-0001",
       "task": "Modular architecture plan and first split",
       "output": "Extracted RedBallPlayer into its own module.",
-      "links": ["../../tasks/TASK-0001-modular-architecture-first-split.md"]
+      "links": [
+        "../../tasks/TASK-0001-modular-architecture-first-split.md"
+      ]
     },
     {
       "id": "leibniz-menu",
@@ -279,7 +490,9 @@
       "taskId": "TASK-0002",
       "task": "Menu and UI redesign direction",
       "output": "Playable Hill Menu direction.",
-      "links": ["../../reports/TASK-0002-menu-ui-redesign-direction.md"]
+      "links": [
+        "../../reports/TASK-0002-menu-ui-redesign-direction.md"
+      ]
     },
     {
       "id": "aristotle-ui-polish",
@@ -289,7 +502,9 @@
       "taskId": "TASK-0002",
       "task": "UI implementation breakdown",
       "output": "Recommended one RedBallUi bridge before broader UI modularization.",
-      "links": ["../../reports/TASK-0002-menu-ui-redesign-implementation-breakdown.md"]
+      "links": [
+        "../../reports/TASK-0002-menu-ui-redesign-implementation-breakdown.md"
+      ]
     },
     {
       "id": "zeno-assets",
@@ -299,7 +514,9 @@
       "taskId": "TASK-0003",
       "task": "Free asset research report",
       "output": "CC0-first asset report.",
-      "links": ["../../reports/asset-research.md"]
+      "links": [
+        "../../reports/asset-research.md"
+      ]
     },
     {
       "id": "mencius-retention",
@@ -309,7 +526,9 @@
       "taskId": "TASK-0004",
       "task": "Differentiation and retention design",
       "output": "Mastery Badge Loop recommendation.",
-      "links": ["../../reports/retention-mastery-badge-loop.md"]
+      "links": [
+        "../../reports/retention-mastery-badge-loop.md"
+      ]
     },
     {
       "id": "erdos-differentiation",
@@ -319,7 +538,9 @@
       "taskId": "TASK-0004",
       "task": "Differentiation challenger",
       "output": "Red Ball: Trickline direction.",
-      "links": ["../../reports/differentiation-challenger-red-ball-trickline.md"]
+      "links": [
+        "../../reports/differentiation-challenger-red-ball-trickline.md"
+      ]
     },
     {
       "id": "banach-level-design",
@@ -329,7 +550,9 @@
       "taskId": "TASK-0005",
       "task": "Level design expansion pack",
       "output": "20-level plan; checkpoints before long levels.",
-      "links": ["../../reports/level-design-expansion-plan.md"]
+      "links": [
+        "../../reports/level-design-expansion-plan.md"
+      ]
     },
     {
       "id": "carver-ads",
@@ -339,7 +562,9 @@
       "taskId": "TASK-0006",
       "task": "Ads pipeline architecture",
       "output": "Rewarded heart recovery architecture.",
-      "links": ["../../reports/ads-pipeline-architecture.md"]
+      "links": [
+        "../../reports/ads-pipeline-architecture.md"
+      ]
     },
     {
       "id": "chandrasekhar-marketing",
@@ -349,7 +574,9 @@
       "taskId": "TASK-0007",
       "task": "Marketing and launch research",
       "output": "Clean rolling line launch positioning.",
-      "links": ["../../reports/marketing-launch-research.md"]
+      "links": [
+        "../../reports/marketing-launch-research.md"
+      ]
     },
     {
       "id": "averroes-git",
@@ -359,7 +586,9 @@
       "taskId": "TASK-0008",
       "task": "Git repo control setup",
       "output": "Repo init/push plan; exclude Unity generated folders.",
-      "links": ["../../tasks/TASK-0008-git-repo-control-setup.md"]
+      "links": [
+        "../../tasks/TASK-0008-git-repo-control-setup.md"
+      ]
     },
     {
       "id": "socrates-qa",
@@ -369,7 +598,142 @@
       "taskId": "QA",
       "task": "QA checklist",
       "output": "Compile plus play-mode smoke closure gates.",
-      "links": ["../../reports/qa-checklist.md"]
+      "links": [
+        "../../reports/qa-checklist.md"
+      ]
+    },
+    {
+      "id": "019e1942-4970-78c1-9e69-045cdce75024",
+      "agentPath": "019e1942-4970-78c1-9e69-045cdce75024",
+      "codexAgentId": "019e1942-4970-78c1-9e69-045cdce75024",
+      "role": "Unity Test Harness Developer",
+      "agent": "James",
+      "status": "done",
+      "taskId": "TASK-0022",
+      "taskRefs": [
+        "TASK-0022",
+        "TASK-0021"
+      ],
+      "task": "Complete Unity Play/EditMode smoke harness and record passing evidence.",
+      "output": "Completed TASK-0022 with EditMode smoke 6/6 PASS; TD-0006 remains open for full PlayMode traversal evidence.",
+      "links": [
+        "../../tasks/TASK-0022-unity-playmode-smoke-harness.md",
+        "../../reports/unity-playmode-smoke-harness.md",
+        "../../../../TestResults/editmode-smoke-results.xml"
+      ],
+      "artifactRefs": [
+        "artifact-task-0022",
+        "artifact-editmode-smoke-results",
+        "artifact-unity-smoke-report"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-james-smoke-harness"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct James chat deep link unavailable; fallback opens Codex."
+      }
+    },
+    {
+      "id": "019e194b-43cd-7e33-b11f-603706ecc1a1",
+      "agentPath": "019e194b-43cd-7e33-b11f-603706ecc1a1",
+      "codexAgentId": "019e194b-43cd-7e33-b11f-603706ecc1a1",
+      "role": "Monetization / Ads Pipeline Lead",
+      "agent": "Arendt",
+      "status": "done",
+      "taskId": "TASK-0023",
+      "taskRefs": [
+        "TASK-0023"
+      ],
+      "task": "Document Sprint 01 monetization/ad boundary without SDK import.",
+      "output": "Completed TASK-0023 docs-only ads pipeline recommendation; no SDK/import work, ads deferred beyond Sprint 01.",
+      "links": [
+        "../../tasks/TASK-0023-ads-monetization-pipeline.md",
+        "../../reports/ads-monetization-pipeline-v1.md"
+      ],
+      "artifactRefs": [
+        "artifact-task-0023",
+        "artifact-ads-monetization-pipeline"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-arendt-ads-pipeline"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Arendt chat deep link unavailable; fallback opens Codex."
+      }
+    },
+    {
+      "id": "019e194b-751f-7342-8cbf-cc929c88d55a",
+      "agentPath": "019e194b-751f-7342-8cbf-cc929c88d55a",
+      "codexAgentId": "019e194b-751f-7342-8cbf-cc929c88d55a",
+      "role": "Marketing Alignment Producer",
+      "agent": "Hume",
+      "status": "done",
+      "taskId": "TASK-0014",
+      "taskRefs": [
+        "TASK-0014"
+      ],
+      "task": "Align marketing materials to Sprint 01 implementation and QA gates.",
+      "output": "Completed Sprint 01 marketing alignment for TASK-0014/TASK-0024-ish scope; capture and public claims remain gated by QA.",
+      "links": [
+        "../../tasks/TASK-0014-marketing-production-assets.md",
+        "../../reports/marketing-sprint-01-alignment.md",
+        "../../marketing/screenshot-storyboard-v1.md"
+      ],
+      "artifactRefs": [
+        "artifact-marketing-sprint-01-alignment",
+        "artifact-store-copy"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-hume-marketing-alignment"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Hume chat deep link unavailable; fallback opens Codex."
+      }
+    },
+    {
+      "id": "019e1950-0889-79e1-8fff-5de3ca3e9fcf",
+      "agentPath": "019e1950-0889-79e1-8fff-5de3ca3e9fcf",
+      "codexAgentId": "019e1950-0889-79e1-8fff-5de3ca3e9fcf",
+      "role": "Docs Follow-up Git Pusher",
+      "agent": "Wegener",
+      "status": "done",
+      "taskId": "TASK-0008",
+      "taskRefs": [
+        "TASK-0008",
+        "SPRINT-01-DOCS-FOLLOW-UP"
+      ],
+      "task": "Push Sprint 01 docs follow-up after release documentation updates.",
+      "output": "Completed docs follow-up git push; commit 5811a55 is recorded after the primary Sprint 01 release push.",
+      "links": [
+        "../../tasks/TASK-0008-git-repo-control-setup.md",
+        "../../reports/sprint-01-git-release-report.md"
+      ],
+      "artifactRefs": [
+        "artifact-sprint-01-git-release-report",
+        "artifact-status-board"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-wegener-docs-follow-up-push"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Wegener chat deep link unavailable; fallback opens Codex."
+      }
     }
   ],
   "events": [
@@ -444,6 +808,60 @@
       "agentId": "codex-realtime-dashboard-engineer",
       "kind": "verification",
       "message": "Headless Chrome smoke passed for agent selection, selected transcript rendering, local PM dispatch pending queue, workflow board rendering, and no-refresh polling update."
+    },
+    {
+      "id": "evt-20260512-015700-sprint-01-release-push",
+      "time": "2026-05-12T01:57:00+03:00",
+      "displayTime": "2026-05-12 01:57",
+      "speaker": "Git / Release",
+      "agentId": "019e1950-0889-79e1-8fff-5de3ca3e9fcf",
+      "kind": "release",
+      "message": "Sprint 01 release push reached origin/main with primary commit 5d7ee44 and committed EditMode smoke XML evidence."
+    },
+    {
+      "id": "evt-20260512-020000-qa-partial-smoke-pass",
+      "time": "2026-05-12T02:00:00+03:00",
+      "displayTime": "2026-05-12 02:00",
+      "speaker": "James",
+      "agentId": "019e1942-4970-78c1-9e69-045cdce75024",
+      "kind": "verification",
+      "message": "QA remains PARTIAL: compile/import passed and TASK-0022 EditMode smoke harness reports 6/6 PASS; PlayMode/manual traversal remains pending under TD-0006."
+    },
+    {
+      "id": "evt-20260512-020400-ads-deferred",
+      "time": "2026-05-12T02:04:00+03:00",
+      "displayTime": "2026-05-12 02:04",
+      "speaker": "Arendt",
+      "agentId": "019e194b-43cd-7e33-b11f-603706ecc1a1",
+      "kind": "decision",
+      "message": "TASK-0023 completed with no SDK/import and ads deferred; future rewarded ads require fake-service, privacy, config, and Yusuf approval gates."
+    },
+    {
+      "id": "evt-20260512-020700-marketing-aligned",
+      "time": "2026-05-12T02:07:00+03:00",
+      "displayTime": "2026-05-12 02:07",
+      "speaker": "Hume",
+      "agentId": "019e194b-751f-7342-8cbf-cc929c88d55a",
+      "kind": "completion",
+      "message": "Marketing alignment completed against Sprint 01 implementation; public claims remain gated on real-play capture QA."
+    },
+    {
+      "id": "evt-20260512-021200-docs-follow-up-push",
+      "time": "2026-05-12T02:12:00+03:00",
+      "displayTime": "2026-05-12 02:12",
+      "speaker": "Wegener",
+      "agentId": "019e1950-0889-79e1-8fff-5de3ca3e9fcf",
+      "kind": "release",
+      "message": "Docs follow-up push completed at commit 5811a55; dashboard roster/state sync was manually refreshed afterward."
+    },
+    {
+      "id": "evt-20260512-021500-dashboard-roster-sync",
+      "time": "2026-05-12T02:15:00+03:00",
+      "displayTime": "2026-05-12 02:15",
+      "speaker": "Dashboard State Sync Maintainer",
+      "agentId": "pm-moderator",
+      "kind": "data-update",
+      "message": "Dashboard roster synced after Sprint 01 docs follow-up: James, Arendt, Hume, and Wegener are now visible with transcripts, tasks, decisions, and release/QA events. Manual sync remains tracked by TD-0007/TD-0008."
     }
   ],
   "transcriptSnippets": [
@@ -534,6 +952,38 @@
       "agentId": "019e191d-5df7-7a93-ab16-83bfa3f2226f",
       "kind": "completion",
       "snippet": "Frontend relay fix completed: dashboard prefers /api/state, posts to /api/messages, and consumes /api/events."
+    },
+    {
+      "id": "trn-20260512-james-smoke-harness",
+      "time": "2026-05-12T02:00:00+03:00",
+      "speaker": "James",
+      "agentId": "019e1942-4970-78c1-9e69-045cdce75024",
+      "kind": "verification",
+      "snippet": "Completed TASK-0022 with EditMode smoke 6/6 PASS; full PlayMode traversal remains open under TD-0006."
+    },
+    {
+      "id": "trn-20260512-arendt-ads-pipeline",
+      "time": "2026-05-12T02:04:00+03:00",
+      "speaker": "Arendt",
+      "agentId": "019e194b-43cd-7e33-b11f-603706ecc1a1",
+      "kind": "completion",
+      "snippet": "Completed TASK-0023 as a docs-only monetization pipeline; no SDK/import and real ads deferred."
+    },
+    {
+      "id": "trn-20260512-hume-marketing-alignment",
+      "time": "2026-05-12T02:07:00+03:00",
+      "speaker": "Hume",
+      "agentId": "019e194b-751f-7342-8cbf-cc929c88d55a",
+      "kind": "completion",
+      "snippet": "Aligned marketing production to Sprint 01 implementation and QA gates."
+    },
+    {
+      "id": "trn-20260512-wegener-docs-follow-up-push",
+      "time": "2026-05-12T02:12:00+03:00",
+      "speaker": "Wegener",
+      "agentId": "019e1950-0889-79e1-8fff-5de3ca3e9fcf",
+      "kind": "release",
+      "snippet": "Completed docs follow-up push at commit 5811a55 after Sprint 01 release documentation updates."
     }
   ],
   "agentConversations": [
@@ -682,6 +1132,58 @@
           "message": "Converting launch research into store copy, ASO metadata, screenshot storyboard, and short video scripts."
         }
       ]
+    },
+    {
+      "agentId": "019e1942-4970-78c1-9e69-045cdce75024",
+      "entries": [
+        {
+          "id": "conv-james-001",
+          "time": "2026-05-12T02:00:00+03:00",
+          "displayTime": "2026-05-12 02:00",
+          "speaker": "James",
+          "kind": "verification",
+          "message": "TASK-0022 is complete with EditMode smoke 6/6 PASS. TD-0006 remains open until full PlayMode/manual traversal evidence exists."
+        }
+      ]
+    },
+    {
+      "agentId": "019e194b-43cd-7e33-b11f-603706ecc1a1",
+      "entries": [
+        {
+          "id": "conv-arendt-001",
+          "time": "2026-05-12T02:04:00+03:00",
+          "displayTime": "2026-05-12 02:04",
+          "speaker": "Arendt",
+          "kind": "completion",
+          "message": "TASK-0023 is complete as a docs-only ads pipeline. No SDK/import landed; ads are deferred beyond Sprint 01."
+        }
+      ]
+    },
+    {
+      "agentId": "019e194b-751f-7342-8cbf-cc929c88d55a",
+      "entries": [
+        {
+          "id": "conv-hume-001",
+          "time": "2026-05-12T02:07:00+03:00",
+          "displayTime": "2026-05-12 02:07",
+          "speaker": "Hume",
+          "kind": "completion",
+          "message": "Marketing assets are aligned to Sprint 01 scope and remain capture-gated until real-play QA evidence is available."
+        }
+      ]
+    },
+    {
+      "agentId": "019e1950-0889-79e1-8fff-5de3ca3e9fcf",
+      "entries": [
+        {
+          "id": "conv-wegener-001",
+          "time": "2026-05-12T02:12:00+03:00",
+          "displayTime": "2026-05-12 02:12",
+          "speaker": "Wegener",
+          "kind": "release",
+          "message": "Docs follow-up push completed at commit 5811a55; manual dashboard sync is still governed by TD-0007 and TD-0008."
+        }
+      ]
     }
   ],
   "tasks": [
@@ -691,7 +1193,20 @@
       "status": "QA Pending",
       "owner": "Developer Gameplay + PM",
       "priority": "medium",
-      "links": ["../../tasks/TASK-0001-modular-architecture-first-split.md"]
+      "links": [
+        "../../tasks/TASK-0001-modular-architecture-first-split.md"
+      ]
+    },
+    {
+      "id": "TASK-0008",
+      "title": "Git repo control setup / Sprint 01 release push",
+      "status": "Pushed to origin/main + docs follow-up pushed",
+      "owner": "Git Repo Controller + Release Manager + Wegener",
+      "priority": "high",
+      "links": [
+        "../../tasks/TASK-0008-git-repo-control-setup.md",
+        "../../reports/sprint-01-git-release-report.md"
+      ]
     },
     {
       "id": "TASK-0010",
@@ -699,7 +1214,9 @@
       "status": "Implementation Complete - QA Pending",
       "owner": "PM",
       "priority": "high",
-      "links": ["../../tasks/TASK-0010-checkpoints-warning-signs.md"]
+      "links": [
+        "../../tasks/TASK-0010-checkpoints-warning-signs.md"
+      ]
     },
     {
       "id": "TASK-0012",
@@ -707,7 +1224,9 @@
       "status": "Implementation Complete - QA Pending",
       "owner": "PM + Developer UI/Polish",
       "priority": "high",
-      "links": ["../../tasks/TASK-0012-redball-ui-bridge-first-slice.md"]
+      "links": [
+        "../../tasks/TASK-0012-redball-ui-bridge-first-slice.md"
+      ]
     },
     {
       "id": "TASK-0013",
@@ -715,39 +1234,87 @@
       "status": "In Progress",
       "owner": "PM + Asset Pipeline",
       "priority": "medium",
-      "links": ["../../tasks/TASK-0013-asset-pipeline-downloads.md", "../../reports/asset-download-plan.md", "../../assets-manifest.md"]
+      "links": [
+        "../../tasks/TASK-0013-asset-pipeline-downloads.md",
+        "../../reports/asset-download-plan.md",
+        "../../assets-manifest.md"
+      ]
     },
     {
       "id": "TASK-0014",
       "title": "Marketing Production Assets",
-      "status": "In Progress",
-      "owner": "PM + Marketing Production",
+      "status": "Aligned - Capture Gated",
+      "owner": "PM + Marketing Production + Hume",
       "priority": "medium",
-      "links": ["../../tasks/TASK-0014-marketing-production-assets.md", "../../marketing/store-copy-v1.md", "../../marketing/aso-metadata-v1.md", "../../marketing/screenshot-storyboard-v1.md", "../../marketing/short-video-scripts-v1.md", "../../marketing/launch-checklist-v1.md"]
+      "links": [
+        "../../tasks/TASK-0014-marketing-production-assets.md",
+        "../../reports/marketing-sprint-01-alignment.md",
+        "../../marketing/store-copy-v1.md",
+        "../../marketing/aso-metadata-v1.md",
+        "../../marketing/screenshot-storyboard-v1.md",
+        "../../marketing/short-video-scripts-v1.md",
+        "../../marketing/launch-checklist-v1.md"
+      ]
     },
     {
       "id": "TASK-0015",
       "title": "Live Agent Dashboard System",
-      "status": "Implementation Complete - Browser Smoke Passed",
-      "owner": "Realtime Dashboard Engineer",
+      "status": "QA Pass - Roster Synced After Sprint 01 Docs Follow-up",
+      "owner": "Realtime Dashboard Engineer + Dashboard State Sync Maintainer",
       "priority": "high",
-      "links": ["../../tasks/TASK-0015-live-agent-dashboard-system.md", "README.md", "dashboard.schema.json"]
+      "links": [
+        "../../tasks/TASK-0015-live-agent-dashboard-system.md",
+        "README.md",
+        "dashboard.schema.json"
+      ]
     },
     {
       "id": "TASK-0019",
       "title": "Sprint 01 Unity Implementation",
-      "status": "Implementation Complete - QA Pending",
-      "owner": "Goodall",
+      "status": "QA PARTIAL - Compile Pass / Play-mode Pending",
+      "owner": "Goodall + QA",
       "priority": "high",
-      "links": ["../../tasks/TASK-0019-sprint-01-unity-implementation.md", "../../reports/sprint-01-implementation-plan.md"]
+      "links": [
+        "../../tasks/TASK-0019-sprint-01-unity-implementation.md",
+        "../../reports/sprint-01-implementation-plan.md",
+        "../../reports/sprint-01-qa-run-2026-05-12.md"
+      ]
     },
     {
       "id": "TASK-0021",
       "title": "Sprint 01 QA Playtest",
-      "status": "QA Matrix Complete - Play-mode Pending",
-      "owner": "Kierkegaard + QA",
+      "status": "QA PARTIAL - Compile Pass / EditMode Smoke PASS / Play-mode Pending",
+      "owner": "Kierkegaard + James + QA",
       "priority": "high",
-      "links": ["../../tasks/TASK-0021-sprint-01-qa-playtest.md", "../../reports/sprint-01-qa-test-plan.md"]
+      "links": [
+        "../../tasks/TASK-0021-sprint-01-qa-playtest.md",
+        "../../reports/sprint-01-qa-test-plan.md",
+        "../../reports/sprint-01-qa-run-2026-05-12.md",
+        "../../reports/unity-playmode-smoke-harness.md"
+      ]
+    },
+    {
+      "id": "TASK-0022",
+      "title": "Unity Play/EditMode Smoke Harness",
+      "status": "Implementation Complete - EditMode Smoke PASS 6/6",
+      "owner": "James",
+      "priority": "high",
+      "links": [
+        "../../tasks/TASK-0022-unity-playmode-smoke-harness.md",
+        "../../reports/unity-playmode-smoke-harness.md",
+        "../../../../TestResults/editmode-smoke-results.xml"
+      ]
+    },
+    {
+      "id": "TASK-0023",
+      "title": "Ads Monetization Pipeline",
+      "status": "Completed - Ads Deferred / No SDK Import",
+      "owner": "Arendt",
+      "priority": "medium",
+      "links": [
+        "../../tasks/TASK-0023-ads-monetization-pipeline.md",
+        "../../reports/ads-monetization-pipeline-v1.md"
+      ]
     }
   ],
   "meetingNotes": [
@@ -764,6 +1331,13 @@
       "title": "Outbound message gap",
       "note": "No real Codex subagent API is connected; composer messages are stored locally as pending PM dispatch items.",
       "owner": "Realtime Dashboard Engineer"
+    },
+    {
+      "id": "meet-roster-sync-after-sprint-01-docs-follow-up",
+      "time": "2026-05-12T02:15:00+03:00",
+      "title": "Roster synced after Sprint 01 docs follow-up",
+      "note": "Dashboard data now includes James, Arendt, Hume, and Wegener after the Sprint 01 release/docs follow-up push. This remains a manual sync path covered by TD-0007 and TD-0008.",
+      "owner": "Dashboard State Sync Maintainer"
     }
   ],
   "groomingQueue": [
@@ -787,6 +1361,13 @@
       "status": "Implemented",
       "priority": "high",
       "owner": "Realtime Dashboard Engineer"
+    },
+    {
+      "id": "groom-dashboard-manual-sync-debt",
+      "title": "Automate dashboard roster/state sync",
+      "status": "Existing debt: TD-0007 / TD-0008",
+      "priority": "medium",
+      "owner": "Dashboard + PM"
     }
   ],
   "pmDecisionLog": [
@@ -859,6 +1440,41 @@
       "area": "Codex chat handoff",
       "decision": "Agent cards and the selected-agent panel expose Open Codex Chat; the relay opens Codex.app while direct agent chat deep links remain unavailable.",
       "reason": "Codex.app declares the codex URL scheme, but no documented or discoverable agent-specific deep-link format was found locally."
+    },
+    {
+      "id": "dec-sprint-01-release-push",
+      "time": "2026-05-12T01:57:00+03:00",
+      "area": "Git / Release",
+      "decision": "Sprint 01 release was pushed to origin/main with primary commit 5d7ee44; docs follow-up push commit 5811a55 is recorded separately.",
+      "reason": "Release evidence and follow-up documentation need dashboard-visible traceability."
+    },
+    {
+      "id": "dec-qa-partial-smoke-pass",
+      "time": "2026-05-12T02:00:00+03:00",
+      "area": "QA",
+      "decision": "Treat Sprint 01 QA as partial: compile/import and EditMode smoke 6/6 PASS are recorded, but full PlayMode/manual traversal remains required under TD-0006.",
+      "reason": "EditMode harness reduces regression risk but does not replace runtime traversal evidence."
+    },
+    {
+      "id": "dec-ads-deferred-sprint-01",
+      "time": "2026-05-12T02:04:00+03:00",
+      "area": "Monetization",
+      "decision": "No ads SDK/import or real ads for Sprint 01; ads remain deferred after TASK-0023.",
+      "reason": "Protects mastery-first MVP and avoids privacy/config/reward pressure risk before approval gates."
+    },
+    {
+      "id": "dec-marketing-sprint-01-aligned",
+      "time": "2026-05-12T02:07:00+03:00",
+      "area": "Marketing",
+      "decision": "Marketing copy/storyboard alignment follows Sprint 01 scope, with public claims gated on real-play capture QA.",
+      "reason": "Prevents marketing from promising behavior before QA evidence exists."
+    },
+    {
+      "id": "dec-dashboard-roster-manual-sync",
+      "time": "2026-05-12T02:15:00+03:00",
+      "area": "Dashboard data",
+      "decision": "Dashboard roster was manually synced after Sprint 01 docs follow-up to include James, Arendt, Hume, and Wegener.",
+      "reason": "Dashboard JSON is still manually maintained; automation gap remains covered by TD-0007 and handoff/process drift by TD-0008."
     }
   ],
   "decisions": [
@@ -871,7 +1487,12 @@
     "PM gives direction and acceptance only; realtime dashboard engineer owns implementation.",
     "Live dashboard runtime polls local JSON every one second through the local HTTP launcher.",
     "Agent message composer is local queue only until a real Codex subagent dispatch API exists.",
-    "Agent chat handoff opens Codex.app because no direct agent chat deep-link format is available."
+    "Agent chat handoff opens Codex.app because no direct agent chat deep-link format is available.",
+    "Sprint 01 release push reached origin/main with primary commit 5d7ee44; docs follow-up push commit 5811a55 is separately recorded.",
+    "Sprint 01 QA is partial: compile/import and EditMode smoke 6/6 PASS are recorded, but PlayMode/manual traversal remains pending under TD-0006.",
+    "TASK-0023 keeps Sprint 01 ads deferred: no SDK import, no real ads, and no monetization claims until approval gates.",
+    "Marketing is aligned to Sprint 01 scope, but public capture and claims remain gated on real-play QA evidence.",
+    "Dashboard roster synced after Sprint 01 docs follow-up; manual state sync remains covered by TD-0007 and TD-0008."
   ],
   "artifactLinks": [
     {
@@ -936,6 +1557,55 @@
       "type": "report",
       "href": "../../reports/sprint-01-qa-test-plan.md",
       "taskId": "TASK-0021"
+    },
+    {
+      "id": "artifact-task-0022",
+      "label": "TASK-0022 smoke harness task",
+      "type": "task",
+      "href": "../../tasks/TASK-0022-unity-playmode-smoke-harness.md",
+      "taskId": "TASK-0022"
+    },
+    {
+      "id": "artifact-unity-smoke-report",
+      "label": "Unity smoke harness report",
+      "type": "report",
+      "href": "../../reports/unity-playmode-smoke-harness.md",
+      "taskId": "TASK-0022"
+    },
+    {
+      "id": "artifact-editmode-smoke-results",
+      "label": "EditMode smoke results XML",
+      "type": "qa-evidence",
+      "href": "../../../../TestResults/editmode-smoke-results.xml",
+      "taskId": "TASK-0022"
+    },
+    {
+      "id": "artifact-task-0023",
+      "label": "TASK-0023 ads monetization pipeline",
+      "type": "task",
+      "href": "../../tasks/TASK-0023-ads-monetization-pipeline.md",
+      "taskId": "TASK-0023"
+    },
+    {
+      "id": "artifact-ads-monetization-pipeline",
+      "label": "Ads monetization pipeline v1",
+      "type": "report",
+      "href": "../../reports/ads-monetization-pipeline-v1.md",
+      "taskId": "TASK-0023"
+    },
+    {
+      "id": "artifact-marketing-sprint-01-alignment",
+      "label": "Marketing Sprint 01 alignment report",
+      "type": "report",
+      "href": "../../reports/marketing-sprint-01-alignment.md",
+      "taskId": "TASK-0014"
+    },
+    {
+      "id": "artifact-sprint-01-git-release-report",
+      "label": "Sprint 01 git release report",
+      "type": "report",
+      "href": "../../reports/sprint-01-git-release-report.md",
+      "taskId": "TASK-0008"
     }
   ]
 }
