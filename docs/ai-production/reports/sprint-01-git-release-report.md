@@ -8,7 +8,7 @@ Remote: `origin` -> `https://github.com/yusufbayindir/red-boll.git`
 
 ## Verdict
 
-Safe release staging prepared for Sprint 01 gameplay loop, Unity smoke tests, dashboard handoff, and production docs.
+Safe release staging completed for Sprint 01 gameplay loop, Unity smoke tests, dashboard handoff, and production docs.
 
 ## Staged Scope
 
@@ -42,7 +42,11 @@ Safe release staging prepared for Sprint 01 gameplay loop, Unity smoke tests, da
 
 ## Push Result
 
-Pending execution at report creation time. Final commit hash and remote link are reported in the executor final response after push.
+- Primary release commit: `5d7ee44` (`Add Sprint 01 gameplay loop and dashboard handoff`).
+- Push target: `origin/main`.
+- Push result: success, `9db5292..5d7ee44 main -> main`.
+- Remote link: `https://github.com/yusufbayindir/red-boll/tree/main`.
+- Follow-up report/status commit may appear after `5d7ee44` only to record this completed push result in-repo.
 
 ## Technical Debt
 
