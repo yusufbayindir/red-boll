@@ -14,9 +14,10 @@ This checklist is for a practical MVP store test, not a scale launch. The launch
 
 - [ ] PM chooses public listing name: `Red Ball Roll & Jump`, `Red Ball: Trickline`, or `Trickline Ball`.
 - [ ] Product/brand review confirms the name does not look like an impersonation of a larger Red Ball brand.
-- [ ] Final copy avoids bosses, skins, daily challenges, leaderboards, offline play, mastery badges, and big level-count claims unless implemented and verified.
+- [ ] Final copy avoids bosses, skins, daily challenges, leaderboards, offline play, ad rewards, and big level-count claims unless implemented and verified.
+- [ ] Public claims for mastery badges, `Clean Run`, skill route, Level 14 vertical lift, and Level 15 crumbling tile are verified before launch with real-play evidence because TD-0006 is open.
 - [ ] First screenshot shows gameplay action, not a menu.
-- [ ] Store promise matches the build: quick physics platformer levels, roll/jump/bounce, coins, hazards, bounce pads, moving platforms, patrol enemies, touch controls, level select, saved progress.
+- [ ] Store promise matches the build: quick physics platformer levels, roll/jump/bounce, coins, hazards, bounce pads, moving platforms, patrol enemies, touch controls, level select, saved progress, and only QA-approved Sprint 01 mechanics.
 
 ## 2. Build Readiness
 
@@ -28,7 +29,9 @@ This checklist is for a practical MVP store test, not a scale launch. The launch
 - [ ] Saved progress survives app restart.
 - [ ] Hearts do not block early learning during the first test session.
 - [ ] Checkpoint/warning-sign behavior is either QA-approved or not shown in marketing materials.
-- [ ] Mastery badges are either implemented and QA-approved or absent from all public materials.
+- [ ] Mastery badges are implemented, persistent, readable on mobile, and QA-approved before appearing in public materials.
+- [ ] Level 14 vertical lift and Level 15 crumbling tile have real traversal evidence before being used as public screenshot/video claims.
+- [ ] Clean Run failure paths are verified after hazard damage, enemy side contact, fall/death, and restart before `Clean Run` is used as a public claim.
 
 ## 3. Store Assets
 
@@ -36,6 +39,7 @@ This checklist is for a practical MVP store test, not a scale launch. The launch
 - [ ] 5-7 gameplay screenshots captured from real device or approved simulator footage.
 - [ ] Screenshot captions match `screenshot-storyboard-v1.md`.
 - [ ] No screenshot shows fake features, future badges, fake menus, or placeholder debug UI.
+- [ ] Sprint 01 screenshot set includes only verified frames: badge progress, vertical lift, crumbling tile, skill route, and quick retry/clean run.
 - [ ] 1 vertical gameplay trailer is cut from real footage.
 - [ ] Trailer first frame is gameplay, not logo or menu.
 - [ ] Store copy uses `store-copy-v1.md` or a PM-approved revision.
@@ -49,6 +53,7 @@ This checklist is for a practical MVP store test, not a scale launch. The launch
 - [ ] Analytics SDK, ads SDK, and data disclosures match the real build.
 - [ ] If ads are present, they follow PM decision: rewarded heart recovery only, no death-pressure ads.
 - [ ] If ads are not present, store disclosures and copy do not imply ad-free unless PM approves that claim.
+- [ ] Ads pipeline remains pending until the monetization lead approves implementation, disclosures, and allowed public wording.
 - [ ] Any third-party assets used in screenshots or builds have license-safe attribution handling.
 
 ## 5. Analytics And Test Events
@@ -108,9 +113,13 @@ This checklist is for a practical MVP store test, not a scale launch. The launch
 ## Launch Blockers
 
 - [ ] Store copy claims a feature not in the build.
+- [ ] Store copy claims Sprint 01 badge, Clean Run, skill route, lift, or crumble behavior before real-play verification.
 - [ ] First screenshot is unclear or menu-led.
 - [ ] Touch controls fail on common phone sizes.
 - [ ] Progress does not save after restart.
 - [ ] Early hearts block practice and cause tester churn.
 - [ ] Crash rate or console errors are unresolved.
 - [ ] Privacy, age rating, data disclosure, or asset license questions are unanswered.
+- [ ] Ads or monetization claims are made before the ads pipeline decision is approved.
+
+Technical debt added: none.

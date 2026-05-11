@@ -11,9 +11,10 @@ Inputs: `marketing-launch-research.md` video hooks plus current PM decisions.
 - Format: vertical 9:16.
 - Length: 7-12 seconds each.
 - Use real gameplay only.
+- Sprint 01-specific clips must be marked verify-before-launch until TD-0006 real play traversal is complete.
 - First frame should already be gameplay. No logo intro.
 - Keep overlays short enough to read on mute.
-- Do not show unimplemented bosses, skins, badges, daily challenges, leaderboards, ghosts, or fake store UI.
+- Do not show unimplemented bosses, skins, daily challenges, leaderboards, ghosts, ads, ad rewards, or fake store UI.
 - End on a clean finish, a funny failure, or a retry decision. Do not end on a static menu unless the script says so.
 
 ## Scripts
@@ -157,7 +158,49 @@ Goal: tee up future mastery positioning without claiming badges.
 | 7.0-10.0 | Instant retry starts from earlier point. | `Again.` | |
 | 10.0-12.0 | Better attempt begins cleanly. | `Find the line` | Caption: `That one mistake always matters.` |
 
-Capture note: do not show a Clean Run badge unless the feature ships. The phrase here is an informal player challenge only.
+Capture note: Clean Run badges now exist in Sprint 01, but only show the badge UI after real-play QA verifies Clean Run invalidation, persistence, and mobile readability.
+
+### 11. Badge Progress Check
+
+Length: 9 seconds  
+Goal: show `Clear`, `All Coins`, and `Clean Run` as replay goals without implying rewards, ads, or daily contracts.
+
+| Time | Visual | Overlay | Audio/Caption |
+| --- | --- | --- | --- |
+| 0.0-1.5 | Completion or level-select badge progress appears after a real run. | `Clear.` | Completion sound or soft UI tick. |
+| 1.5-3.5 | Badge progress shows one missing badge. | `All coins?` | |
+| 3.5-6.5 | Cut to the harder coin or clean route attempt. | `Clean run?` | |
+| 6.5-9.0 | Ball starts the better replay attempt. | `Run it cleaner` | Caption: `Replay for the badges.` |
+
+Capture note: verify-before-launch. Do not use if badge UI is unreadable on mobile capture or persistence is not QA-approved.
+
+### 12. Ride The Lift
+
+Length: 8 seconds  
+Goal: show Level 14 vertical lift as a new timing beat.
+
+| Time | Visual | Overlay | Audio/Caption |
+| --- | --- | --- | --- |
+| 0.0-1.5 | Ball rolls onto the vertical lift. | `Step on.` | |
+| 1.5-4.5 | Lift carries the ball upward while the next platform enters view. | `Ride the lift` | |
+| 4.5-6.5 | Player jumps or rolls off at the right moment. | `Now jump.` | |
+| 6.5-8.0 | Ball lands and keeps moving. | `Clean.` | Caption: `Vertical timing, quick retry.` |
+
+Capture note: verify-before-launch. Use the first safe Level 14 lift and keep the landing visible.
+
+### 13. Crumble Tile Timing
+
+Length: 8 seconds  
+Goal: show Level 15 crumbling tile as readable risk, not unfair surprise.
+
+| Time | Visual | Overlay | Audio/Caption |
+| --- | --- | --- | --- |
+| 0.0-1.5 | Ball approaches a crumbling tile with safe ground visible. | `It won't wait.` | |
+| 1.5-3.5 | Tile starts to crumble as the ball crosses. | `Keep moving` | Crumble sound if available. |
+| 3.5-6.5 | Ball jumps away before the tile drops. | | |
+| 6.5-8.0 | Safe landing. | `Made it.` | Caption: `Crumble, then jump.` |
+
+Capture note: verify-before-launch. Do not imply checkpoint respawn resets crumbling tiles unless QA later verifies that behavior.
 
 ## Posting Notes
 
@@ -165,3 +208,7 @@ Capture note: do not show a Clean Run badge unless the feature ships. The phrase
 - Measure first-frame hold, 3-second hold, completion rate, comments about difficulty, and store clicks.
 - Recut winners by moving the gameplay payoff earlier.
 - Kill clips where comments focus on confusion, fake-feeling footage, or unclear controls.
+- Ads pipeline is pending. Do not add ad-reward hooks, ad-free claims, monetization overlays, or paid-placement claims.
+- Public clips using mastery badges, Clean Run, Level 14 lift, Level 15 crumbling tile, or skill route must be verified before launch while TD-0006 remains open.
+
+Technical debt added: none.
