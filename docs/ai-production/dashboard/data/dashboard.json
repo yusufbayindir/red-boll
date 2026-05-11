@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "version": 7,
-  "updatedAt": "2026-05-12T02:15:00+03:00",
+  "version": 8,
+  "updatedAt": "2026-05-12T02:35:00+03:00",
   "generatedBy": "dashboard-state-sync-maintainer",
   "polling": {
     "recommendedIntervalMs": 1000,
@@ -467,6 +467,211 @@
         "label": "Done",
         "showThinkingLogo": false
       }
+    },
+    {
+      "id": "019e1951-6fde-7490-b478-4d49053649d0",
+      "agentPath": "019e1951-6fde-7490-b478-4d49053649d0",
+      "codexAgentId": "019e1951-6fde-7490-b478-4d49053649d0",
+      "role": "Manual Playtest / Mobile QA Planner",
+      "agent": "Euclid",
+      "status": "done",
+      "statusSince": "2026-05-12T02:20:00+03:00",
+      "taskId": "TASK-0024",
+      "taskRefs": [
+        "TASK-0024",
+        "TASK-0021"
+      ],
+      "task": "Complete Sprint 01 manual/mobile QA plan and static iOS workspace readability check.",
+      "lastUpdate": "Completed TASK-0024 with 25 manual/mobile QA scenarios and xcodebuild -list PASS on the existing workspace.",
+      "lastMessage": "Manual/mobile QA plan is ready with 25 MQA scenarios; the existing Unity-iPhone.xcworkspace is readable by xcodebuild -list.",
+      "lastMessageAt": "2026-05-12T02:20:00+03:00",
+      "links": [
+        "../../tasks/TASK-0024-sprint-01-manual-playtest-mobile-qa.md",
+        "../../reports/sprint-01-manual-playtest-plan.md"
+      ],
+      "artifactRefs": [
+        "artifact-task-0024",
+        "artifact-sprint-01-manual-playtest-plan"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-euclid-manual-mobile-qa"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Euclid chat deep link unavailable; fallback opens Codex."
+      },
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
+    },
+    {
+      "id": "019e1956-399c-70e0-b7f8-8fcdced3d310",
+      "agentPath": "019e1956-399c-70e0-b7f8-8fcdced3d310",
+      "codexAgentId": "019e1956-399c-70e0-b7f8-8fcdced3d310",
+      "role": "iOS Workspace Build Verifier",
+      "agent": "Hilbert",
+      "status": "done",
+      "statusSince": "2026-05-12T02:23:00+03:00",
+      "taskId": "TASK-0025",
+      "taskRefs": [
+        "TASK-0025",
+        "TASK-0027"
+      ],
+      "task": "Verify generated iOS workspace and record build blocker status.",
+      "lastUpdate": "Completed TASK-0025: workspace and xcodebuild -list PASS; iOS Simulator build remains BLOCKED by TD-0012 because the generated Unity target exposes iphoneos only.",
+      "lastMessage": "Workspace/list verification passed, but simulator build is BLOCKED / Needs Config under TD-0012 before compile.",
+      "lastMessageAt": "2026-05-12T02:23:00+03:00",
+      "links": [
+        "../../tasks/TASK-0025-ios-build-verification.md",
+        "../../reports/ios-workspace-build-verification.md"
+      ],
+      "artifactRefs": [
+        "artifact-task-0025",
+        "artifact-ios-workspace-build-verification"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-hilbert-ios-workspace-build"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Hilbert chat deep link unavailable; fallback opens Codex."
+      },
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      },
+      "blocker": "TD-0012: generated Unity Xcode target supports iphoneos only and has no eligible iOS Simulator destination."
+    },
+    {
+      "id": "019e1959-f956-7463-8b2f-5a75b03d0918",
+      "agentPath": "019e1959-f956-7463-8b2f-5a75b03d0918",
+      "codexAgentId": "019e1959-f956-7463-8b2f-5a75b03d0918",
+      "role": "iOS Simulator Build Strategy Engineer",
+      "agent": "McClintock",
+      "status": "done",
+      "statusSince": "2026-05-12T02:26:00+03:00",
+      "taskId": "TASK-0027",
+      "taskRefs": [
+        "TASK-0027",
+        "TASK-0025"
+      ],
+      "task": "Define Sprint 01 iOS Simulator build strategy after workspace simulator blocker.",
+      "lastUpdate": "Completed TASK-0027 with recommendation to keep Sprint 01 device-only/open and perform a clean Unity Simulator SDK export in Sprint 02 unless simulator evidence becomes a release gate.",
+      "lastMessage": "Recommended Sprint 02 clean Unity Simulator SDK export for simulator remediation; keep Sprint 01 device-only/open unless PM promotes simulator evidence to release gate.",
+      "lastMessageAt": "2026-05-12T02:26:00+03:00",
+      "links": [
+        "../../tasks/TASK-0027-ios-simulator-build-strategy.md",
+        "../../reports/ios-simulator-build-strategy.md"
+      ],
+      "artifactRefs": [
+        "artifact-task-0027",
+        "artifact-ios-simulator-build-strategy"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-mcclintock-ios-simulator-strategy"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct McClintock chat deep link unavailable; fallback opens Codex."
+      },
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
+    },
+    {
+      "id": "019e1959-c859-7423-8a7c-948c4fab95dd",
+      "agentPath": "019e1959-c859-7423-8a7c-948c4fab95dd",
+      "codexAgentId": "019e1959-c859-7423-8a7c-948c4fab95dd",
+      "role": "PlayMode Traversal Automation Developer",
+      "agent": "Locke",
+      "status": "done",
+      "statusSince": "2026-05-12T02:29:00+03:00",
+      "taskId": "TASK-0026",
+      "taskRefs": [
+        "TASK-0026",
+        "TASK-0021"
+      ],
+      "task": "Complete PlayMode traversal smoke coverage for Sprint 01 runtime contracts.",
+      "lastUpdate": "Completed TASK-0026 with PlayMode traversal smoke 5/5 PASS and recorded XML evidence.",
+      "lastMessage": "PlayMode traversal smoke passed 5/5 for Level 1/14/15 contracts, Level 14 lift motion, Level 15 crumble collapse, Level 14 goal completion badges, and badge PlayerPrefs roundtrip.",
+      "lastMessageAt": "2026-05-12T02:29:00+03:00",
+      "links": [
+        "../../tasks/TASK-0026-playmode-traversal-smoke.md",
+        "../../reports/playmode-traversal-smoke.md",
+        "../../../../TestResults/playmode-traversal-smoke-results.xml"
+      ],
+      "artifactRefs": [
+        "artifact-task-0026",
+        "artifact-playmode-traversal-smoke-report",
+        "artifact-playmode-traversal-smoke-results"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-locke-playmode-traversal-smoke"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Locke chat deep link unavailable; fallback opens Codex."
+      },
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
+    },
+    {
+      "id": "019e1960-578a-7d33-97b7-1ee29b5b123d",
+      "agentPath": "019e1960-578a-7d33-97b7-1ee29b5b123d",
+      "codexAgentId": "019e1960-578a-7d33-97b7-1ee29b5b123d",
+      "role": "PlayMode/iOS Strategy Git Pusher",
+      "agent": "Confucius",
+      "status": "done",
+      "statusSince": "2026-05-12T02:32:00+03:00",
+      "taskId": "TASK-0008",
+      "taskRefs": [
+        "TASK-0008",
+        "TASK-0026",
+        "TASK-0027"
+      ],
+      "task": "Push PlayMode smoke and iOS strategy follow-up records.",
+      "lastUpdate": "Completed git push for post-PlayMode/iOS strategy state; commit 1238284 is now on origin/main.",
+      "lastMessage": "Post-PlayMode/iOS strategy push completed at commit 1238284.",
+      "lastMessageAt": "2026-05-12T02:32:00+03:00",
+      "links": [
+        "../../tasks/TASK-0008-git-repo-control-setup.md",
+        "../../reports/sprint-01-git-release-report.md",
+        "../../../../TestResults/playmode-traversal-smoke-results.xml"
+      ],
+      "artifactRefs": [
+        "artifact-sprint-01-git-release-report",
+        "artifact-playmode-traversal-smoke-results"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-confucius-playmode-ios-push"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Confucius chat deep link unavailable; fallback opens Codex."
+      },
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
     }
   ],
   "agents": [
@@ -734,6 +939,176 @@
         "handoffMode": "open-codex-app",
         "status": "Direct Wegener chat deep link unavailable; fallback opens Codex."
       }
+    },
+    {
+      "id": "019e1951-6fde-7490-b478-4d49053649d0",
+      "agentPath": "019e1951-6fde-7490-b478-4d49053649d0",
+      "codexAgentId": "019e1951-6fde-7490-b478-4d49053649d0",
+      "role": "Manual Playtest / Mobile QA Planner",
+      "agent": "Euclid",
+      "status": "done",
+      "taskId": "TASK-0024",
+      "taskRefs": [
+        "TASK-0024",
+        "TASK-0021"
+      ],
+      "task": "Complete Sprint 01 manual/mobile QA plan and static iOS workspace readability check.",
+      "links": [
+        "../../tasks/TASK-0024-sprint-01-manual-playtest-mobile-qa.md",
+        "../../reports/sprint-01-manual-playtest-plan.md"
+      ],
+      "artifactRefs": [
+        "artifact-task-0024",
+        "artifact-sprint-01-manual-playtest-plan"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-euclid-manual-mobile-qa"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Euclid chat deep link unavailable; fallback opens Codex."
+      },
+      "output": "Completed TASK-0024 with 25 manual/mobile QA scenarios and xcodebuild -list PASS on the existing workspace."
+    },
+    {
+      "id": "019e1956-399c-70e0-b7f8-8fcdced3d310",
+      "agentPath": "019e1956-399c-70e0-b7f8-8fcdced3d310",
+      "codexAgentId": "019e1956-399c-70e0-b7f8-8fcdced3d310",
+      "role": "iOS Workspace Build Verifier",
+      "agent": "Hilbert",
+      "status": "done",
+      "taskId": "TASK-0025",
+      "taskRefs": [
+        "TASK-0025",
+        "TASK-0027"
+      ],
+      "task": "Verify generated iOS workspace and record build blocker status.",
+      "links": [
+        "../../tasks/TASK-0025-ios-build-verification.md",
+        "../../reports/ios-workspace-build-verification.md"
+      ],
+      "artifactRefs": [
+        "artifact-task-0025",
+        "artifact-ios-workspace-build-verification"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-hilbert-ios-workspace-build"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Hilbert chat deep link unavailable; fallback opens Codex."
+      },
+      "blocker": "TD-0012: generated Unity Xcode target supports iphoneos only and has no eligible iOS Simulator destination.",
+      "output": "Completed TASK-0025: workspace and xcodebuild -list PASS; iOS Simulator build remains BLOCKED by TD-0012 because the generated Unity target exposes iphoneos only."
+    },
+    {
+      "id": "019e1959-f956-7463-8b2f-5a75b03d0918",
+      "agentPath": "019e1959-f956-7463-8b2f-5a75b03d0918",
+      "codexAgentId": "019e1959-f956-7463-8b2f-5a75b03d0918",
+      "role": "iOS Simulator Build Strategy Engineer",
+      "agent": "McClintock",
+      "status": "done",
+      "taskId": "TASK-0027",
+      "taskRefs": [
+        "TASK-0027",
+        "TASK-0025"
+      ],
+      "task": "Define Sprint 01 iOS Simulator build strategy after workspace simulator blocker.",
+      "links": [
+        "../../tasks/TASK-0027-ios-simulator-build-strategy.md",
+        "../../reports/ios-simulator-build-strategy.md"
+      ],
+      "artifactRefs": [
+        "artifact-task-0027",
+        "artifact-ios-simulator-build-strategy"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-mcclintock-ios-simulator-strategy"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct McClintock chat deep link unavailable; fallback opens Codex."
+      },
+      "output": "Completed TASK-0027 with recommendation to keep Sprint 01 device-only/open and perform a clean Unity Simulator SDK export in Sprint 02 unless simulator evidence becomes a release gate."
+    },
+    {
+      "id": "019e1959-c859-7423-8a7c-948c4fab95dd",
+      "agentPath": "019e1959-c859-7423-8a7c-948c4fab95dd",
+      "codexAgentId": "019e1959-c859-7423-8a7c-948c4fab95dd",
+      "role": "PlayMode Traversal Automation Developer",
+      "agent": "Locke",
+      "status": "done",
+      "taskId": "TASK-0026",
+      "taskRefs": [
+        "TASK-0026",
+        "TASK-0021"
+      ],
+      "task": "Complete PlayMode traversal smoke coverage for Sprint 01 runtime contracts.",
+      "links": [
+        "../../tasks/TASK-0026-playmode-traversal-smoke.md",
+        "../../reports/playmode-traversal-smoke.md",
+        "../../../../TestResults/playmode-traversal-smoke-results.xml"
+      ],
+      "artifactRefs": [
+        "artifact-task-0026",
+        "artifact-playmode-traversal-smoke-report",
+        "artifact-playmode-traversal-smoke-results"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-locke-playmode-traversal-smoke"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Locke chat deep link unavailable; fallback opens Codex."
+      },
+      "output": "Completed TASK-0026 with PlayMode traversal smoke 5/5 PASS and recorded XML evidence."
+    },
+    {
+      "id": "019e1960-578a-7d33-97b7-1ee29b5b123d",
+      "agentPath": "019e1960-578a-7d33-97b7-1ee29b5b123d",
+      "codexAgentId": "019e1960-578a-7d33-97b7-1ee29b5b123d",
+      "role": "PlayMode/iOS Strategy Git Pusher",
+      "agent": "Confucius",
+      "status": "done",
+      "taskId": "TASK-0008",
+      "taskRefs": [
+        "TASK-0008",
+        "TASK-0026",
+        "TASK-0027"
+      ],
+      "task": "Push PlayMode smoke and iOS strategy follow-up records.",
+      "links": [
+        "../../tasks/TASK-0008-git-repo-control-setup.md",
+        "../../reports/sprint-01-git-release-report.md",
+        "../../../../TestResults/playmode-traversal-smoke-results.xml"
+      ],
+      "artifactRefs": [
+        "artifact-sprint-01-git-release-report",
+        "artifact-playmode-traversal-smoke-results"
+      ],
+      "transcriptRefs": [
+        "trn-20260512-confucius-playmode-ios-push"
+      ],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Confucius chat deep link unavailable; fallback opens Codex."
+      },
+      "output": "Completed git push for post-PlayMode/iOS strategy state; commit 1238284 is now on origin/main."
     }
   ],
   "events": [
@@ -862,6 +1237,60 @@
       "agentId": "pm-moderator",
       "kind": "data-update",
       "message": "Dashboard roster synced after Sprint 01 docs follow-up: James, Arendt, Hume, and Wegener are now visible with transcripts, tasks, decisions, and release/QA events. Manual sync remains tracked by TD-0007/TD-0008."
+    },
+    {
+      "id": "evt-20260512-022000-manual-mobile-qa-plan",
+      "time": "2026-05-12T02:20:00+03:00",
+      "displayTime": "2026-05-12 02:20",
+      "speaker": "Euclid",
+      "agentId": "019e1951-6fde-7490-b478-4d49053649d0",
+      "kind": "completion",
+      "message": "TASK-0024 completed with 25 manual/mobile QA scenarios and xcodebuild -list PASS against the existing Unity iOS workspace."
+    },
+    {
+      "id": "evt-20260512-022300-ios-simulator-blocked-td0012",
+      "time": "2026-05-12T02:23:00+03:00",
+      "displayTime": "2026-05-12 02:23",
+      "speaker": "Hilbert",
+      "agentId": "019e1956-399c-70e0-b7f8-8fcdced3d310",
+      "kind": "blocked",
+      "message": "iOS workspace/list verification passed, but iOS Simulator build is BLOCKED / TD-0012 because the generated Unity Xcode target exposes iphoneos only and no eligible simulator destination."
+    },
+    {
+      "id": "evt-20260512-022600-ios-simulator-strategy",
+      "time": "2026-05-12T02:26:00+03:00",
+      "displayTime": "2026-05-12 02:26",
+      "speaker": "McClintock",
+      "agentId": "019e1959-f956-7463-8b2f-5a75b03d0918",
+      "kind": "decision",
+      "message": "TASK-0027 completed: keep Sprint 01 device-only/open and schedule clean Unity Simulator SDK export remediation for Sprint 02 unless simulator evidence becomes a release gate."
+    },
+    {
+      "id": "evt-20260512-022900-playmode-smoke-pass",
+      "time": "2026-05-12T02:29:00+03:00",
+      "displayTime": "2026-05-12 02:29",
+      "speaker": "Locke",
+      "agentId": "019e1959-c859-7423-8a7c-948c4fab95dd",
+      "kind": "verification",
+      "message": "PlayMode traversal smoke completed with 5/5 PASS and XML evidence at TestResults/playmode-traversal-smoke-results.xml."
+    },
+    {
+      "id": "evt-20260512-023200-post-playmode-push-1238284",
+      "time": "2026-05-12T02:32:00+03:00",
+      "displayTime": "2026-05-12 02:32",
+      "speaker": "Confucius",
+      "agentId": "019e1960-578a-7d33-97b7-1ee29b5b123d",
+      "kind": "release",
+      "message": "Post-PlayMode/iOS strategy push completed at commit 1238284."
+    },
+    {
+      "id": "evt-20260512-023500-dashboard-post-playmode-roster-sync",
+      "time": "2026-05-12T02:35:00+03:00",
+      "displayTime": "2026-05-12 02:35",
+      "speaker": "Dashboard State Sync Maintainer",
+      "agentId": "pm-moderator",
+      "kind": "data-update",
+      "message": "Dashboard roster synced after PlayMode/iOS follow-up: Euclid, Hilbert, McClintock, Locke, and Confucius are visible with tasks, transcripts, decisions, and timeline events. Manual sync remains covered by TD-0007/TD-0008."
     }
   ],
   "transcriptSnippets": [
@@ -984,6 +1413,46 @@
       "agentId": "019e1950-0889-79e1-8fff-5de3ca3e9fcf",
       "kind": "release",
       "snippet": "Completed docs follow-up push at commit 5811a55 after Sprint 01 release documentation updates."
+    },
+    {
+      "id": "trn-20260512-euclid-manual-mobile-qa",
+      "time": "2026-05-12T02:20:00+03:00",
+      "speaker": "Euclid",
+      "agentId": "019e1951-6fde-7490-b478-4d49053649d0",
+      "kind": "completion",
+      "snippet": "Manual/mobile QA plan is ready with 25 MQA scenarios; the existing Unity-iPhone.xcworkspace is readable by xcodebuild -list."
+    },
+    {
+      "id": "trn-20260512-hilbert-ios-workspace-build",
+      "time": "2026-05-12T02:23:00+03:00",
+      "speaker": "Hilbert",
+      "agentId": "019e1956-399c-70e0-b7f8-8fcdced3d310",
+      "kind": "blocked",
+      "snippet": "Workspace/list verification passed, but simulator build is BLOCKED / Needs Config under TD-0012 before compile."
+    },
+    {
+      "id": "trn-20260512-mcclintock-ios-simulator-strategy",
+      "time": "2026-05-12T02:26:00+03:00",
+      "speaker": "McClintock",
+      "agentId": "019e1959-f956-7463-8b2f-5a75b03d0918",
+      "kind": "decision",
+      "snippet": "Recommended Sprint 02 clean Unity Simulator SDK export for simulator remediation; keep Sprint 01 device-only/open unless PM promotes simulator evidence to release gate."
+    },
+    {
+      "id": "trn-20260512-locke-playmode-traversal-smoke",
+      "time": "2026-05-12T02:29:00+03:00",
+      "speaker": "Locke",
+      "agentId": "019e1959-c859-7423-8a7c-948c4fab95dd",
+      "kind": "verification",
+      "snippet": "PlayMode traversal smoke passed 5/5 for Level 1/14/15 contracts, Level 14 lift motion, Level 15 crumble collapse, Level 14 goal completion badges, and badge PlayerPrefs roundtrip."
+    },
+    {
+      "id": "trn-20260512-confucius-playmode-ios-push",
+      "time": "2026-05-12T02:32:00+03:00",
+      "speaker": "Confucius",
+      "agentId": "019e1960-578a-7d33-97b7-1ee29b5b123d",
+      "kind": "release",
+      "snippet": "Post-PlayMode/iOS strategy push completed at commit 1238284."
     }
   ],
   "agentConversations": [
@@ -1184,6 +1653,71 @@
           "message": "Docs follow-up push completed at commit 5811a55; manual dashboard sync is still governed by TD-0007 and TD-0008."
         }
       ]
+    },
+    {
+      "agentId": "019e1951-6fde-7490-b478-4d49053649d0",
+      "entries": [
+        {
+          "id": "conv-euclid-001",
+          "time": "2026-05-12T02:20:00+03:00",
+          "displayTime": "2026-05-12 02:20",
+          "speaker": "Euclid",
+          "kind": "completion",
+          "message": "Manual/mobile QA plan is ready with 25 MQA scenarios; the existing Unity-iPhone.xcworkspace is readable by xcodebuild -list."
+        }
+      ]
+    },
+    {
+      "agentId": "019e1956-399c-70e0-b7f8-8fcdced3d310",
+      "entries": [
+        {
+          "id": "conv-hilbert-001",
+          "time": "2026-05-12T02:23:00+03:00",
+          "displayTime": "2026-05-12 02:23",
+          "speaker": "Hilbert",
+          "kind": "blocked",
+          "message": "Workspace/list verification passed, but simulator build is BLOCKED / Needs Config under TD-0012 before compile."
+        }
+      ]
+    },
+    {
+      "agentId": "019e1959-f956-7463-8b2f-5a75b03d0918",
+      "entries": [
+        {
+          "id": "conv-mcclintock-001",
+          "time": "2026-05-12T02:26:00+03:00",
+          "displayTime": "2026-05-12 02:26",
+          "speaker": "McClintock",
+          "kind": "decision",
+          "message": "Recommended Sprint 02 clean Unity Simulator SDK export for simulator remediation; keep Sprint 01 device-only/open unless PM promotes simulator evidence to release gate."
+        }
+      ]
+    },
+    {
+      "agentId": "019e1959-c859-7423-8a7c-948c4fab95dd",
+      "entries": [
+        {
+          "id": "conv-locke-001",
+          "time": "2026-05-12T02:29:00+03:00",
+          "displayTime": "2026-05-12 02:29",
+          "speaker": "Locke",
+          "kind": "verification",
+          "message": "PlayMode traversal smoke passed 5/5 for Level 1/14/15 contracts, Level 14 lift motion, Level 15 crumble collapse, Level 14 goal completion badges, and badge PlayerPrefs roundtrip."
+        }
+      ]
+    },
+    {
+      "agentId": "019e1960-578a-7d33-97b7-1ee29b5b123d",
+      "entries": [
+        {
+          "id": "conv-confucius-001",
+          "time": "2026-05-12T02:32:00+03:00",
+          "displayTime": "2026-05-12 02:32",
+          "speaker": "Confucius",
+          "kind": "release",
+          "message": "Post-PlayMode/iOS strategy push completed at commit 1238284."
+        }
+      ]
     }
   ],
   "tasks": [
@@ -1259,7 +1793,7 @@
     {
       "id": "TASK-0015",
       "title": "Live Agent Dashboard System",
-      "status": "QA Pass - Roster Synced After Sprint 01 Docs Follow-up",
+      "status": "QA Pass - Post-PlayMode Roster Synced",
       "owner": "Realtime Dashboard Engineer + Dashboard State Sync Maintainer",
       "priority": "high",
       "links": [
@@ -1283,14 +1817,17 @@
     {
       "id": "TASK-0021",
       "title": "Sprint 01 QA Playtest",
-      "status": "QA PARTIAL - Compile Pass / EditMode Smoke PASS / Play-mode Pending",
-      "owner": "Kierkegaard + James + QA",
+      "status": "QA PARTIAL - Compile/EditMode/PlayMode Smoke PASS / Manual-Mobile Pending / iOS Simulator BLOCKED TD-0012",
+      "owner": "Kierkegaard + James + Euclid + Locke + Hilbert + QA",
       "priority": "high",
       "links": [
         "../../tasks/TASK-0021-sprint-01-qa-playtest.md",
         "../../reports/sprint-01-qa-test-plan.md",
         "../../reports/sprint-01-qa-run-2026-05-12.md",
-        "../../reports/unity-playmode-smoke-harness.md"
+        "../../reports/unity-playmode-smoke-harness.md",
+        "../../reports/playmode-traversal-smoke.md",
+        "../../reports/sprint-01-manual-playtest-plan.md",
+        "../../reports/ios-workspace-build-verification.md"
       ]
     },
     {
@@ -1314,6 +1851,51 @@
       "links": [
         "../../tasks/TASK-0023-ads-monetization-pipeline.md",
         "../../reports/ads-monetization-pipeline-v1.md"
+      ]
+    },
+    {
+      "id": "TASK-0024",
+      "title": "Sprint 01 Manual Playtest / Mobile QA",
+      "status": "Completed - 25 MQA Scenarios Ready / xcodebuild -list PASS",
+      "owner": "Euclid",
+      "priority": "high",
+      "links": [
+        "../../tasks/TASK-0024-sprint-01-manual-playtest-mobile-qa.md",
+        "../../reports/sprint-01-manual-playtest-plan.md"
+      ]
+    },
+    {
+      "id": "TASK-0025",
+      "title": "iOS Workspace Build Verification",
+      "status": "Completed - Workspace/List PASS / Simulator Build BLOCKED TD-0012",
+      "owner": "Hilbert",
+      "priority": "high",
+      "links": [
+        "../../tasks/TASK-0025-ios-build-verification.md",
+        "../../reports/ios-workspace-build-verification.md"
+      ]
+    },
+    {
+      "id": "TASK-0026",
+      "title": "PlayMode Traversal Smoke",
+      "status": "Completed - PlayMode Smoke PASS 5/5",
+      "owner": "Locke",
+      "priority": "high",
+      "links": [
+        "../../tasks/TASK-0026-playmode-traversal-smoke.md",
+        "../../reports/playmode-traversal-smoke.md",
+        "../../../../TestResults/playmode-traversal-smoke-results.xml"
+      ]
+    },
+    {
+      "id": "TASK-0027",
+      "title": "iOS Simulator Build Strategy",
+      "status": "Completed - Sprint 02 Simulator SDK Export Recommended",
+      "owner": "McClintock",
+      "priority": "high",
+      "links": [
+        "../../tasks/TASK-0027-ios-simulator-build-strategy.md",
+        "../../reports/ios-simulator-build-strategy.md"
       ]
     }
   ],
@@ -1475,6 +2057,48 @@
       "area": "Dashboard data",
       "decision": "Dashboard roster was manually synced after Sprint 01 docs follow-up to include James, Arendt, Hume, and Wegener.",
       "reason": "Dashboard JSON is still manually maintained; automation gap remains covered by TD-0007 and handoff/process drift by TD-0008."
+    },
+    {
+      "id": "dec-manual-mobile-qa-plan-ready",
+      "time": "2026-05-12T02:20:00+03:00",
+      "area": "QA",
+      "decision": "TASK-0024 is complete as a manual/mobile QA plan with 25 MQA scenarios and xcodebuild -list PASS.",
+      "reason": "Manual/mobile execution is still required for final Sprint 01 QA closure, but the plan and workspace readability evidence are dashboard-visible."
+    },
+    {
+      "id": "dec-playmode-smoke-5of5-pass",
+      "time": "2026-05-12T02:29:00+03:00",
+      "area": "QA",
+      "decision": "Accept TASK-0026 automated PlayMode traversal smoke as 5/5 PASS evidence.",
+      "reason": "This upgrades QA state beyond EditMode-only evidence while preserving manual/mobile traversal as a remaining gate."
+    },
+    {
+      "id": "dec-ios-simulator-blocked-td0012",
+      "time": "2026-05-12T02:30:00+03:00",
+      "area": "iOS Build",
+      "decision": "Record iOS Simulator build as BLOCKED / TD-0012 after workspace/list PASS.",
+      "reason": "The generated Unity Xcode target exposes iphoneos only and has no eligible simulator destination, so simulator compile cannot proceed from the current export."
+    },
+    {
+      "id": "dec-ios-simulator-sprint-02-export",
+      "time": "2026-05-12T02:31:00+03:00",
+      "area": "iOS Build",
+      "decision": "Use clean Unity Simulator SDK export in Sprint 02 for simulator remediation unless simulator evidence becomes a Sprint 01 release gate.",
+      "reason": "Clean export keeps generated project ownership clear and avoids fragile Xcode project edits."
+    },
+    {
+      "id": "dec-post-playmode-push-1238284",
+      "time": "2026-05-12T02:32:00+03:00",
+      "area": "Git / Release",
+      "decision": "Record post-PlayMode/iOS strategy push commit 1238284 as the latest pushed follow-up.",
+      "reason": "PlayMode smoke and iOS strategy state need release timeline traceability."
+    },
+    {
+      "id": "dec-dashboard-post-playmode-manual-sync",
+      "time": "2026-05-12T02:35:00+03:00",
+      "area": "Dashboard data",
+      "decision": "Dashboard roster was manually synced after PlayMode/iOS follow-up to include Euclid, Hilbert, McClintock, Locke, and Confucius.",
+      "reason": "Dashboard JSON is still manually maintained; automation gap remains covered by TD-0007 and handoff/process drift by TD-0008."
     }
   ],
   "decisions": [
@@ -1492,7 +2116,13 @@
     "Sprint 01 QA is partial: compile/import and EditMode smoke 6/6 PASS are recorded, but PlayMode/manual traversal remains pending under TD-0006.",
     "TASK-0023 keeps Sprint 01 ads deferred: no SDK import, no real ads, and no monetization claims until approval gates.",
     "Marketing is aligned to Sprint 01 scope, but public capture and claims remain gated on real-play QA evidence.",
-    "Dashboard roster synced after Sprint 01 docs follow-up; manual state sync remains covered by TD-0007 and TD-0008."
+    "Dashboard roster synced after Sprint 01 docs follow-up; manual state sync remains covered by TD-0007 and TD-0008.",
+    "TASK-0024 completed with 25 manual/mobile QA scenarios and xcodebuild -list PASS; manual/mobile execution evidence remains pending before Sprint 01 full QA PASS.",
+    "PlayMode traversal smoke is accepted as automated runtime evidence for TASK-0026 with 5/5 PASS and XML results committed.",
+    "iOS Simulator build remains BLOCKED under TD-0012 despite workspace/list PASS; Sprint 01 stays device-only/open unless simulator evidence becomes a release gate.",
+    "Recommended iOS simulator remediation is a clean Unity Simulator SDK export in Sprint 02, not ad hoc Xcode project surgery.",
+    "Post-PlayMode/iOS strategy push commit 1238284 is recorded as the latest dashboard-visible release event.",
+    "Dashboard roster synced after PlayMode/iOS follow-up; manual state sync remains covered by TD-0007 and TD-0008."
   ],
   "artifactLinks": [
     {
@@ -1606,6 +2236,69 @@
       "type": "report",
       "href": "../../reports/sprint-01-git-release-report.md",
       "taskId": "TASK-0008"
+    },
+    {
+      "id": "artifact-task-0024",
+      "label": "TASK-0024 manual playtest / mobile QA",
+      "type": "task",
+      "href": "../../tasks/TASK-0024-sprint-01-manual-playtest-mobile-qa.md",
+      "taskId": "TASK-0024"
+    },
+    {
+      "id": "artifact-sprint-01-manual-playtest-plan",
+      "label": "Sprint 01 manual playtest plan",
+      "type": "report",
+      "href": "../../reports/sprint-01-manual-playtest-plan.md",
+      "taskId": "TASK-0024"
+    },
+    {
+      "id": "artifact-task-0025",
+      "label": "TASK-0025 iOS build verification",
+      "type": "task",
+      "href": "../../tasks/TASK-0025-ios-build-verification.md",
+      "taskId": "TASK-0025"
+    },
+    {
+      "id": "artifact-ios-workspace-build-verification",
+      "label": "iOS workspace build verification report",
+      "type": "report",
+      "href": "../../reports/ios-workspace-build-verification.md",
+      "taskId": "TASK-0025"
+    },
+    {
+      "id": "artifact-task-0026",
+      "label": "TASK-0026 PlayMode traversal smoke",
+      "type": "task",
+      "href": "../../tasks/TASK-0026-playmode-traversal-smoke.md",
+      "taskId": "TASK-0026"
+    },
+    {
+      "id": "artifact-playmode-traversal-smoke-report",
+      "label": "PlayMode traversal smoke report",
+      "type": "report",
+      "href": "../../reports/playmode-traversal-smoke.md",
+      "taskId": "TASK-0026"
+    },
+    {
+      "id": "artifact-playmode-traversal-smoke-results",
+      "label": "PlayMode traversal smoke results XML",
+      "type": "qa-evidence",
+      "href": "../../../../TestResults/playmode-traversal-smoke-results.xml",
+      "taskId": "TASK-0026"
+    },
+    {
+      "id": "artifact-task-0027",
+      "label": "TASK-0027 iOS simulator build strategy",
+      "type": "task",
+      "href": "../../tasks/TASK-0027-ios-simulator-build-strategy.md",
+      "taskId": "TASK-0027"
+    },
+    {
+      "id": "artifact-ios-simulator-build-strategy",
+      "label": "iOS simulator build strategy report",
+      "type": "report",
+      "href": "../../reports/ios-simulator-build-strategy.md",
+      "taskId": "TASK-0027"
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 ## Status
 
-QA Pass - Frontend Relay Integration Verified
+QA Pass - Post-PlayMode Roster Synced
 
 ## Owner
 
@@ -99,6 +99,7 @@ Out:
 - 2026-05-12 01:50 - Dashboard Roster + Codex Chat Handoff Developer added Raman (`019e1933-977f-71d0-8a91-fe99f5d93691`) and the recent Goodall, Kierkegaard, Hubble, and Tesla completions to the live dashboard roster with task refs, transcript snippets, artifact refs, and Codex handoff metadata.
 - 2026-05-12 01:50 - Local Codex.app inspection found `CFBundleURLSchemes = codex`, but no documented/discoverable agent-specific chat deep-link format. Dashboard handoff now uses `POST /api/open-codex-agent`; the relay opens Codex.app with `open -a Codex` and returns `Codex opened; direct agent deep link unavailable`.
 - 2026-05-12 02:15 - Dashboard roster synced after Sprint 01 docs follow-up. Added James (`019e1942-4970-78c1-9e69-045cdce75024`), Arendt (`019e194b-43cd-7e33-b11f-603706ecc1a1`), Hume (`019e194b-751f-7342-8cbf-cc929c88d55a`), and Wegener (`019e1950-0889-79e1-8fff-5de3ca3e9fcf`) to `dashboard.json` live roster, historical roster, transcripts, events, tasks, and decisions. Manual roster/state sync remains existing debt under TD-0007 and TD-0008; no new debt entry added.
+- 2026-05-12 02:35 - Dashboard roster synced after PlayMode/iOS follow-up. Added Euclid (`019e1951-6fde-7490-b478-4d49053649d0`), Hilbert (`019e1956-399c-70e0-b7f8-8fcdced3d310`), McClintock (`019e1959-f956-7463-8b2f-5a75b03d0918`), Locke (`019e1959-c859-7423-8a7c-948c4fab95dd`), and Confucius (`019e1960-578a-7d33-97b7-1ee29b5b123d`) to `dashboard.json` live roster, historical roster, events, transcript snippets, conversations, task rows, PM decisions, and artifact links. Timeline now records PlayMode smoke 5/5 PASS, iOS simulator BLOCKED / TD-0012, and post-PlayMode push commit `1238284`. Manual roster/state sync remains existing debt under TD-0007 and TD-0008; no new debt entry added.
 
 ## Changed Files
 
@@ -137,6 +138,7 @@ Out:
 - Workspace menu verification passed `node --check docs/ai-production/dashboard/dashboard.js`, `python3 -m py_compile docs/ai-production/dashboard/server.py`, and `POST /api/open-workspace` smoke with `open` stubbed to avoid launching Xcode. The relay found `Builds/iOS/RedBall-iOS/Unity-iPhone.xcworkspace`; the no-workspace path returns `404 needs-build` without browser alerts, toasts, or OS notifications.
 - Roster/handoff verification passed JSON parse, schema validation through `npx --yes ajv-cli@5 validate -s docs/ai-production/dashboard/data/dashboard.schema.json -d docs/ai-production/dashboard/data/dashboard.json --spec=draft2020 --strict=false`, `node --check docs/ai-production/dashboard/dashboard.js`, `python3 -m py_compile docs/ai-production/dashboard/server.py`, `GET /api/state` smoke confirming Raman is present, and `POST /api/open-codex-agent` dry-run smoke confirming `open -a Codex` fallback with `directAgentDeepLinkAvailable: false`.
 - Sprint 01 docs follow-up roster sync verification passed `node` JSON parse, AJV schema validation, and a dashboard state assertion confirming James, Arendt, Hume, and Wegener are present in both `liveAgents` and `agents`, with transcript and conversation records.
+- Post-PlayMode roster sync verification passed `node` JSON parse, AJV schema validation, and a dashboard state assertion confirming Euclid, Hilbert, McClintock, Locke, and Confucius are present in both `liveAgents` and `agents`, with transcript, conversation, task, decision, and timeline records.
 - Local relay smoke confirmed `POST /api/messages` writes `outbox.json` / `events-live.json` and `GET /api/state` sees the queued message.
 - Headless Chrome CDP smoke submitted the dashboard composer through the browser, saw `PM dispatch queued via relay`, and confirmed the relay-queued message rendered without manual refresh; test relay records were then removed.
 
