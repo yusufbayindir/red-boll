@@ -65,6 +65,13 @@
           </div>
           <div class="topbar-actions">
             <span class="refresh-meter" id="dashboardRefreshStatus">Live JSON connecting</span>
+            <details class="red-ball-menu" id="redBallMenu">
+              <summary>Red Ball</summary>
+              <div class="red-ball-menu-panel">
+                <button type="button" id="openWorkspaceButton">Build Workspace</button>
+                <span id="workspaceOpenStatus" aria-live="polite"></span>
+              </div>
+            </details>
             <div class="source-links" aria-label="Primary source links">
               <a href="../AGENT_DASHBOARD.md">Agent record</a>
               <a href="../STATUS_BOARD.md">Status board</a>
@@ -158,8 +165,12 @@
                       <p id="selectedAgentRole" class="role">Click a mini agent in the left rail.</p>
                     </div>
                   </div>
-                  <span class="status waiting" id="selectedAgentStatus">Waiting</span>
+                  <div class="agent-detail-actions">
+                    <button type="button" id="openCodexChatButton" disabled>Open Codex Chat</button>
+                    <span class="status waiting" id="selectedAgentStatus">Waiting</span>
+                  </div>
                 </div>
+                <p class="codex-handoff-status" id="codexHandoffStatus" aria-live="polite">Select an agent to open its Codex chat handoff.</p>
                 <div class="agent-transcript" id="agentTranscript">
                   <p class="empty-state">Select an agent to open its conversation history.</p>
                 </div>

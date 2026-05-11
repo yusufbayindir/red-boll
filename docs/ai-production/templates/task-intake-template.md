@@ -62,6 +62,16 @@ Expected output:
 
 - 
 
+## Technical Debt
+
+- Expected debt: yes/no
+- Existing related debt IDs:
+- New debt to add before closure:
+- Owner role for debt:
+- Review trigger:
+- Closure criteria:
+- Final report debt line required: `Technical debt added: TD-####` or `Technical debt added: none`
+
 ## Debate Needed?
 
 - Yes/no:

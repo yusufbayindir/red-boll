@@ -2,6 +2,8 @@ const DATA_URL = "data/dashboard.json";
 const API_STATE_URL = "/api/state";
 const API_EVENTS_URL = "/api/events";
 const API_MESSAGES_URL = "/api/messages";
+const API_OPEN_WORKSPACE_URL = "/api/open-workspace";
+const API_OPEN_CODEX_AGENT_URL = "/api/open-codex-agent";
 const REFRESH_MS = 1000;
 const MAX_EVENT_ITEMS = 12;
 const MAX_MESSAGE_ITEMS = 4;
@@ -26,9 +28,14 @@ const agentTranscript = document.querySelector("#agentTranscript");
 const agentMessageForm = document.querySelector("#agentMessageForm");
 const agentMessageInput = document.querySelector("#agentMessageInput");
 const agentMessageFeedback = document.querySelector("#agentMessageFeedback");
+const openCodexChatButton = document.querySelector("#openCodexChatButton");
+const codexHandoffStatus = document.querySelector("#codexHandoffStatus");
 const meetingNotesList = document.querySelector("#meetingNotesList");
 const groomingQueue = document.querySelector("#groomingQueue");
 const workflowDecisionList = document.querySelector("#workflowDecisionList");
+const redBallMenu = document.querySelector("#redBallMenu");
+const openWorkspaceButton = document.querySelector("#openWorkspaceButton");
+const workspaceOpenStatus = document.querySelector("#workspaceOpenStatus");
 
 let activeFilter = document.querySelector(".segment.is-active")?.dataset.filter || "all";
 let isRefreshing = false;
@@ -38,6 +45,8 @@ let eventSource = null;
 let latestEventKey = "";
 let latestData = null;
 let selectedAgentId = localStorage.getItem("redBallSelectedAgentId") || "";
+let codexHandoffMessage = "";
+let codexHandoffAgentId = "";
 const OUTBOUND_QUEUE_KEY = "redBallPendingOutboundMessages";
 
 function canTryRelay() {
@@ -191,6 +200,56 @@ function setSelectedAgent(agentId) {
   document.querySelector("#agentDetailPanel")?.scrollIntoView({ block: "nearest", behavior: "smooth" });
 }
 
+async function openCodexAgent(agent, options = {}) {
+  if (!agent) return;
+
+  const agentName = agent.agent || "agent";
+  if (codexHandoffStatus) {
+    codexHandoffStatus.textContent = `Opening Codex for ${agentName}...`;
+  }
+  if (openCodexChatButton && !options.passive) {
+    openCodexChatButton.disabled = true;
+  }
+
+  try {
+    if (!canTryRelay()) {
+      if (codexHandoffStatus) {
+        codexHandoffStatus.textContent = "Open from the local dashboard server to use Codex handoff.";
+      }
+      return;
+    }
+
+    const response = await fetch(API_OPEN_CODEX_AGENT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+      body: JSON.stringify({
+        agentId: agent.id,
+        codexAgentId: agent.codexAgentId || agent.agentPath || agent.id
+      })
+    });
+    const payload = await response.json().catch(() => ({}));
+
+    if (!response.ok || payload.ok === false) {
+      throw new Error(payload.error || `HTTP ${response.status}`);
+    }
+
+    if (codexHandoffStatus) {
+      codexHandoffMessage = payload.message || "Codex opened; direct agent deep link unavailable.";
+      codexHandoffAgentId = agent.id;
+      codexHandoffStatus.textContent = codexHandoffMessage;
+    }
+  } catch (error) {
+    if (codexHandoffStatus) {
+      codexHandoffStatus.textContent = `Codex handoff unavailable (${error.message}).`;
+    }
+  } finally {
+    if (openCodexChatButton) {
+      openCodexChatButton.disabled = !findAgent(latestData);
+    }
+  }
+}
+
 function outboundQueue() {
   try {
     const parsed = JSON.parse(localStorage.getItem(OUTBOUND_QUEUE_KEY) || "[]");
@@ -341,6 +400,7 @@ function makeAgentSelectable(element, agent) {
   element.addEventListener("click", event => {
     if (event.target.closest("a")) return;
     setSelectedAgent(agent.id);
+    openCodexAgent(agent, { passive: true });
   });
 
   return element;
@@ -374,6 +434,49 @@ async function postRelayMessage(agent, message) {
   }
   return payload;
 }
+
+async function openBuildWorkspace() {
+  if (!workspaceOpenStatus || !openWorkspaceButton) return;
+
+  workspaceOpenStatus.textContent = "Opening workspace...";
+  openWorkspaceButton.disabled = true;
+
+  try {
+    const response = await fetch(API_OPEN_WORKSPACE_URL, {
+      method: "POST",
+      cache: "no-store"
+    });
+    const payload = await response.json().catch(() => ({}));
+
+    if (response.ok && payload.ok) {
+      workspaceOpenStatus.textContent = payload.workspaceName
+        ? `Opened ${payload.workspaceName}.`
+        : "Workspace open request sent.";
+      redBallMenu?.removeAttribute("open");
+      return;
+    }
+
+    if (response.status === 404 || payload.status === "needs-build") {
+      workspaceOpenStatus.textContent = "No .xcworkspace found. Build workspace first.";
+      return;
+    }
+
+    workspaceOpenStatus.textContent = payload.error || `Workspace open failed (HTTP ${response.status}).`;
+  } catch (error) {
+    workspaceOpenStatus.textContent = canTryRelay()
+      ? `Workspace relay unavailable (${error.message}).`
+      : "Open from the local dashboard server to use this.";
+  } finally {
+    openWorkspaceButton.disabled = false;
+  }
+}
+
+openWorkspaceButton?.addEventListener("click", openBuildWorkspace);
+
+openCodexChatButton?.addEventListener("click", () => {
+  const agent = findAgent(latestData);
+  if (agent) openCodexAgent(agent);
+});
 
 agentMessageForm?.addEventListener("submit", async event => {
   event.preventDefault();
@@ -763,6 +866,16 @@ function renderAgentDetail(data) {
   if (selectedAgentStatus) {
     selectedAgentStatus.className = `status ${status}`;
     selectedAgentStatus.textContent = statusText(status);
+  }
+  if (openCodexChatButton) {
+    openCodexChatButton.disabled = false;
+    openCodexChatButton.dataset.agentId = agent.id;
+  }
+  if (codexHandoffStatus) {
+    const chatStatus = agent.codexChat?.status || "Open Codex Chat opens Codex; dashboard transcript remains visible here.";
+    codexHandoffStatus.textContent = codexHandoffAgentId === agent.id && codexHandoffMessage
+      ? codexHandoffMessage
+      : chatStatus;
   }
   if (agentMessageInput) {
     agentMessageInput.disabled = false;

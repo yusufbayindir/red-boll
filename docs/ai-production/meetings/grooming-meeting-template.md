@@ -43,6 +43,16 @@ Out:
 | --- | --- | --- |
 |  |  |  |
 
+## Technical Debt Review
+
+| Debt / potential debt | Owner role | Review trigger | Closure criteria |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+Debt register updates required:
+
+- 
+
 ## 4-Round Debate Notes
 
 Round 1 - positions:

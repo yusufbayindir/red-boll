@@ -26,6 +26,7 @@ In:
 - Sidebar active-agent mini panel.
 - Animated thinking logo/indicator for agents in `thinking`.
 - Click-to-select agent cards/mini cards.
+- Open Codex Chat handoff for selected agents.
 - Selected-agent conversation detail panel.
 - Message composer with local pending outbound queue.
 - Meeting notes / grooming queue / decision workflow board.
@@ -54,6 +55,8 @@ Out:
 - User does not need to manually refresh to see agent replies/events.
 - Sidebar mini status clearly shows active agents and animated thinking state.
 - Clicking an agent mini card or generated agent card opens that agent's conversation/transcript in the main live panel.
+- Clicking an agent card attempts the Codex chat handoff while preserving the selected-agent dashboard transcript.
+- Selected-agent panel includes a one-click `Open Codex Chat` button.
 - Selected-agent composer accepts a message and shows it locally as `PM dispatch pending`.
 - Composer behavior is documented as local queue only until a real Codex subagent API exists.
 - Meeting notes, task grooming queue, and decision flow are visible in the live UI.
@@ -92,6 +95,9 @@ Out:
 - 2026-05-12 - Local Relay Backend Engineer added a stdlib Python relay server for static dashboard serving, `/api/state`, `/api/events`, `/api/messages`, and relay-owned `outbox.json` / `events-live.json` queue files.
 - 2026-05-12 - Launcher now starts `docs/ai-production/dashboard/server.py`, reuses an existing relay when `/api/health` responds, and opens the localhost dashboard URL.
 - 2026-05-12 - Frontend Relay Integration Fixer wired the dashboard frontend to prefer `/api/state`, submit composer messages through `POST /api/messages`, consume `/api/events` SSE updates when available, and keep the browser-local draft queue only as a static/fallback path.
+- 2026-05-12 - Dashboard Workspace Menu Developer added a compact `Red Ball` topbar menu with a silent `Build Workspace` action, backed by `POST /api/open-workspace` on the local relay. The relay searches for an `.xcworkspace` in/above the repo and opens it through macOS `open` with an argument list, returning `needs-build` without alerts/toasts/notifications when none exists.
+- 2026-05-12 01:50 - Dashboard Roster + Codex Chat Handoff Developer added Raman (`019e1933-977f-71d0-8a91-fe99f5d93691`) and the recent Goodall, Kierkegaard, Hubble, and Tesla completions to the live dashboard roster with task refs, transcript snippets, artifact refs, and Codex handoff metadata.
+- 2026-05-12 01:50 - Local Codex.app inspection found `CFBundleURLSchemes = codex`, but no documented/discoverable agent-specific chat deep-link format. Dashboard handoff now uses `POST /api/open-codex-agent`; the relay opens Codex.app with `open -a Codex` and returns `Codex opened; direct agent deep link unavailable`.
 
 ## Changed Files
 
@@ -106,6 +112,7 @@ Out:
 - `docs/ai-production/dashboard/index.html`
 - `docs/ai-production/dashboard/styles.css`
 - `docs/ai-production/dashboard/dashboard.js`
+- `docs/ai-production/technical-debt/TECHNICAL_DEBT_REGISTER.md`
 - `docs/ai-production/tasks/TASK-0011-agent-dashboard-site.md`
 - `docs/ai-production/OPERATING_MODEL.md`
 - `docs/ai-production/STATUS_BOARD.md`
@@ -126,6 +133,8 @@ Out:
 - Headless Chrome smoke confirmed sidebar mini agents render, thinking logos render, clicking Franklin opens Franklin's transcript, message composer queues a local `PM dispatch pending` message, and workflow notes render.
 - No-refresh polling smoke temporarily appended a test Franklin event to `dashboard.json`; the already-open page showed it in both event history and selected-agent transcript within the polling window, then the data file was restored.
 - Frontend relay fix verification passed `node --check docs/ai-production/dashboard/dashboard.js`.
+- Workspace menu verification passed `node --check docs/ai-production/dashboard/dashboard.js`, `python3 -m py_compile docs/ai-production/dashboard/server.py`, and `POST /api/open-workspace` smoke with `open` stubbed to avoid launching Xcode. The relay found `Builds/iOS/RedBall-iOS/Unity-iPhone.xcworkspace`; the no-workspace path returns `404 needs-build` without browser alerts, toasts, or OS notifications.
+- Roster/handoff verification passed JSON parse, schema validation through `npx --yes ajv-cli@5 validate -s docs/ai-production/dashboard/data/dashboard.schema.json -d docs/ai-production/dashboard/data/dashboard.json --spec=draft2020 --strict=false`, `node --check docs/ai-production/dashboard/dashboard.js`, `python3 -m py_compile docs/ai-production/dashboard/server.py`, `GET /api/state` smoke confirming Raman is present, and `POST /api/open-codex-agent` dry-run smoke confirming `open -a Codex` fallback with `directAgentDeepLinkAvailable: false`.
 - Local relay smoke confirmed `POST /api/messages` writes `outbox.json` / `events-live.json` and `GET /api/state` sees the queued message.
 - Headless Chrome CDP smoke submitted the dashboard composer through the browser, saw `PM dispatch queued via relay`, and confirmed the relay-queued message rendered without manual refresh; test relay records were then removed.
 
@@ -134,6 +143,7 @@ Out:
 - 2026-05-12 01:20 QA verdict: **NEEDS FIX / QA BLOCKED**. Relay backend direct smoke passes, but the dashboard frontend does not call `/api/messages`, `/api/state`, or `/api/events`; browser-sent messages stay in `localStorage` and do not reach `outbox.json` or relay state. See `docs/ai-production/reports/TASK-0015-dashboard-qa-report.md`.
 - 2026-05-12 01:20 frontend relay fix applied: dashboard messages now queue through `POST /api/messages` when opened from the local server, relay state is read through `/api/state`, and SSE `/api/events` updates are applied live. Prior QA BLOCKED finding is fixed in code and awaits re-QA.
 - 2026-05-12 01:25 Re-QA verdict: **PASS**. Browser relay test opened the dashboard through the local server, selected `pm-moderator`, submitted a composer message, observed `PM dispatch queued via relay`, confirmed `POST /api/messages`, `/api/state`, and `/api/events` activity, verified `outbox.json` changed, and confirmed `/api/state` saw both outbox and live event without manual refresh. Test records were removed and `outbox.json` / `events-live.json` returned to empty arrays. See `docs/ai-production/reports/TASK-0015-dashboard-re-qa-report.md`.
+- 2026-05-12 01:56 roster/Codex handoff QA verdict: **PASS**. Isolated relay smoke on port 8877 confirmed `/api/state` includes Raman plus Goodall/Kierkegaard/Hubble/Tesla, `/api/open-codex-agent` dry-run returns `directAgentDeepLinkAvailable: false`, and `/api/open-workspace` still returns the discovered Unity workspace with `open` stubbed. Browser fallback verification confirmed Raman is visible in the left roster, selecting Raman opens the internal transcript with `Open Codex Chat`, the fallback handoff updates in-panel status silently with no alerts/toasts/notifications, and the Red Ball > Build Workspace menu remains visible. See `docs/ai-production/reports/TASK-0015-roster-codex-handoff-qa.md`.
 - Local relay syntax check: `python3 -m py_compile docs/ai-production/dashboard/server.py`.
 - JSON parse check: `dashboard.json`, `outbox.json`, and `events-live.json`.
 - Smoke coverage should include `GET /api/health`, `GET /api/state`, `GET /api/events`, and `POST /api/messages`.

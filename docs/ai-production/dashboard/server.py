@@ -12,7 +12,9 @@ import argparse
 import json
 import mimetypes
 import os
+import plistlib
 import posixpath
+import subprocess
 import sys
 import time
 import uuid
@@ -32,6 +34,8 @@ EVENTS_FILE = DATA_DIR / "events-live.json"
 MAX_BODY_BYTES = 64 * 1024
 MAX_MESSAGE_CHARS = 4000
 SERVER_NAME = "red-ball-dashboard-relay"
+REPO_ROOT = ROOT_DIR.parents[2]
+CODEX_APP_PATH = Path("/Applications/Codex.app")
 
 
 def iso_now() -> str:
@@ -142,6 +146,74 @@ def make_message(payload: dict[str, str]) -> tuple[dict[str, Any], dict[str, Any
     return queued, event
 
 
+def is_local_client(address: str) -> bool:
+    return address in {"127.0.0.1", "::1", "localhost"}
+
+
+def workspace_search_roots() -> list[Path]:
+    roots = [REPO_ROOT, *REPO_ROOT.parents]
+    home = Path.home().resolve()
+    return [root for root in roots if root == home or home in root.parents or root in home.parents]
+
+
+def find_workspace() -> Path | None:
+    repo_candidates: list[Path] = []
+    try:
+        repo_candidates.extend(path for path in REPO_ROOT.rglob("*.xcworkspace") if path.is_dir())
+    except OSError:
+        pass
+
+    if repo_candidates:
+        return sorted(repo_candidates, key=lambda path: (len(path.parts), str(path)))[0]
+
+    candidates: list[Path] = []
+    for root in workspace_search_roots():
+        try:
+            candidates.extend(path for path in root.glob("*.xcworkspace") if path.is_dir())
+        except OSError:
+            continue
+
+    if not candidates:
+        return None
+
+    return sorted(candidates, key=lambda path: (len(path.parts), str(path)))[0]
+
+
+def codex_url_schemes() -> list[str]:
+    info_plist = CODEX_APP_PATH / "Contents" / "Info.plist"
+    try:
+        with info_plist.open("rb") as handle:
+            info = plistlib.load(handle)
+    except (FileNotFoundError, OSError, plistlib.InvalidFileException):
+        return []
+
+    schemes: list[str] = []
+    for entry in info.get("CFBundleURLTypes", []):
+        if not isinstance(entry, dict):
+            continue
+        for scheme in entry.get("CFBundleURLSchemes", []):
+            if isinstance(scheme, str):
+                schemes.append(scheme)
+    return schemes
+
+
+def read_optional_json_body(handler: BaseHTTPRequestHandler) -> dict[str, Any]:
+    length = int(handler.headers.get("Content-Length", "0") or "0")
+    if length > MAX_BODY_BYTES:
+        raise ValueError("Request body is too large")
+    if length <= 0:
+        return {}
+
+    try:
+        payload = json.loads(handler.rfile.read(length).decode("utf-8"))
+    except json.JSONDecodeError as exc:
+        raise ValueError("Request body must be valid JSON") from exc
+
+    if not isinstance(payload, dict):
+        raise ValueError("JSON body must be an object")
+    return payload
+
+
 class DashboardHandler(BaseHTTPRequestHandler):
     server_version = "RedBallDashboardRelay/1.0"
 
@@ -194,6 +266,12 @@ class DashboardHandler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         path = urlparse(self.path).path
+        if path == "/api/open-workspace":
+            self.open_workspace()
+            return
+        if path == "/api/open-codex-agent":
+            self.open_codex_agent()
+            return
         if path != "/api/messages":
             self.send_error_json(HTTPStatus.NOT_FOUND, "Unknown endpoint")
             return
@@ -221,6 +299,96 @@ class DashboardHandler(BaseHTTPRequestHandler):
             return
 
         self.send_json(HTTPStatus.CREATED, {"ok": True, "message": queued, "event": event})
+
+    def open_codex_agent(self) -> None:
+        if not is_local_client(self.client_address[0]):
+            self.send_error_json(HTTPStatus.FORBIDDEN, "Codex handoff is only available from localhost")
+            return
+
+        try:
+            payload = read_optional_json_body(self)
+        except ValueError as exc:
+            status = HTTPStatus.REQUEST_ENTITY_TOO_LARGE if "too large" in str(exc) else HTTPStatus.BAD_REQUEST
+            self.send_error_json(status, str(exc))
+            return
+
+        agent_id = str(payload.get("agentId", "")).strip()
+        codex_agent_id = str(payload.get("codexAgentId", agent_id)).strip()
+        dry_run = bool(payload.get("dryRun", False))
+        schemes = codex_url_schemes()
+        command = ["open", "-a", "Codex"]
+
+        result = {
+            "ok": True,
+            "status": "opened" if not dry_run else "dry-run",
+            "agentId": agent_id,
+            "codexAgentId": codex_agent_id,
+            "codexApp": str(CODEX_APP_PATH),
+            "codexUrlSchemes": schemes,
+            "directAgentDeepLinkAvailable": False,
+            "command": command,
+            "message": "Codex opened; direct agent deep link unavailable.",
+        }
+
+        if dry_run:
+            self.send_json(HTTPStatus.OK, result)
+            return
+
+        try:
+            subprocess.run(command, check=True)
+        except (OSError, subprocess.CalledProcessError) as exc:
+            self.send_error_json(HTTPStatus.INTERNAL_SERVER_ERROR, f"Unable to open Codex: {exc}")
+            return
+
+        self.send_json(HTTPStatus.OK, result)
+
+    def open_workspace(self) -> None:
+        if not is_local_client(self.client_address[0]):
+            self.send_error_json(HTTPStatus.FORBIDDEN, "Workspace open is only available from localhost")
+            return
+
+        length = int(self.headers.get("Content-Length", "0") or "0")
+        if length > MAX_BODY_BYTES:
+            self.send_error_json(HTTPStatus.REQUEST_ENTITY_TOO_LARGE, "Request body is too large")
+            return
+        if length:
+            try:
+                payload = json.loads(self.rfile.read(length).decode("utf-8"))
+            except json.JSONDecodeError:
+                self.send_error_json(HTTPStatus.BAD_REQUEST, "Request body must be valid JSON")
+                return
+            if payload not in ({}, {"action": "open-workspace"}):
+                self.send_error_json(HTTPStatus.BAD_REQUEST, "Unsupported workspace action")
+                return
+
+        workspace = find_workspace()
+        if workspace is None:
+            self.send_json(
+                HTTPStatus.NOT_FOUND,
+                {
+                    "ok": False,
+                    "status": "needs-build",
+                    "error": "No .xcworkspace found in or above the repository",
+                    "repoRoot": str(REPO_ROOT),
+                },
+            )
+            return
+
+        try:
+            subprocess.run(["open", str(workspace)], check=True)
+        except (OSError, subprocess.CalledProcessError) as exc:
+            self.send_error_json(HTTPStatus.INTERNAL_SERVER_ERROR, f"Unable to open workspace: {exc}")
+            return
+
+        self.send_json(
+            HTTPStatus.OK,
+            {
+                "ok": True,
+                "status": "opened",
+                "workspace": str(workspace),
+                "workspaceName": workspace.name,
+            },
+        )
 
     def send_events(self) -> None:
         self.close_connection = True

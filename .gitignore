@@ -18,6 +18,9 @@
 
 unity-import.log
 
+TestResults/*
+!TestResults/editmode-smoke-results.xml
+
 [Mm]emoryCaptures/
 [Rr]ecordings/
 

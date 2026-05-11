@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "version": 5,
-  "updatedAt": "2026-05-12T01:08:00+03:00",
+  "version": 6,
+  "updatedAt": "2026-05-12T01:50:00+03:00",
   "generatedBy": "realtime-dashboard-engineer",
   "polling": {
     "recommendedIntervalMs": 1000,
@@ -48,6 +48,151 @@
       "task": "Implement local-server polling, live sidebar state, event streams, task state, and PM decision rendering.",
       "lastUpdate": "Agent conversation console, local outbound queue, workflow board, and no-refresh polling smoke are complete.",
       "lastMessageAt": "2026-05-12T01:08:00+03:00",
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
+    },
+    {
+      "id": "019e1933-977f-71d0-8a91-fe99f5d93691",
+      "agentPath": "019e1933-977f-71d0-8a91-fe99f5d93691",
+      "codexAgentId": "019e1933-977f-71d0-8a91-fe99f5d93691",
+      "role": "Dashboard Workspace Menu Developer",
+      "agent": "Raman",
+      "status": "done",
+      "statusSince": "2026-05-12T01:35:00+03:00",
+      "taskId": "TASK-0015",
+      "taskRefs": ["TASK-0015"],
+      "task": "Build Workspace menu and open-workspace endpoint for the local dashboard.",
+      "lastUpdate": "Completed the Red Ball topbar menu and local relay workspace opener without alerts or notifications.",
+      "lastMessage": "Workspace menu/open-workspace endpoint is complete; Build Workspace opens the discovered Unity .xcworkspace or returns needs-build silently.",
+      "lastMessageAt": "2026-05-12T01:35:00+03:00",
+      "links": ["../../tasks/TASK-0015-live-agent-dashboard-system.md"],
+      "artifactRefs": ["artifact-task-0015"],
+      "transcriptRefs": ["trn-20260512-raman-workspace-menu"],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Raman chat deep link unavailable; fallback opens Codex."
+      },
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
+    },
+    {
+      "id": "019e192f-5f41-7533-833f-ba135bb087c3",
+      "agentPath": "019e192f-5f41-7533-833f-ba135bb087c3",
+      "codexAgentId": "019e192f-5f41-7533-833f-ba135bb087c3",
+      "role": "Gameplay Integration Owner",
+      "agent": "Goodall",
+      "status": "done",
+      "statusSince": "2026-05-12T01:40:00+03:00",
+      "taskId": "TASK-0019",
+      "taskRefs": ["TASK-0019", "TASK-0021"],
+      "task": "Complete Sprint 01 MVP gameplay integration; play-mode QA remains pending.",
+      "lastUpdate": "Sprint 01 MVP implementation completed and handed to QA.",
+      "lastMessage": "Gameplay Sprint 01 MVP is implementation-complete; QA should run play-mode coverage before closure.",
+      "lastMessageAt": "2026-05-12T01:40:00+03:00",
+      "links": ["../../tasks/TASK-0019-sprint-01-unity-implementation.md", "../../tasks/TASK-0021-sprint-01-qa-playtest.md"],
+      "artifactRefs": ["artifact-sprint-01-implementation-plan"],
+      "transcriptRefs": ["trn-20260512-goodall-sprint-01"],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Goodall chat deep link unavailable; fallback opens Codex."
+      },
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
+    },
+    {
+      "id": "019e192f-8211-7403-a35a-0b4b75acb85d",
+      "agentPath": "019e192f-8211-7403-a35a-0b4b75acb85d",
+      "codexAgentId": "019e192f-8211-7403-a35a-0b4b75acb85d",
+      "role": "QA Scenario Designer",
+      "agent": "Kierkegaard",
+      "status": "done",
+      "statusSince": "2026-05-12T01:42:00+03:00",
+      "taskId": "TASK-0021",
+      "taskRefs": ["TASK-0021"],
+      "task": "Complete Sprint 01 QA matrix and scenario design.",
+      "lastUpdate": "QA matrix completed for Sprint 01 playtest coverage.",
+      "lastMessage": "Sprint 01 QA scenario matrix is ready for play-mode execution.",
+      "lastMessageAt": "2026-05-12T01:42:00+03:00",
+      "links": ["../../tasks/TASK-0021-sprint-01-qa-playtest.md", "../../reports/sprint-01-qa-test-plan.md"],
+      "artifactRefs": ["artifact-sprint-01-qa-plan"],
+      "transcriptRefs": ["trn-20260512-kierkegaard-qa-matrix"],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Kierkegaard chat deep link unavailable; fallback opens Codex."
+      },
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
+    },
+    {
+      "id": "019e1921-683d-73c0-8127-5041a7d9109b",
+      "agentPath": "019e1921-683d-73c0-8127-5041a7d9109b",
+      "codexAgentId": "019e1921-683d-73c0-8127-5041a7d9109b",
+      "role": "Dashboard Re-QA",
+      "agent": "Hubble",
+      "status": "done",
+      "statusSince": "2026-05-12T01:25:00+03:00",
+      "taskId": "TASK-0015",
+      "taskRefs": ["TASK-0015"],
+      "task": "Re-test dashboard relay integration after frontend fix.",
+      "lastUpdate": "PASS: browser relay test confirmed state polling, message queueing, SSE update path, and outbox cleanup.",
+      "lastMessage": "Dashboard Re-QA passed; relay-backed browser composer and live state update are verified.",
+      "lastMessageAt": "2026-05-12T01:25:00+03:00",
+      "links": ["../../tasks/TASK-0015-live-agent-dashboard-system.md", "../../reports/TASK-0015-dashboard-re-qa-report.md"],
+      "artifactRefs": ["artifact-task-0015"],
+      "transcriptRefs": ["trn-20260512-hubble-re-qa"],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Hubble chat deep link unavailable; fallback opens Codex."
+      },
+      "indicator": {
+        "label": "Done",
+        "showThinkingLogo": false
+      }
+    },
+    {
+      "id": "019e191d-5df7-7a93-ab16-83bfa3f2226f",
+      "agentPath": "019e191d-5df7-7a93-ab16-83bfa3f2226f",
+      "codexAgentId": "019e191d-5df7-7a93-ab16-83bfa3f2226f",
+      "role": "Frontend Relay Fix",
+      "agent": "Tesla",
+      "status": "done",
+      "statusSince": "2026-05-12T01:23:00+03:00",
+      "taskId": "TASK-0015",
+      "taskRefs": ["TASK-0015"],
+      "task": "Wire dashboard frontend to /api/state, /api/events, and /api/messages.",
+      "lastUpdate": "Completed frontend relay integration fix for live state and PM message queueing.",
+      "lastMessage": "Frontend relay path is fixed; dashboard now prefers server state and posts composer messages through /api/messages.",
+      "lastMessageAt": "2026-05-12T01:23:00+03:00",
+      "links": ["../../tasks/TASK-0015-live-agent-dashboard-system.md"],
+      "artifactRefs": ["artifact-task-0015"],
+      "transcriptRefs": ["trn-20260512-tesla-relay-fix"],
+      "codexChat": {
+        "label": "Open Codex Chat",
+        "scheme": "codex",
+        "directAgentDeepLink": false,
+        "handoffMode": "open-codex-app",
+        "status": "Direct Tesla chat deep link unavailable; fallback opens Codex."
+      },
       "indicator": {
         "label": "Done",
         "showThinkingLogo": false
@@ -349,6 +494,46 @@
       "agentId": "codex-realtime-dashboard-engineer",
       "kind": "verification",
       "snippet": "Browser smoke confirmed no-refresh polling and local queued-message behavior."
+    },
+    {
+      "id": "trn-20260512-raman-workspace-menu",
+      "time": "2026-05-12T01:35:00+03:00",
+      "speaker": "Raman",
+      "agentId": "019e1933-977f-71d0-8a91-fe99f5d93691",
+      "kind": "completion",
+      "snippet": "Completed the compact Red Ball workspace menu and local /api/open-workspace relay endpoint."
+    },
+    {
+      "id": "trn-20260512-goodall-sprint-01",
+      "time": "2026-05-12T01:40:00+03:00",
+      "speaker": "Goodall",
+      "agentId": "019e192f-5f41-7533-833f-ba135bb087c3",
+      "kind": "completion",
+      "snippet": "Completed Sprint 01 MVP gameplay integration and handed the build to play-mode QA."
+    },
+    {
+      "id": "trn-20260512-kierkegaard-qa-matrix",
+      "time": "2026-05-12T01:42:00+03:00",
+      "speaker": "Kierkegaard",
+      "agentId": "019e192f-8211-7403-a35a-0b4b75acb85d",
+      "kind": "completion",
+      "snippet": "Completed the Sprint 01 QA scenario matrix for play-mode coverage."
+    },
+    {
+      "id": "trn-20260512-hubble-re-qa",
+      "time": "2026-05-12T01:25:00+03:00",
+      "speaker": "Hubble",
+      "agentId": "019e1921-683d-73c0-8127-5041a7d9109b",
+      "kind": "verification",
+      "snippet": "Dashboard Re-QA passed for browser relay messaging, state polling, SSE updates, and cleanup."
+    },
+    {
+      "id": "trn-20260512-tesla-relay-fix",
+      "time": "2026-05-12T01:23:00+03:00",
+      "speaker": "Tesla",
+      "agentId": "019e191d-5df7-7a93-ab16-83bfa3f2226f",
+      "kind": "completion",
+      "snippet": "Frontend relay fix completed: dashboard prefers /api/state, posts to /api/messages, and consumes /api/events."
     }
   ],
   "agentConversations": [
@@ -404,6 +589,71 @@
           "speaker": "Pascal",
           "kind": "status",
           "message": "Dashboard UI should stay browser-visible, local-server friendly, and framework-light."
+        }
+      ]
+    },
+    {
+      "agentId": "019e1933-977f-71d0-8a91-fe99f5d93691",
+      "entries": [
+        {
+          "id": "conv-raman-001",
+          "time": "2026-05-12T01:35:00+03:00",
+          "displayTime": "2026-05-12 01:35",
+          "speaker": "Raman",
+          "kind": "completion",
+          "message": "Workspace menu/open-workspace endpoint is complete; Build Workspace opens the discovered Unity .xcworkspace or returns needs-build silently."
+        }
+      ]
+    },
+    {
+      "agentId": "019e192f-5f41-7533-833f-ba135bb087c3",
+      "entries": [
+        {
+          "id": "conv-goodall-001",
+          "time": "2026-05-12T01:40:00+03:00",
+          "displayTime": "2026-05-12 01:40",
+          "speaker": "Goodall",
+          "kind": "completion",
+          "message": "Gameplay Sprint 01 MVP is implementation-complete; QA should run play-mode coverage before closure."
+        }
+      ]
+    },
+    {
+      "agentId": "019e192f-8211-7403-a35a-0b4b75acb85d",
+      "entries": [
+        {
+          "id": "conv-kierkegaard-001",
+          "time": "2026-05-12T01:42:00+03:00",
+          "displayTime": "2026-05-12 01:42",
+          "speaker": "Kierkegaard",
+          "kind": "completion",
+          "message": "Sprint 01 QA scenario matrix is ready for play-mode execution."
+        }
+      ]
+    },
+    {
+      "agentId": "019e1921-683d-73c0-8127-5041a7d9109b",
+      "entries": [
+        {
+          "id": "conv-hubble-001",
+          "time": "2026-05-12T01:25:00+03:00",
+          "displayTime": "2026-05-12 01:25",
+          "speaker": "Hubble",
+          "kind": "verification",
+          "message": "Dashboard Re-QA passed; relay-backed browser composer and live state update are verified."
+        }
+      ]
+    },
+    {
+      "agentId": "019e191d-5df7-7a93-ab16-83bfa3f2226f",
+      "entries": [
+        {
+          "id": "conv-tesla-001",
+          "time": "2026-05-12T01:23:00+03:00",
+          "displayTime": "2026-05-12 01:23",
+          "speaker": "Tesla",
+          "kind": "completion",
+          "message": "Frontend relay path is fixed; dashboard now prefers server state and posts composer messages through /api/messages."
         }
       ]
     },
@@ -482,6 +732,22 @@
       "owner": "Realtime Dashboard Engineer",
       "priority": "high",
       "links": ["../../tasks/TASK-0015-live-agent-dashboard-system.md", "README.md", "dashboard.schema.json"]
+    },
+    {
+      "id": "TASK-0019",
+      "title": "Sprint 01 Unity Implementation",
+      "status": "Implementation Complete - QA Pending",
+      "owner": "Goodall",
+      "priority": "high",
+      "links": ["../../tasks/TASK-0019-sprint-01-unity-implementation.md", "../../reports/sprint-01-implementation-plan.md"]
+    },
+    {
+      "id": "TASK-0021",
+      "title": "Sprint 01 QA Playtest",
+      "status": "QA Matrix Complete - Play-mode Pending",
+      "owner": "Kierkegaard + QA",
+      "priority": "high",
+      "links": ["../../tasks/TASK-0021-sprint-01-qa-playtest.md", "../../reports/sprint-01-qa-test-plan.md"]
     }
   ],
   "meetingNotes": [
@@ -586,6 +852,13 @@
       "area": "Agent messaging",
       "decision": "Dashboard composer stores outbound messages in local browser queue as PM dispatch pending.",
       "reason": "There is no real Codex subagent dispatch API available in this local static dashboard runtime."
+    },
+    {
+      "id": "dec-dashboard-codex-handoff",
+      "time": "2026-05-12T01:50:00+03:00",
+      "area": "Codex chat handoff",
+      "decision": "Agent cards and the selected-agent panel expose Open Codex Chat; the relay opens Codex.app while direct agent chat deep links remain unavailable.",
+      "reason": "Codex.app declares the codex URL scheme, but no documented or discoverable agent-specific deep-link format was found locally."
     }
   ],
   "decisions": [
@@ -597,7 +870,8 @@
     "Dashboard agent statuses are thinking, running, done, blocked, and idle.",
     "PM gives direction and acceptance only; realtime dashboard engineer owns implementation.",
     "Live dashboard runtime polls local JSON every one second through the local HTTP launcher.",
-    "Agent message composer is local queue only until a real Codex subagent dispatch API exists."
+    "Agent message composer is local queue only until a real Codex subagent dispatch API exists.",
+    "Agent chat handoff opens Codex.app because no direct agent chat deep-link format is available."
   ],
   "artifactLinks": [
     {
@@ -648,6 +922,20 @@
       "type": "report",
       "href": "../../reports/asset-download-plan.md",
       "taskId": "TASK-0013"
+    },
+    {
+      "id": "artifact-sprint-01-implementation-plan",
+      "label": "Sprint 01 implementation plan",
+      "type": "report",
+      "href": "../../reports/sprint-01-implementation-plan.md",
+      "taskId": "TASK-0019"
+    },
+    {
+      "id": "artifact-sprint-01-qa-plan",
+      "label": "Sprint 01 QA test plan",
+      "type": "report",
+      "href": "../../reports/sprint-01-qa-test-plan.md",
+      "taskId": "TASK-0021"
     }
   ]
 }

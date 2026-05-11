@@ -37,6 +37,14 @@
 - Replacement role:
 - Dashboard/status note required:
 
+## Technical Debt Check
+
+- Existing debt IDs to review during this run:
+- New debt discovered:
+- Debt owner role:
+- Register update required:
+- Final report debt line required from each worker: `Technical debt added: TD-####` or `Technical debt added: none`
+
 ## Debate / Escalation Rules
 
 Ask Yusuf if:
@@ -61,4 +69,5 @@ Ask Yusuf if:
 - Agents closed/replaced:
 - Files changed:
 - Verification:
+- Technical debt added / none:
 - Recommended next grooming topic:

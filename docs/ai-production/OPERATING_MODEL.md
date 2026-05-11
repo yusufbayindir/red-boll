@@ -18,6 +18,7 @@ PM/moderator does not write product code. PM owns direction, grooming, prioritiz
 | Marketing | Creates store, launch, screenshot, video, and positioning artifacts | Marketing docs, launch checklists, copy, scripts |
 | Git / Release | Controls repo hygiene, release readiness, changed file summaries, and rollback notes | Git readiness reports, release notes, repo status |
 | Dashboard | Maintains production visibility, agent/task status, event history, and cockpit usability | Dashboard task/data docs and UI implementation evidence |
+| Technical Debt Registrar | Maintains the debt register, entry template, and debt policy across process docs | Technical debt register entries, template updates, process reminders |
 
 Specialist roles must challenge weak ideas. They are not expected to agree with PM or each other by default.
 
@@ -34,6 +35,36 @@ Specialist roles must challenge weak ideas. They are not expected to agree with 
 | Daily run | PM | Start or end of work block | `templates/daily-overnight-production-run-template.md` |
 | Overnight run | PM + delegated roles | Long autonomous work block | Overnight plan, limits plan, morning handoff |
 
+## Technical Debt Policy
+
+Technical debt is any accepted shortcut, deferred verification, manual workaround, unclear provenance, temporary process, untracked release dependency, or known complexity that future work must revisit.
+
+The source of truth is `technical-debt/TECHNICAL_DEBT_REGISTER.md`. Use `templates/technical-debt-entry-template.md` for new entries.
+
+Required fields for every debt entry:
+
+- ID
+- date
+- source task / agent
+- category
+- why it became debt
+- risk
+- user impact
+- reversal cost
+- owner role
+- review trigger
+- closure criteria
+- status
+
+Every role can create debt, including Developer, QA, Asset, Marketing, Dashboard, Git / Release, PM, and process roles. PM does not hide or silently absorb debt; PM records process debt and routes implementation debt to the correct owner.
+
+Worker final reports must include exactly one technical debt line:
+
+- `Technical debt added: TD-####` when new debt was added.
+- `Technical debt added: none` when no new debt was introduced or discovered.
+
+A task cannot be cleanly closed unless its debt line is present. If debt remains open, PM may still accept the task only as accepted with documented risk, with the debt ID linked from the task, status board, or final report.
+
 ## Task Lifecycle
 
 1. Intake: capture the request, owner, expected artifact, exclusions, and open questions.
@@ -42,8 +73,9 @@ Specialist roles must challenge weak ideas. They are not expected to agree with 
 4. Approval: PM marks the task ready for implementation or research.
 5. Execution: assigned owner updates task MD before, during, and after work.
 6. QA: QA verifies against acceptance criteria and records result.
-7. Git/release: Git / Release records repo state when relevant.
-8. Closure: PM closes only after acceptance criteria, QA, and required notes are complete.
+7. Debt check: assigned owner records new debt in the register or states that no debt was added.
+8. Git/release: Git / Release records repo state when relevant.
+9. Closure: PM closes only after acceptance criteria, QA, technical debt line, and required notes are complete.
 
 ## Debate And Decision Rule
 
@@ -118,6 +150,7 @@ The operating model is ready when:
 - Decisions can be recorded in a consistent decision log.
 - Daily and overnight production runs have a reusable template.
 - Agent limit handoff is documented before replacement.
+- Technical debt is recorded in the register with owner, trigger, and closure criteria.
 - The 4-round debate rule is explicit and prevents automatic agreement.
 - Dashboard chat/grooming visibility is connected to TASK-0015 or status process.
 - PM boundaries are clear: PM directs and accepts; specialists implement.

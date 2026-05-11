@@ -1539,6 +1539,92 @@ main {
   gap: 10px;
 }
 
+.red-ball-menu {
+  position: relative;
+}
+
+.red-ball-menu summary {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 820;
+  cursor: pointer;
+  list-style: none;
+  box-shadow: 0 1px 0 rgba(24, 32, 38, 0.04);
+}
+
+.red-ball-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.red-ball-menu summary::after {
+  margin-left: 7px;
+  color: var(--muted);
+  content: "v";
+  font-size: 0.72rem;
+}
+
+.red-ball-menu[open] summary,
+.red-ball-menu summary:hover,
+.red-ball-menu summary:focus-visible {
+  border-color: var(--line-strong);
+}
+
+.red-ball-menu-panel {
+  position: absolute;
+  right: 0;
+  z-index: 8;
+  display: grid;
+  width: min(240px, calc(100vw - 32px));
+  gap: 6px;
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 18px 44px rgba(24, 32, 38, 0.16);
+}
+
+.red-ball-menu-panel button {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 760;
+  text-align: left;
+}
+
+.red-ball-menu-panel button:hover,
+.red-ball-menu-panel button:focus-visible {
+  border-color: var(--line);
+  background: #f7f9f8;
+}
+
+.red-ball-menu-panel button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+#workspaceOpenStatus {
+  min-height: 16px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
 .refresh-meter {
   display: inline-flex;
   min-height: 34px;
@@ -1837,6 +1923,7 @@ main {
 
 .agent-detail-head,
 .agent-detail-title,
+.agent-detail-actions,
 .composer-actions {
   display: flex;
   align-items: center;
@@ -1849,6 +1936,41 @@ main {
 
 .agent-detail-title {
   min-width: 0;
+}
+
+.agent-detail-actions {
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.agent-detail-actions button {
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid var(--red-dark);
+  border-radius: 7px;
+  background: var(--red);
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 850;
+}
+
+.agent-detail-actions button:hover,
+.agent-detail-actions button:focus-visible {
+  background: var(--red-dark);
+  outline: none;
+}
+
+.agent-detail-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.codex-handoff-status {
+  margin: -4px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 760;
 }
 
 .avatar.is-thinking-avatar {
@@ -2059,6 +2181,15 @@ main {
   .topbar-actions {
     display: grid;
     justify-content: stretch;
+  }
+
+  .red-ball-menu summary {
+    width: 100%;
+  }
+
+  .red-ball-menu-panel {
+    position: static;
+    width: 100%;
   }
 
   .refresh-meter {

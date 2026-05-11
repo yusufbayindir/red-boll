@@ -150,6 +150,12 @@
         "status": {
           "$ref": "#/$defs/status"
         },
+        "agentPath": {
+          "type": "string"
+        },
+        "codexAgentId": {
+          "type": "string"
+        },
         "statusSince": {
           "type": "string",
           "format": "date-time"
@@ -161,6 +167,9 @@
           "type": "string"
         },
         "lastUpdate": {
+          "type": "string"
+        },
+        "lastMessage": {
           "type": "string"
         },
         "lastMessageAt": {
@@ -175,6 +184,45 @@
           "items": {
             "type": "string"
           }
+        },
+        "taskRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "transcriptRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "artifactRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "codexChat": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "scheme": {
+              "type": "string"
+            },
+            "directAgentDeepLink": {
+              "type": "boolean"
+            },
+            "handoffMode": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
         },
         "indicator": {
           "type": "object",
