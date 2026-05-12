@@ -19,7 +19,8 @@ namespace RedBall.Tests.PlayMode
             "RedBall.Badges.AllCoinsMask",
             "RedBall.Badges.CleanRunMask",
             "RedBall.Hearts",
-            "RedBall.HeartStamp"
+            "RedBall.HeartStamp",
+            "RedBall.Language"
         };
 
         private Type gameType;

@@ -57,10 +57,19 @@ The current project works, but the runtime is too centralized. New work should m
 
 ## Repo Rule
 
-The local folder was not a git repo at initial setup. Git work must be explicit:
+Git work must be explicit:
 
-- Do not assume commits exist locally.
+- New implementation work starts on a typed branch, never silently on `main`.
+- Branch prefix rules:
+  - `feature/...` for new product/gameplay/UI/asset capability.
+  - `bugfix/...` for broken behavior, failing tests, or regressions.
+  - `improvement/...` for polish, refactors, docs/process improvements, and non-blocking UX upgrades.
+- Every branch needs a task MD or decision note naming the owner, intended files, acceptance criteria, and verification plan.
+- QA must pass before a branch is merged to `main`; at minimum use Unity compile/import plus the relevant EditMode/PlayMode smoke tests for runtime changes.
+- QA owner records pass/fail in the task MD. PM may merge only after QA pass or after Yusuf explicitly accepts a documented risk.
+- Merge flow is: branch work -> QA evidence -> PM acceptance -> non-interactive merge to `main` -> push -> status board update.
+- If agent limits require replacement, the outgoing agent writes a handoff before closure and the incoming agent continues on the same branch/task unless PM creates a new branch.
 - Do not add generated folders like `Library`, `Temp`, `Logs`, or `Builds` unless PM explicitly approves.
 - Prefer tracking `Assets`, `Packages`, `ProjectSettings`, `README.md`, docs, and selected source assets.
+- Raw asset pack folders are not committed wholesale by default; selected files are copied into tracked runtime/import locations with license/provenance notes.
 - Remote repo is `https://github.com/yusufbayindir/red-boll.git`.
-

@@ -43,6 +43,8 @@ public sealed class RedBallGame : MonoBehaviour
     private readonly List<Button> levelButtons = new List<Button>();
     private readonly List<Text> levelButtonTexts = new List<Text>();
     private readonly List<Image[]> levelButtonBadgeImages = new List<Image[]>();
+    private readonly List<LocalizedTextBinding> localizedTextBindings = new List<LocalizedTextBinding>();
+    private readonly List<Text> languageButtonTexts = new List<Text>();
 
     private Camera mainCamera;
     private CameraFollow cameraFollow;
@@ -102,6 +104,12 @@ public sealed class RedBallGame : MonoBehaviour
         Gameplay
     }
 
+    private sealed class LocalizedTextBinding
+    {
+        public Text Text;
+        public string Key;
+    }
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -112,11 +120,8 @@ public sealed class RedBallGame : MonoBehaviour
         groundMaterial = new PhysicsMaterial2D("Ground") { friction = 0.65f, bounciness = 0f };
         slickMaterial = new PhysicsMaterial2D("Moving Platform") { friction = 0.9f, bounciness = 0f };
 
-        uiFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        if (uiFont == null)
-        {
-            uiFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        }
+        RedBallLocalization.Initialize();
+        uiFont = RedBallLocalization.CreateUiFont();
 
         LoadSprites();
         SetupCamera();
@@ -246,12 +251,12 @@ public sealed class RedBallGame : MonoBehaviour
 
         if (health <= 0)
         {
-            ShowMessage("Kalp bitti! 1 saat sonra 1 kalp gelir.", 1.2f);
+            ShowMessage(RedBallLocalization.T("message.noHearts"), 1.2f);
             Invoke(nameof(ReturnToMenuAfterNoHearts), 1.1f);
             return;
         }
 
-        ShowMessage("Dikkat! Kalp gitti, checkpoint'e geri donuldu.", 1.2f);
+        ShowMessage(RedBallLocalization.T("message.damage"), 1.2f);
         player.Respawn(playerSpawn);
     }
 
@@ -263,7 +268,7 @@ public sealed class RedBallGame : MonoBehaviour
         }
 
         playerSpawn = spawn;
-        ShowMessage("Checkpoint!", 1.1f);
+        ShowMessage(RedBallLocalization.T("message.checkpoint"), 1.1f);
         PlayPickupSound();
     }
 
@@ -296,15 +301,15 @@ public sealed class RedBallGame : MonoBehaviour
         RefreshHud();
         RefreshLevelButtons();
 
-        string badgeMessage = "Rozetler: " + GetCompletionBadgeSummary(levelIndex);
+        string badgeMessage = RedBallLocalization.T("message.badgesPrefix") + " " + GetCompletionBadgeSummary(levelIndex);
         if (levelIndex >= LevelCount - 1)
         {
-            ShowMessage("Tebrikler! Tum leveller tamamlandi. " + badgeMessage, 4f);
+            ShowMessage(RedBallLocalization.F("message.gameComplete", badgeMessage), 4f);
             Invoke(nameof(ShowLevelSelect), 2f);
             return;
         }
 
-        ShowMessage("Level tamam! " + badgeMessage, 1.8f);
+        ShowMessage(RedBallLocalization.F("message.levelComplete", badgeMessage), 1.8f);
         Invoke(nameof(LoadNextLevel), 1.8f);
     }
 
@@ -344,14 +349,14 @@ public sealed class RedBallGame : MonoBehaviour
         int clampedIndex = Mathf.Clamp(requestedIndex, 0, LevelCount - 1);
         if (health <= 0)
         {
-            ShowStatus("Kalp yok. Sonraki kalp: " + GetNextHeartText(), 2.2f);
+            ShowStatus(RedBallLocalization.F("status.noHearts", GetNextHeartText()), 2.2f);
             RefreshAllUi();
             return;
         }
 
         if (clampedIndex >= unlockedLevelCount)
         {
-            ShowStatus("Bu level kilitli. Once onceki leveli gec.", 2.2f);
+            ShowStatus(RedBallLocalization.T("status.locked"), 2.2f);
             RefreshLevelButtons();
             return;
         }
@@ -377,7 +382,7 @@ public sealed class RedBallGame : MonoBehaviour
     private void ReturnToMenuAfterNoHearts()
     {
         ShowMainMenu();
-        ShowStatus("Kalpler bitti. Her saat 1 kalp geri gelir.", 2.6f);
+        ShowStatus(RedBallLocalization.T("status.heartsExhausted"), 2.6f);
     }
 
     private void LoadLevel(int requestedIndex)
@@ -445,7 +450,7 @@ public sealed class RedBallGame : MonoBehaviour
         CreatePlayer(playerSpawn);
         cameraFollow.Configure(player.transform, GetBoundsMinX(), GetBoundsMaxX(), KillY + 2f, GetBoundsMaxY());
         RefreshHud();
-        ShowMessage(levelName, 1.6f);
+        ShowMessage(RedBallLocalization.LevelName(levelIndex), 1.6f);
     }
 
     private void LoadProgress()
@@ -1102,6 +1107,8 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinLine(53.2f, 3.0f, 5, 0.85f);
         AddCoinLine(66.5f, -0.95f, 5, 0.85f);
 
+        AddRouteSparkle(new Vector2(22f, 2.35f), 0.66f);
+        AddRouteSparkle(new Vector2(48f, 3.35f), 0.68f);
         AddWarningSign(new Vector2(38.1f, -1.72f));
         AddWarningSign(new Vector2(46.2f, -0.55f));
         AddTriangleHazard(36.8f, -2.48f, false);
@@ -1146,6 +1153,8 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinArc(new Vector2(68f, 0.35f), 3, 0.75f, 205f, 335f);
         AddCoinLine(73.3f, -0.8f, 5, 0.85f);
 
+        AddRouteSparkle(new Vector2(4.5f, 0.18f), 0.62f);
+        AddRouteSparkle(new Vector2(51f, 0.95f), 0.68f);
         AddWarningSign(new Vector2(4.5f, -2.55f));
         AddWarningSign(new Vector2(34.4f, -2.05f));
         AddWarningSign(new Vector2(48.2f, -1.65f));
@@ -1467,6 +1476,14 @@ public sealed class RedBallGame : MonoBehaviour
         goal.transform.position = position;
         levelObjects.Add(goal);
 
+        var halo = new GameObject("Generated Sprint04 Goal Halo");
+        halo.transform.SetParent(goal.transform, false);
+        halo.transform.localScale = Vector3.one * 0.88f;
+        var haloRenderer = halo.AddComponent<SpriteRenderer>();
+        haloRenderer.sprite = sprites["goal_halo"];
+        haloRenderer.color = new Color(1f, 1f, 1f, 0.72f);
+        haloRenderer.sortingOrder = 8;
+
         var body = goal.AddComponent<SpriteRenderer>();
         body.sprite = sprites["green_body_square"];
         body.color = new Color(0.55f, 1f, 0.64f, 0.92f);
@@ -1530,6 +1547,10 @@ public sealed class RedBallGame : MonoBehaviour
 
     private void AddWarningSign(Vector2 position)
     {
+        var glow = CreateSpriteObject("Generated Sprint04 Hazard Glow", "hazard_floor_glow", position + new Vector2(0f, -0.78f), 0.54f, 4);
+        var glowRenderer = glow.GetComponent<SpriteRenderer>();
+        glowRenderer.color = new Color(1f, 1f, 1f, 0.7f);
+
         var sign = CreateSpriteObject("Warning Sign", "tile_exclamation", position, 0.75f, 14);
         var renderer = sign.GetComponent<SpriteRenderer>();
         renderer.color = new Color(1f, 0.94f, 0.2f, 0.95f);
@@ -1546,6 +1567,10 @@ public sealed class RedBallGame : MonoBehaviour
 
     private void AddRouteSparkle(Vector2 position, float scale)
     {
+        var arrow = CreateSpriteObject("Generated Sprint04 Route Arrow", "route_arrow", position + new Vector2(0f, -0.46f), scale * 0.82f, 13);
+        var arrowRenderer = arrow.GetComponent<SpriteRenderer>();
+        arrowRenderer.color = new Color(1f, 1f, 1f, 0.74f);
+
         var sparkle = CreateSpriteObject("Generated Route Sparkle", "dust_sparkle", position, scale, 14);
         var renderer = sparkle.GetComponent<SpriteRenderer>();
         renderer.color = new Color(1f, 0.92f, 0.52f, 0.52f);
@@ -1588,6 +1613,12 @@ public sealed class RedBallGame : MonoBehaviour
 
     private void AddSkyDressing(float minX, float maxX, float groundY)
     {
+        float width = Mathf.Max(1f, maxX - minX);
+        var parallax = CreateSpriteObject("Generated Sprint04 Parallax Band", "parallax_hills", new Vector2((minX + maxX) * 0.5f, groundY + 1.92f), 1f, -12);
+        parallax.transform.localScale = new Vector3(width / 20.48f, 0.82f, 1f);
+        var parallaxRenderer = parallax.GetComponent<SpriteRenderer>();
+        parallaxRenderer.color = new Color(1f, 1f, 1f, 0.66f);
+
         for (float x = minX + 2f; x < maxX; x += 7.5f)
         {
             float y = 3.6f + Mathf.Sin(x * 0.47f) * 0.8f;
@@ -1711,6 +1742,9 @@ public sealed class RedBallGame : MonoBehaviour
 
     private void SetupUi()
     {
+        localizedTextBindings.Clear();
+        languageButtonTexts.Clear();
+
         if (UnityEngine.Object.FindAnyObjectByType<EventSystem>() == null)
         {
             var eventSystem = new GameObject("EventSystem");
@@ -1735,99 +1769,164 @@ public sealed class RedBallGame : MonoBehaviour
         mainMenuRoot = CreateUiRoot(canvasObject.transform, "Main Menu");
         levelSelectRoot = CreateUiRoot(canvasObject.transform, "Level Select");
 
-        var joystickBase = CreateUiImage(hudRoot.transform, "Joystick", "joystick", new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(215f, 190f), new Vector2(290f, 290f), new Color(1f, 1f, 1f, 0.36f));
-        var joystickHandle = CreateUiImage(joystickBase.transform, "Joystick Handle", "joystickL_top", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(124f, 124f), new Color(1f, 1f, 1f, 0.82f));
-        joystick = joystickBase.gameObject.AddComponent<VirtualJoystick>();
-        joystick.Initialize(joystickHandle, 104f);
+        CreateUiImage(hudRoot.transform, "HUD Glass Panel", "hud_panel", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(-88f, -56f), new Vector2(980f, 92f), Color.white);
+        scoreText = CreateUiText(hudRoot.transform, "Score", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(-205f, -56f), new Vector2(620f, 58f), 27, TextAnchor.MiddleLeft);
+        levelText = CreateUiText(hudRoot.transform, "Level", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(304f, -56f), new Vector2(260f, 58f), 27, TextAnchor.MiddleCenter);
+        CreateLanguageButton(hudRoot.transform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-342f, -56f), new Vector2(250f, 62f), 20);
+        CreateUiButton(hudRoot.transform, "Menu", "home", new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-174f, -58f), new Vector2(78f, 78f), ShowMainMenu);
+        CreateUiButton(hudRoot.transform, "Restart", "return", new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-76f, -58f), new Vector2(78f, 78f), RestartLevel);
 
-        var jumpImage = CreateUiImage(hudRoot.transform, "Jump Button", "buttonA", new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(-175f, 178f), new Vector2(260f, 260f), new Color(1f, 1f, 1f, 0.46f));
+        messageText = CreateUiText(hudRoot.transform, "Message", new Vector2(0.5f, 0.74f), new Vector2(0.5f, 0.74f), Vector2.zero, new Vector2(980f, 78f), 30, TextAnchor.MiddleCenter);
+        messageText.color = new Color(1f, 0.98f, 0.9f, 0.98f);
+
+        CreateUiImage(hudRoot.transform, "Joystick Plate", "button_secondary", new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(215f, 190f), new Vector2(300f, 210f), new Color(1f, 1f, 1f, 0.34f));
+        var joystickBase = CreateUiImage(hudRoot.transform, "Joystick", "joystick", new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(215f, 190f), new Vector2(245f, 245f), new Color(1f, 1f, 1f, 0.36f));
+        var joystickHandle = CreateUiImage(joystickBase.transform, "Joystick Handle", "joystickL_top", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(110f, 110f), new Color(1f, 1f, 1f, 0.84f));
+        joystick = joystickBase.gameObject.AddComponent<VirtualJoystick>();
+        joystick.Initialize(joystickHandle, 96f);
+
+        CreateUiImage(hudRoot.transform, "Jump Plate", "button_primary", new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(-176f, 178f), new Vector2(250f, 188f), new Color(1f, 1f, 1f, 0.5f));
+        var jumpImage = CreateUiImage(hudRoot.transform, "Jump Button", "buttonA", new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(-176f, 178f), new Vector2(168f, 168f), new Color(1f, 1f, 1f, 0.64f));
         jumpButton = jumpImage.gameObject.AddComponent<HoldButton>();
 
-        scoreText = CreateUiText(hudRoot.transform, "Score", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(26f, -28f), new Vector2(880f, 70f), 34, TextAnchor.MiddleLeft);
-        levelText = CreateUiText(hudRoot.transform, "Level", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -30f), new Vector2(520f, 70f), 34, TextAnchor.MiddleCenter);
-        messageText = CreateUiText(hudRoot.transform, "Message", new Vector2(0.5f, 0.74f), new Vector2(0.5f, 0.74f), Vector2.zero, new Vector2(900f, 70f), 34, TextAnchor.MiddleCenter);
-        messageText.color = new Color(0.1f, 0.16f, 0.21f, 0.95f);
+        CreateSolidPanel(mainMenuRoot.transform, "Menu Background", new Color(0.055f, 0.12f, 0.15f, 0.99f));
+        CreateUiPanel(mainMenuRoot.transform, "Menu Warm Rail", new Vector2(0f, 0f), new Vector2(0f, 1f), new Vector2(34f, 0f), new Vector2(68f, 1080f), new Color(0.96f, 0.24f, 0.18f, 0.9f));
+        CreateLocalizedText(mainMenuRoot.transform, "Mastery Banner Text", "menu.banner", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -42f), new Vector2(900f, 48f), 24, TextAnchor.MiddleCenter).color = new Color(1f, 0.82f, 0.3f, 1f);
 
-        CreateUiButton(hudRoot.transform, "Menu", "home", new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-174f, -66f), new Vector2(88f, 88f), ShowMainMenu);
-        CreateUiButton(hudRoot.transform, "Restart", "return", new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-66f, -66f), new Vector2(88f, 88f), RestartLevel);
+        CreateUiImage(mainMenuRoot.transform, "Menu Premium Card", "panel_glass", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(320f, 8f), new Vector2(850f, 626f), Color.white);
+        CreateUiPanel(mainMenuRoot.transform, "Concept Art Frame", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(-505f, 28f), new Vector2(700f, 502f), new Color(0.02f, 0.06f, 0.08f, 0.72f));
+        CreateUiRawImage(mainMenuRoot.transform, "Mastery Concept Preview", SprintKeyArtResourcePath, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(-505f, 28f), new Vector2(660f, 440f), Color.white);
 
-        CreateSolidPanel(mainMenuRoot.transform, "Menu Background", new Color(0.08f, 0.18f, 0.2f, 0.98f));
-        CreateUiPanel(mainMenuRoot.transform, "Mastery Top Banner", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -36f), new Vector2(1920f, 72f), new Color(1f, 0.68f, 0.12f, 0.92f));
-        var banner = CreateUiText(mainMenuRoot.transform, "Mastery Banner Text", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -36f), new Vector2(1160f, 54f), 30, TextAnchor.MiddleCenter);
-        banner.text = "SPRINT 01 MASTERY UPDATE";
-        banner.color = new Color(0.08f, 0.12f, 0.14f, 1f);
-
-        CreateUiPanel(mainMenuRoot.transform, "Concept Art Frame", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(-495f, 64f), new Vector2(690f, 482f), new Color(0.02f, 0.06f, 0.08f, 0.72f));
-        CreateUiRawImage(mainMenuRoot.transform, "Mastery Concept Preview", SprintKeyArtResourcePath, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(-495f, 64f), new Vector2(650f, 433f), Color.white);
-
-        var title = CreateUiText(mainMenuRoot.transform, "Title", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, 270f), new Vector2(780f, 150f), 64, TextAnchor.MiddleCenter);
-        title.text = "RED BALL\nMASTERY UPDATE";
+        var title = CreateLocalizedText(mainMenuRoot.transform, "Title", "menu.title", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(320f, 252f), new Vector2(730f, 148f), 58, TextAnchor.MiddleCenter);
         title.lineSpacing = 0.82f;
-        title.color = new Color(1f, 0.18f, 0.14f, 1f);
-        var subtitle = CreateUiText(mainMenuRoot.transform, "Subtitle", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, 165f), new Vector2(760f, 70f), 34, TextAnchor.MiddleCenter);
-        subtitle.text = "15 levels + badges + late-game preview";
+        title.color = new Color(1f, 0.28f, 0.22f, 1f);
+        var subtitle = CreateLocalizedText(mainMenuRoot.transform, "Subtitle", "menu.subtitle", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(320f, 146f), new Vector2(720f, 58f), 28, TextAnchor.MiddleCenter);
         subtitle.color = new Color(0.9f, 0.98f, 1f, 0.96f);
 
-        CreateUiPanel(mainMenuRoot.transform, "Sprint Feature Panel", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, 35f), new Vector2(760f, 148f), new Color(0.98f, 0.94f, 0.78f, 0.94f));
-        var featureText = CreateUiText(mainMenuRoot.transform, "Sprint Feature Text", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, 35f), new Vector2(706f, 112f), 28, TextAnchor.MiddleCenter);
-        featureText.text = "New: Level 14 Lifts | Level 15 Crumbling Tiles\nBadges: Clear / All Coins / Clean Run\nLocked levels now show feature hints";
-        featureText.lineSpacing = 0.88f;
-        featureText.color = new Color(0.07f, 0.12f, 0.15f, 1f);
-
-        CreateMasteryBadgeStrip(mainMenuRoot.transform, new Vector2(380f, -92f), 1.25f);
-        menuHeartText = CreateUiText(mainMenuRoot.transform, "Menu Hearts", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, -154f), new Vector2(820f, 54f), 30, TextAnchor.MiddleCenter);
+        CreateFeatureChip(mainMenuRoot.transform, "Feature Lift", "lift_platform_polish", "menu.feature.lifts", new Vector2(76f, 38f));
+        CreateFeatureChip(mainMenuRoot.transform, "Feature Crumble", "crumbling_tile_polish", "menu.feature.crumble", new Vector2(320f, 38f));
+        CreateFeatureChip(mainMenuRoot.transform, "Feature Badges", "mastery_badge_clean_run", "menu.feature.badges", new Vector2(564f, 38f));
+        CreateMasteryBadgeStrip(mainMenuRoot.transform, new Vector2(320f, -90f), 1.1f);
+        menuHeartText = CreateUiText(mainMenuRoot.transform, "Menu Hearts", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(320f, -158f), new Vector2(760f, 46f), 25, TextAnchor.MiddleCenter);
         menuHeartText.color = new Color(0.9f, 0.98f, 1f, 0.96f);
-        menuStatusText = CreateUiText(mainMenuRoot.transform, "Menu Status", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, -202f), new Vector2(900f, 48f), 26, TextAnchor.MiddleCenter);
+        menuStatusText = CreateUiText(mainMenuRoot.transform, "Menu Status", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(320f, -204f), new Vector2(780f, 42f), 22, TextAnchor.MiddleCenter);
         menuStatusText.color = new Color(1f, 0.82f, 0.3f, 0.98f);
-        CreateTextButton(mainMenuRoot.transform, "Continue", "Devam Et", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(190f, -298f), new Vector2(320f, 86f), StartContinueLevel);
-        CreateTextButton(mainMenuRoot.transform, "Levels", "Level Select", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(570f, -298f), new Vector2(320f, 86f), ShowLevelSelect);
+        CreateLocalizedTextButton(mainMenuRoot.transform, "Continue", "button.continue", "button_primary", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(122f, -292f), new Vector2(300f, 80f), StartContinueLevel);
+        CreateLocalizedTextButton(mainMenuRoot.transform, "Levels", "button.levels", "button_secondary", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(452f, -292f), new Vector2(300f, 80f), ShowLevelSelect);
+        CreateLanguageButton(mainMenuRoot.transform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-206f, -54f), new Vector2(330f, 68f), 23);
 
-        CreateSolidPanel(levelSelectRoot.transform, "Level Background", new Color(0.08f, 0.18f, 0.2f, 0.98f));
-        CreateUiPanel(levelSelectRoot.transform, "Level Select Banner", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -40f), new Vector2(1920f, 80f), new Color(1f, 0.68f, 0.12f, 0.92f));
-        var levelTitle = CreateUiText(levelSelectRoot.transform, "Level Select Title", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -40f), new Vector2(980f, 66f), 46, TextAnchor.MiddleCenter);
-        levelTitle.text = "Mastery Level Select";
-        levelTitle.color = new Color(0.08f, 0.12f, 0.14f, 1f);
-        var levelSubtitle = CreateUiText(levelSelectRoot.transform, "Level Select Subtitle", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -104f), new Vector2(1180f, 44f), 25, TextAnchor.MiddleCenter);
-        levelSubtitle.text = "15 levels | Clear / All Coins / Clean Run badges | New Level 14/15 previews stay visible";
+        CreateSolidPanel(levelSelectRoot.transform, "Level Background", new Color(0.055f, 0.12f, 0.15f, 0.99f));
+        CreateUiPanel(levelSelectRoot.transform, "Level Select Accent", new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0f, -42f), new Vector2(1920f, 84f), new Color(0.96f, 0.24f, 0.18f, 0.9f));
+        var levelTitle = CreateLocalizedText(levelSelectRoot.transform, "Level Select Title", "levelSelect.title", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -42f), new Vector2(820f, 60f), 40, TextAnchor.MiddleCenter);
+        levelTitle.color = Color.white;
+        var levelSubtitle = CreateLocalizedText(levelSelectRoot.transform, "Level Select Subtitle", "levelSelect.subtitle", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -104f), new Vector2(1160f, 42f), 23, TextAnchor.MiddleCenter);
         levelSubtitle.color = new Color(0.9f, 0.98f, 1f, 0.96f);
-        levelSelectHeartText = CreateUiText(levelSelectRoot.transform, "Level Hearts", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -150f), new Vector2(820f, 46f), 28, TextAnchor.MiddleCenter);
+        levelSelectHeartText = CreateUiText(levelSelectRoot.transform, "Level Hearts", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -148f), new Vector2(820f, 42f), 25, TextAnchor.MiddleCenter);
         levelSelectHeartText.color = new Color(0.9f, 0.98f, 1f, 0.95f);
-        levelSelectStatusText = CreateUiText(levelSelectRoot.transform, "Level Status", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -194f), new Vector2(960f, 42f), 24, TextAnchor.MiddleCenter);
+        levelSelectStatusText = CreateUiText(levelSelectRoot.transform, "Level Status", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -190f), new Vector2(960f, 40f), 22, TextAnchor.MiddleCenter);
         levelSelectStatusText.color = new Color(1f, 0.82f, 0.3f, 0.98f);
-        CreateTextButton(levelSelectRoot.transform, "Back", "Geri", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(95f, -70f), new Vector2(150f, 68f), ShowMainMenu);
+        CreateLocalizedTextButton(levelSelectRoot.transform, "Back", "button.back", "button_secondary", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(122f, -64f), new Vector2(190f, 66f), ShowMainMenu);
+        CreateLanguageButton(levelSelectRoot.transform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-206f, -64f), new Vector2(330f, 66f), 22);
 
         for (int i = 0; i < LevelCount; i++)
         {
             int index = i;
             int column = i % 5;
             int row = i / 5;
-            float rowWidth = 5 * 230f;
-            float x = -rowWidth * 0.5f + 115f + 230f * column;
-            float y = 100f - row * 148f;
+            float rowWidth = 5 * 238f;
+            float x = -rowWidth * 0.5f + 119f + 238f * column;
+            float y = 108f - row * 154f;
             if (i >= 13)
             {
-                CreateUiPanel(levelSelectRoot.transform, "Level " + (i + 1) + " Feature Glow", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(x, y), new Vector2(214f, 130f), new Color(1f, 0.68f, 0.12f, 0.3f));
+                CreateUiPanel(levelSelectRoot.transform, "Level " + (i + 1) + " Feature Glow", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(x, y), new Vector2(220f, 134f), new Color(1f, 0.68f, 0.12f, 0.26f));
             }
 
-            var buttonImage = CreateNumberButton(levelSelectRoot.transform, (i + 1).ToString(), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(x, y), new Vector2(188f, 104f), () => TryStartLevel(index));
+            var buttonImage = CreateNumberButton(levelSelectRoot.transform, (i + 1).ToString(), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(x, y), new Vector2(206f, 124f), () => TryStartLevel(index));
             levelButtonImages.Add(buttonImage);
             levelButtons.Add(buttonImage.GetComponent<Button>());
             levelButtonTexts.Add(buttonImage.GetComponentInChildren<Text>());
             levelButtonBadgeImages.Add(CreateLevelButtonBadgeIcons(buttonImage.transform));
         }
 
-        var liftTag = CreateUiText(levelSelectRoot.transform, "Level 14 New Tag", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(230f, -126f), new Vector2(188f, 34f), 21, TextAnchor.MiddleCenter);
-        liftTag.text = "NEW LIFT";
+        var liftTag = CreateLocalizedText(levelSelectRoot.transform, "Level 14 New Tag", "level.tag.lift", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(238f, -126f), new Vector2(188f, 34f), 19, TextAnchor.MiddleCenter);
         liftTag.color = new Color(1f, 0.82f, 0.3f, 1f);
-        var crumbleTag = CreateUiText(levelSelectRoot.transform, "Level 15 New Tag", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(460f, -126f), new Vector2(188f, 34f), 21, TextAnchor.MiddleCenter);
-        crumbleTag.text = "NEW CRUMBLE";
+        var crumbleTag = CreateLocalizedText(levelSelectRoot.transform, "Level 15 New Tag", "level.tag.crumble", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(476f, -126f), new Vector2(188f, 34f), 19, TextAnchor.MiddleCenter);
         crumbleTag.color = new Color(1f, 0.82f, 0.3f, 1f);
 
-        CreateUiPanel(levelSelectRoot.transform, "Mastery Legend Panel", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 86f), new Vector2(1320f, 118f), new Color(0.98f, 0.94f, 0.78f, 0.94f));
-        var masteryLegend = CreateUiText(levelSelectRoot.transform, "Mastery Legend Text", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 86f), new Vector2(1240f, 86f), 26, TextAnchor.MiddleCenter);
-        masteryLegend.text = "Sprint 01 preview: Level 14 vertical lift timing, Level 15 crumbling tiles.\nBadge marks: G = Clear, C = All Coins, T = Clean Run.";
+        CreateUiImage(levelSelectRoot.transform, "Mastery Legend Panel", "feature_chip", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 82f), new Vector2(1320f, 92f), Color.white);
+        var masteryLegend = CreateLocalizedText(levelSelectRoot.transform, "Mastery Legend Text", "levelSelect.legend", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 82f), new Vector2(1240f, 70f), 23, TextAnchor.MiddleCenter);
         masteryLegend.lineSpacing = 0.88f;
         masteryLegend.color = new Color(0.07f, 0.12f, 0.15f, 1f);
+    }
+
+    private Text CreateLocalizedText(Transform parent, string name, string key, Vector2 anchorMin, Vector2 anchorMax, Vector2 position, Vector2 size, int fontSize, TextAnchor alignment)
+    {
+        Text text = CreateUiText(parent, name, anchorMin, anchorMax, position, size, fontSize, alignment);
+        BindLocalizedText(text, key);
+        return text;
+    }
+
+    private void BindLocalizedText(Text text, string key)
+    {
+        localizedTextBindings.Add(new LocalizedTextBinding { Text = text, Key = key });
+        text.text = RedBallLocalization.T(key);
+    }
+
+    private void CreateFeatureChip(Transform parent, string name, string iconKey, string textKey, Vector2 center)
+    {
+        CreateUiImage(parent, name + " Panel", "feature_chip", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), center, new Vector2(226f, 66f), Color.white);
+        var icon = CreateUiImage(parent, name + " Icon", iconKey, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), center + new Vector2(-76f, 0f), new Vector2(42f, 42f), Color.white);
+        icon.raycastTarget = false;
+        var text = CreateLocalizedText(parent, name + " Text", textKey, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), center + new Vector2(28f, 0f), new Vector2(148f, 46f), 19, TextAnchor.MiddleCenter);
+        text.color = new Color(0.08f, 0.12f, 0.14f, 1f);
+    }
+
+    private Button CreateLanguageButton(Transform parent, Vector2 anchorMin, Vector2 anchorMax, Vector2 position, Vector2 size, int fontSize)
+    {
+        Button button = CreateTextButton(parent, "Language", GetLanguageButtonLabel(), "language_chip", anchorMin, anchorMax, position, size, CycleLanguageAndRefresh);
+        Text text = button.GetComponentInChildren<Text>();
+        if (text != null)
+        {
+            text.fontSize = fontSize;
+            text.color = new Color(0.08f, 0.12f, 0.14f, 1f);
+            languageButtonTexts.Add(text);
+        }
+
+        return button;
+    }
+
+    private void CycleLanguageAndRefresh()
+    {
+        RedBallLocalization.CycleLanguage();
+        RefreshLocalizedUi();
+        ShowStatus(GetLanguageButtonLabel(), 1.3f);
+    }
+
+    private string GetLanguageButtonLabel()
+    {
+        return RedBallLocalization.F("button.language", RedBallLocalization.CurrentLanguageLabel());
+    }
+
+    private void RefreshLocalizedUi()
+    {
+        for (int i = 0; i < localizedTextBindings.Count; i++)
+        {
+            LocalizedTextBinding binding = localizedTextBindings[i];
+            if (binding != null && binding.Text != null)
+            {
+                binding.Text.text = RedBallLocalization.T(binding.Key);
+            }
+        }
+
+        for (int i = 0; i < languageButtonTexts.Count; i++)
+        {
+            if (languageButtonTexts[i] != null)
+            {
+                languageButtonTexts[i].text = GetLanguageButtonLabel();
+            }
+        }
+
+        RefreshAllUi();
     }
 
     private GameObject CreateUiRoot(Transform parent, string name)
@@ -1981,6 +2080,11 @@ public sealed class RedBallGame : MonoBehaviour
         var text = gameObject.AddComponent<Text>();
         text.font = uiFont;
         text.fontSize = fontSize;
+        text.resizeTextForBestFit = true;
+        text.resizeTextMinSize = Mathf.Max(12, Mathf.RoundToInt(fontSize * 0.58f));
+        text.resizeTextMaxSize = fontSize;
+        text.horizontalOverflow = HorizontalWrapMode.Wrap;
+        text.verticalOverflow = VerticalWrapMode.Truncate;
         text.alignment = alignment;
         text.color = Color.white;
         text.raycastTarget = false;
@@ -1993,9 +2097,27 @@ public sealed class RedBallGame : MonoBehaviour
         var button = image.gameObject.AddComponent<Button>();
         button.targetGraphic = image;
         button.onClick.AddListener(action);
+        ConfigureButtonColors(button, image.color);
     }
 
     private Button CreateTextButton(Transform parent, string name, string label, Vector2 anchorMin, Vector2 anchorMax, Vector2 position, Vector2 size, UnityEngine.Events.UnityAction action)
+    {
+        return CreateTextButton(parent, name, label, "button_secondary", anchorMin, anchorMax, position, size, action);
+    }
+
+    private Button CreateLocalizedTextButton(Transform parent, string name, string key, string spriteKey, Vector2 anchorMin, Vector2 anchorMax, Vector2 position, Vector2 size, UnityEngine.Events.UnityAction action)
+    {
+        Button button = CreateTextButton(parent, name, RedBallLocalization.T(key), spriteKey, anchorMin, anchorMax, position, size, action);
+        Text text = button.GetComponentInChildren<Text>();
+        if (text != null)
+        {
+            BindLocalizedText(text, key);
+        }
+
+        return button;
+    }
+
+    private Button CreateTextButton(Transform parent, string name, string label, string spriteKey, Vector2 anchorMin, Vector2 anchorMax, Vector2 position, Vector2 size, UnityEngine.Events.UnityAction action)
     {
         var gameObject = new GameObject(name + " Button");
         gameObject.transform.SetParent(parent, false);
@@ -2007,12 +2129,14 @@ public sealed class RedBallGame : MonoBehaviour
         rect.sizeDelta = size;
 
         var image = gameObject.AddComponent<Image>();
-        image.color = new Color(0.08f, 0.13f, 0.18f, 0.72f);
+        image.sprite = sprites.ContainsKey(spriteKey) ? sprites[spriteKey] : null;
+        image.color = Color.white;
         var button = gameObject.AddComponent<Button>();
         button.targetGraphic = image;
         button.onClick.AddListener(action);
+        ConfigureButtonColors(button, image.color);
 
-        var text = CreateUiText(gameObject.transform, "Text", new Vector2(0f, 0f), new Vector2(1f, 1f), Vector2.zero, Vector2.zero, 34, TextAnchor.MiddleCenter);
+        var text = CreateUiText(gameObject.transform, "Text", new Vector2(0f, 0f), new Vector2(1f, 1f), Vector2.zero, new Vector2(-28f, -10f), 30, TextAnchor.MiddleCenter);
         text.text = label;
         text.color = Color.white;
         return button;
@@ -2030,28 +2154,45 @@ public sealed class RedBallGame : MonoBehaviour
         rect.sizeDelta = size;
 
         var image = gameObject.AddComponent<Image>();
-        image.color = new Color(0.08f, 0.13f, 0.18f, 0.42f);
+        image.sprite = sprites.ContainsKey("level_card") ? sprites["level_card"] : null;
+        image.color = new Color(1f, 1f, 1f, 0.92f);
         var button = gameObject.AddComponent<Button>();
         button.targetGraphic = image;
         button.onClick.AddListener(action);
+        ConfigureButtonColors(button, Color.white);
 
-        var text = CreateUiText(gameObject.transform, "Text", new Vector2(0f, 0f), new Vector2(1f, 1f), Vector2.zero, Vector2.zero, 24, TextAnchor.MiddleCenter);
+        var text = CreateUiText(gameObject.transform, "Text", new Vector2(0f, 0f), new Vector2(1f, 1f), new Vector2(0f, 16f), new Vector2(-20f, -44f), 24, TextAnchor.MiddleCenter);
         text.text = label;
         text.lineSpacing = 0.8f;
         text.color = Color.white;
         return image;
     }
 
+    private static void ConfigureButtonColors(Button button, Color baseColor)
+    {
+        ColorBlock colors = button.colors;
+        colors.normalColor = baseColor;
+        colors.highlightedColor = new Color(1f, 0.95f, 0.82f, baseColor.a);
+        colors.pressedColor = new Color(0.86f, 0.92f, 1f, baseColor.a);
+        colors.selectedColor = colors.highlightedColor;
+        colors.disabledColor = new Color(0.34f, 0.38f, 0.42f, 0.52f);
+        colors.colorMultiplier = 1f;
+        colors.fadeDuration = 0.08f;
+        button.colors = colors;
+    }
+
     private void RefreshHud()
     {
         if (scoreText != null)
         {
-            scoreText.text = "Can  " + health + "/" + MaxHealth + "   Skor  " + score + "   Coin  " + coinsCollectedInLevel + "/" + coinsInLevel;
+            scoreText.text = RedBallLocalization.T("hud.health") + " " + health + "/" + MaxHealth
+                + "   " + RedBallLocalization.T("hud.score") + " " + score
+                + "   " + RedBallLocalization.T("hud.coin") + " " + coinsCollectedInLevel + "/" + coinsInLevel;
         }
 
         if (levelText != null)
         {
-            levelText.text = "Level " + (levelIndex + 1) + " / " + LevelCount;
+            levelText.text = RedBallLocalization.T("hud.level") + " " + (levelIndex + 1) + " / " + LevelCount;
         }
     }
 
@@ -2183,14 +2324,14 @@ public sealed class RedBallGame : MonoBehaviour
 
     private void UpdateLifeTexts()
     {
-        string text = "Kalp " + health + "/" + MaxHealth;
+        string text = RedBallLocalization.T("hud.health") + " " + health + "/" + MaxHealth;
         if (health < MaxHealth)
         {
-            text += "   Sonraki: " + GetNextHeartText();
+            text += "   " + RedBallLocalization.T("life.next") + ": " + GetNextHeartText();
         }
         else
         {
-            text += "   Dolu";
+            text += "   " + RedBallLocalization.T("life.full");
         }
 
         if (menuHeartText != null)
@@ -2208,7 +2349,7 @@ public sealed class RedBallGame : MonoBehaviour
     {
         if (health >= MaxHealth)
         {
-            return "dolu";
+            return RedBallLocalization.T("life.full");
         }
 
         long elapsed = Math.Max(0L, GetNowSeconds() - heartTimestamp);
@@ -2216,10 +2357,10 @@ public sealed class RedBallGame : MonoBehaviour
         int minutes = Mathf.CeilToInt(remaining / 60f);
         if (minutes >= 60)
         {
-            return "1 sa";
+            return RedBallLocalization.T("time.hourShort");
         }
 
-        return minutes + " dk";
+        return RedBallLocalization.F("time.minShort", minutes);
     }
 
     private void ShowStatus(string message, float seconds)
@@ -2297,6 +2438,18 @@ public sealed class RedBallGame : MonoBehaviour
         AddGeneratedSprite("warning_spark", "warning_spark", 128f, "tile_exclamation");
         AddGeneratedSprite("checkpoint_spark", "checkpoint_spark", 128f, "flag");
         AddGeneratedSprite("dust_sparkle", "dust_sparkle", 128f, "shadow");
+
+        AddGeneratedSprite("panel_glass", "Sprint03/panel_glass", UiPpu, "tile_grey");
+        AddGeneratedSprite("button_primary", "Sprint03/button_primary", UiPpu, "buttonA");
+        AddGeneratedSprite("button_secondary", "Sprint03/button_secondary", UiPpu, "pause");
+        AddGeneratedSprite("language_chip", "Sprint03/language_chip", UiPpu, "tile_grey");
+        AddGeneratedSprite("hud_panel", "Sprint03/hud_panel", UiPpu, "tile_grey");
+        AddGeneratedSprite("level_card", "Sprint03/level_card", UiPpu, "tile_grey");
+        AddGeneratedSprite("feature_chip", "Sprint03/feature_chip", UiPpu, "tile_grey");
+        AddGeneratedSprite("parallax_hills", "Sprint04/parallax_hills", 100f, "tile_background_grass");
+        AddGeneratedSprite("route_arrow", "Sprint04/route_arrow", 128f, "dust_sparkle");
+        AddGeneratedSprite("goal_halo", "Sprint04/goal_halo", 128f, "flag");
+        AddGeneratedSprite("hazard_floor_glow", "Sprint04/hazard_floor_glow", 128f, "warning_spark");
     }
 
     private void AddWorldSprite(string key)
@@ -2311,7 +2464,8 @@ public sealed class RedBallGame : MonoBehaviour
 
     private void AddGeneratedSprite(string key, string fileName, float ppu, string fallbackKey)
     {
-        Sprite generated = TryLoadSprite("Generated/Sprint02/" + fileName, ppu);
+        string resourcePath = fileName.Contains("/") ? "Generated/" + fileName : "Generated/Sprint02/" + fileName;
+        Sprite generated = TryLoadSprite(resourcePath, ppu);
         if (generated != null)
         {
             sprites[key] = generated;

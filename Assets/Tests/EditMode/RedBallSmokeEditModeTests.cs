@@ -16,7 +16,8 @@ namespace RedBall.Tests.EditMode
             "RedBall.Badges.AllCoinsMask",
             "RedBall.Badges.CleanRunMask",
             "RedBall.Hearts",
-            "RedBall.HeartStamp"
+            "RedBall.HeartStamp",
+            "RedBall.Language"
         };
 
         private Type gameType;
@@ -76,13 +77,46 @@ namespace RedBall.Tests.EditMode
         public void UiBadgeSummarySurfaceFormatsThreeBadgeStates()
         {
             Type uiType = RequireType("RedBallUi");
+            Type localizationType = RequireType("RedBallLocalization");
+            MethodInfo setLanguage = RequireMethod(localizationType, "SetLanguage", BindingFlags.Public | BindingFlags.Static);
             MethodInfo badgeSummary = RequireMethod(uiType, "GetLevelBadgeSummary", BindingFlags.Public | BindingFlags.Static);
             MethodInfo completionSummary = RequireMethod(uiType, "GetCompletionBadgeSummary", BindingFlags.Public | BindingFlags.Static);
 
+            setLanguage.Invoke(null, new object[] { "en", false });
             Assert.That(InvokeString(badgeSummary, null, true, false, true), Is.EqualTo("G.T"));
             Assert.That(
                 InvokeString(completionSummary, null, true, false, false, true, "damage"),
                 Does.Contain("damage"));
+        }
+
+        [Test]
+        public void LocalizationSupportsRequiredRuntimeLanguages()
+        {
+            Type localizationType = RequireType("RedBallLocalization");
+            MethodInfo isSupported = RequireMethod(localizationType, "IsSupported", BindingFlags.Public | BindingFlags.Static);
+            MethodInfo setLanguage = RequireMethod(localizationType, "SetLanguage", BindingFlags.Public | BindingFlags.Static);
+            MethodInfo translate = RequireMethod(localizationType, "T", BindingFlags.Public | BindingFlags.Static);
+            string[] requiredCodes = { "tr", "en", "es", "fr", "zh-Hans", "hi", "nl", "de", "pt-BR", "ja", "it" };
+            string[] nonEnglishCoreKeys = { "button.continue", "button.language", "levelSelect.title", "message.levelComplete", "level.name.15" };
+
+            foreach (string code in requiredCodes)
+            {
+                Assert.That(InvokeBool(isSupported, null, code), Is.True, code + " should be available in runtime language selector.");
+                setLanguage.Invoke(null, new object[] { code, false });
+                Assert.That(InvokeString(translate, null, "button.continue"), Is.Not.Empty);
+                Assert.That(InvokeString(translate, null, "level.name.14"), Is.Not.Empty);
+
+                if (code != "en")
+                {
+                    foreach (string key in nonEnglishCoreKeys)
+                    {
+                        setLanguage.Invoke(null, new object[] { "en", false });
+                        string english = InvokeString(translate, null, key);
+                        setLanguage.Invoke(null, new object[] { code, false });
+                        Assert.That(InvokeString(translate, null, key), Is.Not.EqualTo(english), code + " should localize " + key + " instead of falling back to English.");
+                    }
+                }
+            }
         }
 
         [TestCase(0, "Level 01")]
@@ -114,7 +148,9 @@ namespace RedBall.Tests.EditMode
         [TestCase(10)]
         [TestCase(11)]
         [TestCase(12)]
-        public void ExistingLevelExposesSprint02PolishMarkers(int zeroBasedLevelIndex)
+        [TestCase(13)]
+        [TestCase(14)]
+        public void ExistingLevelExposesRuntimePolishMarkers(int zeroBasedLevelIndex)
         {
             MethodInfo loadLevel = RequireMethod(gameType, "LoadLevelForSmokeTest", BindingFlags.Public | BindingFlags.Instance);
 
@@ -128,6 +164,18 @@ namespace RedBall.Tests.EditMode
                 CountNamedSpriteObjects("Generated Warning Spark"),
                 Is.GreaterThanOrEqualTo(1),
                 "Level " + (zeroBasedLevelIndex + 1) + " should expose at least one Sprint02 warning sparkle.");
+            Assert.That(
+                CountNamedSpriteObjects("Generated Sprint04 Parallax Band"),
+                Is.GreaterThanOrEqualTo(1),
+                "Level " + (zeroBasedLevelIndex + 1) + " should expose the Sprint04 parallax backdrop.");
+            Assert.That(
+                CountNamedSpriteObjects("Generated Sprint04 Route Arrow"),
+                Is.GreaterThanOrEqualTo(1),
+                "Level " + (zeroBasedLevelIndex + 1) + " should expose at least one Sprint04 route arrow.");
+            Assert.That(
+                CountNamedSpriteObjects("Generated Sprint04 Goal Halo"),
+                Is.GreaterThanOrEqualTo(1),
+                "Level " + (zeroBasedLevelIndex + 1) + " should expose the Sprint04 goal halo.");
         }
 
         private static Type RequireType(string typeName)
