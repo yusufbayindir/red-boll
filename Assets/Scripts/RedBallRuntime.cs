@@ -42,6 +42,7 @@ public sealed class RedBallGame : MonoBehaviour
     private readonly List<Image> levelButtonImages = new List<Image>();
     private readonly List<Button> levelButtons = new List<Button>();
     private readonly List<Text> levelButtonTexts = new List<Text>();
+    private readonly List<Image[]> levelButtonBadgeImages = new List<Image[]>();
 
     private Camera mainCamera;
     private CameraFollow cameraFollow;
@@ -627,6 +628,9 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinLine(9f, -1.55f, 5, 0.95f);
         AddCoinLine(19.2f, -1.25f, 5, 0.9f);
         AddCoinLine(29.2f, -1.05f, 4, 0.85f);
+        AddRouteSparkle(new Vector2(4.6f, -0.15f), 0.62f);
+        AddRouteSparkle(new Vector2(30.4f, -0.52f), 0.58f);
+        AddWarningSign(new Vector2(22.8f, -1.42f));
         AddTriangleHazard(24f, -2.23f, false);
         AddGoal(new Vector2(32.4f, -1.55f));
         return "Level 1: Yuvarlanma Dersi";
@@ -651,6 +655,9 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinArc(new Vector2(7.5f, -1.6f), 4, 1f, 205f, 335f);
         AddCoinLine(17.2f, -1.4f, 5, 0.9f);
         AddCoinLine(28.5f, -1.15f, 5, 0.9f);
+        AddRouteSparkle(new Vector2(7.5f, -0.98f), 0.58f);
+        AddWarningSign(new Vector2(12.2f, -1.6f));
+        AddWarningSign(new Vector2(25.5f, -1.4f));
         AddTriangleHazard(13.4f, -2.48f, false);
         AddTriangleHazard(24.2f, -2.3f, true);
         AddEnemy(new Vector2(30.5f, -1.68f), 28.4f, 33.2f, 1.15f, "green_body_square", "face_f");
@@ -678,6 +685,10 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinLine(15.4f, -1.25f, 5, 0.9f);
         AddCoinArc(new Vector2(26f, 0.2f), 4, 0.95f, 205f, 335f);
         AddCoinLine(33.5f, -0.8f, 5, 0.9f);
+        AddRouteSparkle(new Vector2(3.1f, -2.24f), 0.7f);
+        AddRouteSparkle(new Vector2(26f, 0.82f), 0.62f);
+        AddWarningSign(new Vector2(17.4f, -1.38f));
+        AddWarningSign(new Vector2(29.1f, -1.72f));
         AddTriangleHazard(18.6f, -2.18f, false);
         AddTriangleHazard(30.5f, -2.68f, true);
         AddEnemy(new Vector2(35.4f, -1.33f), 33.2f, 38.4f, 1.25f, "blue_body_square", "face_g");
@@ -707,6 +718,10 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinLine(17.1f, -1.4f, 4, 0.9f);
         AddCoinArc(new Vector2(25.5f, -0.05f), 3, 0.75f, 205f, 335f);
         AddCoinLine(32.2f, -1.15f, 5, 0.85f);
+        AddRouteSparkle(new Vector2(11.5f, 1.08f), 0.54f);
+        AddRouteSparkle(new Vector2(25.5f, 0.48f), 0.54f);
+        AddWarningSign(new Vector2(13f, -1.62f));
+        AddWarningSign(new Vector2(37.2f, -1.08f));
         AddTriangleHazard(14.2f, -2.55f, true);
         AddTriangleHazard(28.8f, -2.5f, false);
         AddTriangleHazard(38.5f, -2.02f, true);
@@ -733,6 +748,10 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinLine(19.5f, -1.28f, 5, 0.9f);
         AddCoinArc(new Vector2(29.8f, 0.12f), 4, 0.9f, 200f, 340f);
         AddCoinLine(36.6f, -0.95f, 5, 0.85f);
+        AddRouteSparkle(new Vector2(9.5f, -1.22f), 0.58f);
+        AddRouteSparkle(new Vector2(29.8f, 0.72f), 0.62f);
+        AddWarningSign(new Vector2(13.8f, -1.58f));
+        AddWarningSign(new Vector2(42.8f, -0.92f));
         AddTriangleHazard(15f, -2.48f, false);
         AddTriangleHazard(27.2f, -2.38f, true);
         AddTriangleHazard(44.1f, -1.82f, false);
@@ -762,6 +781,10 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinLine(23.3f, -1.45f, 5, 0.9f);
         AddCoinArc(new Vector2(35.8f, 0.28f), 4, 0.95f, 205f, 335f);
         AddCoinLine(44.3f, -1.05f, 5, 0.9f);
+        AddRouteSparkle(new Vector2(14.8f, 0.43f), 0.62f);
+        AddRouteSparkle(new Vector2(35.8f, 0.98f), 0.62f);
+        AddWarningSign(new Vector2(19.2f, -1.58f));
+        AddWarningSign(new Vector2(31.8f, -1.7f));
         AddTriangleHazard(20.4f, -2.55f, false);
         AddTriangleHazard(30.6f, -2.72f, true);
         AddEnemy(new Vector2(46.5f, -1.53f), 44.2f, 49.4f, 1.45f, "blue_body_square", "face_d");
@@ -792,6 +815,11 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinArc(new Vector2(25.5f, 2.7f), 5, 0.9f, 195f, 345f);
         AddCoinLine(32.4f, 1.4f, 5, 0.9f);
         AddCoinArc(new Vector2(44.5f, 2.15f), 4, 0.85f, 205f, 335f);
+        AddRouteSparkle(new Vector2(2.6f, -2.22f), 0.68f);
+        AddRouteSparkle(new Vector2(18.5f, -0.06f), 0.68f);
+        AddRouteSparkle(new Vector2(25.5f, 3.32f), 0.58f);
+        AddWarningSign(new Vector2(11.2f, -2f));
+        AddWarningSign(new Vector2(38f, -1.78f));
         AddTriangleHazard(12.4f, -2.98f, true);
         AddTriangleHazard(28.4f, -2.82f, false);
         AddTriangleHazard(39.2f, -2.78f, true);
@@ -824,6 +852,10 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinLine(23.8f, -1.4f, 4, 0.85f);
         AddCoinArc(new Vector2(32f, 0.2f), 3, 0.8f, 205f, 335f);
         AddCoinArc(new Vector2(47.5f, 0.1f), 4, 0.85f, 205f, 335f);
+        AddRouteSparkle(new Vector2(19f, 0.42f), 0.54f);
+        AddRouteSparkle(new Vector2(47.5f, 0.68f), 0.6f);
+        AddWarningSign(new Vector2(7.2f, -1.88f));
+        AddWarningSign(new Vector2(41.4f, -1.28f));
         AddTriangleHazard(8.4f, -2.78f, false);
         AddTriangleHazard(16.1f, -2.72f, true);
         AddTriangleHazard(29.2f, -2.52f, false);
@@ -858,6 +890,11 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinLine(32.1f, 1.8f, 4, 0.9f);
         AddCoinArc(new Vector2(43f, 3.5f), 4, 0.9f, 205f, 335f);
         AddCoinLine(52.5f, 2.75f, 5, 0.85f);
+        AddRouteSparkle(new Vector2(11.5f, 2.35f), 0.54f);
+        AddRouteSparkle(new Vector2(43f, 4.12f), 0.64f);
+        AddRouteSparkle(new Vector2(54.1f, 3.22f), 0.58f);
+        AddWarningSign(new Vector2(21.6f, -1.82f));
+        AddWarningSign(new Vector2(39.2f, -1.68f));
         AddTriangleHazard(22.8f, -2.82f, false);
         AddTriangleHazard(38f, -2.72f, true);
         AddEnemy(new Vector2(33.8f, 1.37f), 32f, 36.2f, 1.5f, "purple_body_square", "face_g");
@@ -889,6 +926,10 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinLine(30.4f, -1.55f, 5, 0.9f);
         AddCoinArc(new Vector2(39f, 0.55f), 3, 0.75f, 205f, 335f);
         AddCoinLine(45.2f, 2.1f, 4, 0.85f);
+        AddRouteSparkle(new Vector2(22.5f, 0.68f), 0.62f);
+        AddRouteSparkle(new Vector2(55.8f, -0.4f), 0.6f);
+        AddWarningSign(new Vector2(26f, -1.72f));
+        AddWarningSign(new Vector2(50.6f, -1.6f));
         AddTriangleHazard(27.2f, -2.72f, true);
         AddTriangleHazard(36.8f, -2.58f, false);
         AddTriangleHazard(51.8f, -2.6f, true);
@@ -921,6 +962,10 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinArc(new Vector2(32f, 0.25f), 3, 0.75f, 205f, 335f);
         AddCoinLine(38.2f, -1.15f, 5, 0.85f);
         AddCoinArc(new Vector2(51f, 0.35f), 4, 0.9f, 205f, 335f);
+        AddRouteSparkle(new Vector2(16f, 0.5f), 0.54f);
+        AddRouteSparkle(new Vector2(51f, 0.98f), 0.62f);
+        AddWarningSign(new Vector2(12f, -1.72f));
+        AddWarningSign(new Vector2(44.4f, -1.42f));
         AddTriangleHazard(13.1f, -2.72f, false);
         AddTriangleHazard(29.6f, -2.52f, true);
         AddTriangleHazard(45.6f, -2.42f, false);
@@ -957,6 +1002,11 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinArc(new Vector2(37f, 3.2f), 4, 0.9f, 200f, 340f);
         AddCoinArc(new Vector2(47f, 2.25f), 4, 0.9f, 205f, 335f);
         AddCoinLine(55.4f, 0.6f, 5, 0.85f);
+        AddRouteSparkle(new Vector2(2.8f, -2.36f), 0.68f);
+        AddRouteSparkle(new Vector2(18f, 3.12f), 0.62f);
+        AddRouteSparkle(new Vector2(47f, 2.88f), 0.62f);
+        AddWarningSign(new Vector2(22f, -1.8f));
+        AddWarningSign(new Vector2(51f, -1.4f));
         AddTriangleHazard(12.4f, -2.98f, false);
         AddTriangleHazard(23.2f, -2.78f, true);
         AddTriangleHazard(33.5f, -2.65f, false);
@@ -995,6 +1045,10 @@ public sealed class RedBallGame : MonoBehaviour
         AddCoinLine(49.1f, 1.05f, 4, 0.85f);
         AddCoinArc(new Vector2(61f, 2.35f), 4, 0.9f, 205f, 335f);
         AddCoinLine(69.3f, -0.05f, 5, 0.85f);
+        AddRouteSparkle(new Vector2(21.8f, -0.1f), 0.62f);
+        AddRouteSparkle(new Vector2(36.2f, -1.5f), 0.68f);
+        AddRouteSparkle(new Vector2(43f, 2.82f), 0.68f);
+        AddRouteSparkle(new Vector2(61f, 2.98f), 0.62f);
         AddWarningSign(new Vector2(39.2f, -1.55f));
         AddWarningSign(new Vector2(54.8f, -0.65f));
         AddWarningSign(new Vector2(65.2f, -0.55f));
@@ -1291,6 +1345,15 @@ public sealed class RedBallGame : MonoBehaviour
 
         var mover = platform.AddComponent<MovingPlatform>();
         mover.Initialize(start, end, speed);
+
+        var overlay = new GameObject("Generated Lift Polish");
+        overlay.transform.SetParent(platform.transform, false);
+        overlay.transform.localPosition = new Vector3(0f, 0.03f, 0f);
+        overlay.transform.localScale = new Vector3(Mathf.Max(0.5f, length / 3.2f), 0.82f, 1f);
+        var overlayRenderer = overlay.AddComponent<SpriteRenderer>();
+        overlayRenderer.sprite = sprites["lift_platform_polish"];
+        overlayRenderer.color = new Color(1f, 1f, 1f, 0.94f);
+        overlayRenderer.sortingOrder = 4;
     }
 
     private void AddCrumblingTile(Vector2 position, int length, float crumbleDelay)
@@ -1308,11 +1371,20 @@ public sealed class RedBallGame : MonoBehaviour
             child.transform.SetParent(platform.transform, false);
             child.transform.localPosition = new Vector3(i - (length - 1) * 0.5f, 0f, 0f);
             var renderer = child.AddComponent<SpriteRenderer>();
-            renderer.sprite = sprites[key];
-            renderer.color = new Color(0.82f, 0.78f, 0.68f, 1f);
+            renderer.sprite = sprites["crumbling_tile_polish"];
+            renderer.color = new Color(1f, 1f, 1f, 1f);
             renderer.sortingOrder = 3;
             tileRenderers[i] = renderer;
         }
+
+        var dust = new GameObject("Generated Crumble Dust");
+        dust.transform.SetParent(platform.transform, false);
+        dust.transform.localPosition = new Vector3(0f, 0.1f, 0f);
+        dust.transform.localScale = new Vector3(Mathf.Max(0.7f, length * 0.42f), 0.65f, 1f);
+        var dustRenderer = dust.AddComponent<SpriteRenderer>();
+        dustRenderer.sprite = sprites["dust_sparkle"];
+        dustRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+        dustRenderer.sortingOrder = 4;
 
         var collider = platform.AddComponent<BoxCollider2D>();
         collider.size = new Vector2(length, 0.5f);
@@ -1437,6 +1509,15 @@ public sealed class RedBallGame : MonoBehaviour
         flagRenderer.color = new Color(1f, 1f, 1f, 0.9f);
         flagRenderer.sortingOrder = 12;
 
+        var sparkle = new GameObject("Generated Checkpoint Sparkle");
+        sparkle.transform.SetParent(checkpoint.transform, false);
+        sparkle.transform.localPosition = new Vector3(0f, 0f, 0f);
+        sparkle.transform.localScale = Vector3.one * 0.82f;
+        var sparkleRenderer = sparkle.AddComponent<SpriteRenderer>();
+        sparkleRenderer.sprite = sprites["checkpoint_spark"];
+        sparkleRenderer.color = new Color(1f, 1f, 1f, 0.82f);
+        sparkleRenderer.sortingOrder = 13;
+
         var collider = checkpoint.AddComponent<BoxCollider2D>();
         collider.isTrigger = true;
         collider.size = new Vector2(1.15f, 1.15f);
@@ -1452,6 +1533,22 @@ public sealed class RedBallGame : MonoBehaviour
         var sign = CreateSpriteObject("Warning Sign", "tile_exclamation", position, 0.75f, 14);
         var renderer = sign.GetComponent<SpriteRenderer>();
         renderer.color = new Color(1f, 0.94f, 0.2f, 0.95f);
+
+        var spark = new GameObject("Generated Warning Spark");
+        spark.transform.SetParent(sign.transform, false);
+        spark.transform.localPosition = new Vector3(0f, 0.06f, 0f);
+        spark.transform.localScale = Vector3.one * 0.72f;
+        var sparkRenderer = spark.AddComponent<SpriteRenderer>();
+        sparkRenderer.sprite = sprites["warning_spark"];
+        sparkRenderer.color = new Color(1f, 1f, 1f, 0.7f);
+        sparkRenderer.sortingOrder = 15;
+    }
+
+    private void AddRouteSparkle(Vector2 position, float scale)
+    {
+        var sparkle = CreateSpriteObject("Generated Route Sparkle", "dust_sparkle", position, scale, 14);
+        var renderer = sparkle.GetComponent<SpriteRenderer>();
+        renderer.color = new Color(1f, 0.92f, 0.52f, 0.52f);
     }
 
     private void AddCoinLine(float startX, float y, int count, float spacing)
@@ -1677,12 +1774,13 @@ public sealed class RedBallGame : MonoBehaviour
         featureText.lineSpacing = 0.88f;
         featureText.color = new Color(0.07f, 0.12f, 0.15f, 1f);
 
-        menuHeartText = CreateUiText(mainMenuRoot.transform, "Menu Hearts", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, -74f), new Vector2(820f, 54f), 30, TextAnchor.MiddleCenter);
+        CreateMasteryBadgeStrip(mainMenuRoot.transform, new Vector2(380f, -92f), 1.25f);
+        menuHeartText = CreateUiText(mainMenuRoot.transform, "Menu Hearts", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, -154f), new Vector2(820f, 54f), 30, TextAnchor.MiddleCenter);
         menuHeartText.color = new Color(0.9f, 0.98f, 1f, 0.96f);
-        menuStatusText = CreateUiText(mainMenuRoot.transform, "Menu Status", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, -128f), new Vector2(900f, 48f), 26, TextAnchor.MiddleCenter);
+        menuStatusText = CreateUiText(mainMenuRoot.transform, "Menu Status", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, -202f), new Vector2(900f, 48f), 26, TextAnchor.MiddleCenter);
         menuStatusText.color = new Color(1f, 0.82f, 0.3f, 0.98f);
-        CreateTextButton(mainMenuRoot.transform, "Continue", "Devam Et", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(190f, -230f), new Vector2(320f, 86f), StartContinueLevel);
-        CreateTextButton(mainMenuRoot.transform, "Levels", "Level Select", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(570f, -230f), new Vector2(320f, 86f), ShowLevelSelect);
+        CreateTextButton(mainMenuRoot.transform, "Continue", "Devam Et", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(190f, -298f), new Vector2(320f, 86f), StartContinueLevel);
+        CreateTextButton(mainMenuRoot.transform, "Levels", "Level Select", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(570f, -298f), new Vector2(320f, 86f), ShowLevelSelect);
 
         CreateSolidPanel(levelSelectRoot.transform, "Level Background", new Color(0.08f, 0.18f, 0.2f, 0.98f));
         CreateUiPanel(levelSelectRoot.transform, "Level Select Banner", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -40f), new Vector2(1920f, 80f), new Color(1f, 0.68f, 0.12f, 0.92f));
@@ -1715,6 +1813,7 @@ public sealed class RedBallGame : MonoBehaviour
             levelButtonImages.Add(buttonImage);
             levelButtons.Add(buttonImage.GetComponent<Button>());
             levelButtonTexts.Add(buttonImage.GetComponentInChildren<Text>());
+            levelButtonBadgeImages.Add(CreateLevelButtonBadgeIcons(buttonImage.transform));
         }
 
         var liftTag = CreateUiText(levelSelectRoot.transform, "Level 14 New Tag", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(230f, -126f), new Vector2(188f, 34f), 21, TextAnchor.MiddleCenter);
@@ -1742,6 +1841,54 @@ public sealed class RedBallGame : MonoBehaviour
         rect.anchoredPosition = Vector2.zero;
         rect.sizeDelta = Vector2.zero;
         return gameObject;
+    }
+
+    private void CreateMasteryBadgeStrip(Transform parent, Vector2 center, float scale)
+    {
+        string[] spriteKeys = { "mastery_badge_clear", "mastery_badge_all_coins", "mastery_badge_clean_run" };
+        string[] labels = { "CLEAR", "COINS", "CLEAN" };
+        for (int i = 0; i < spriteKeys.Length; i++)
+        {
+            float x = center.x + (i - 1) * 126f * scale;
+            var icon = CreateUiImage(parent, "Mastery Badge " + labels[i], spriteKeys[i], new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(x, center.y), new Vector2(64f * scale, 64f * scale), Color.white);
+            icon.raycastTarget = false;
+        }
+    }
+
+    private Image[] CreateLevelButtonBadgeIcons(Transform parent)
+    {
+        string[] spriteKeys = { "mastery_badge_clear", "mastery_badge_all_coins", "mastery_badge_clean_run" };
+        var icons = new Image[spriteKeys.Length];
+        for (int i = 0; i < spriteKeys.Length; i++)
+        {
+            var icon = CreateUiImage(parent, "Badge Icon " + i, spriteKeys[i], new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2((i - 1) * 38f, 18f), new Vector2(28f, 28f), Color.white);
+            icon.raycastTarget = false;
+            icons[i] = icon;
+        }
+
+        return icons;
+    }
+
+    private static void RefreshLevelBadgeIcons(Image[] icons, bool unlocked, bool clearBadge, bool allCoinsBadge, bool cleanRunBadge)
+    {
+        if (icons == null || icons.Length < 3)
+        {
+            return;
+        }
+
+        bool[] earned = { clearBadge, allCoinsBadge, cleanRunBadge };
+        for (int i = 0; i < icons.Length; i++)
+        {
+            if (icons[i] == null)
+            {
+                continue;
+            }
+
+            icons[i].enabled = unlocked;
+            icons[i].color = earned[i]
+                ? Color.white
+                : new Color(0.12f, 0.14f, 0.16f, 0.42f);
+        }
     }
 
     private Image CreateSolidPanel(Transform parent, string name, Color color)
@@ -1947,6 +2094,11 @@ public sealed class RedBallGame : MonoBehaviour
                     HasBadge(badgeCleanRunMask, i));
                 levelButtonTexts[i].color = RedBallUi.GetLevelButtonTextColor(state);
             }
+
+            if (i < levelButtonBadgeImages.Count)
+            {
+                RefreshLevelBadgeIcons(levelButtonBadgeImages[i], unlocked, HasBadge(badgeClearMask, i), HasBadge(badgeAllCoinsMask, i), HasBadge(badgeCleanRunMask, i));
+            }
         }
     }
 
@@ -2136,6 +2288,15 @@ public sealed class RedBallGame : MonoBehaviour
         AddUiSprite("home");
         AddUiSprite("flag");
         AddUiSprite("coin");
+
+        AddGeneratedSprite("mastery_badge_clear", "mastery_badge_clear", UiPpu, "flag");
+        AddGeneratedSprite("mastery_badge_all_coins", "mastery_badge_all_coins", UiPpu, "coin");
+        AddGeneratedSprite("mastery_badge_clean_run", "mastery_badge_clean_run", UiPpu, "buttonA");
+        AddGeneratedSprite("lift_platform_polish", "lift_platform_polish", 100f, "tile_half_center");
+        AddGeneratedSprite("crumbling_tile_polish", "crumbling_tile_polish", 128f, "tile_half");
+        AddGeneratedSprite("warning_spark", "warning_spark", 128f, "tile_exclamation");
+        AddGeneratedSprite("checkpoint_spark", "checkpoint_spark", 128f, "flag");
+        AddGeneratedSprite("dust_sparkle", "dust_sparkle", 128f, "shadow");
     }
 
     private void AddWorldSprite(string key)
@@ -2146,6 +2307,24 @@ public sealed class RedBallGame : MonoBehaviour
     private void AddUiSprite(string key)
     {
         sprites[key] = LoadSprite("UI/" + key, UiPpu);
+    }
+
+    private void AddGeneratedSprite(string key, string fileName, float ppu, string fallbackKey)
+    {
+        Sprite generated = TryLoadSprite("Generated/Sprint02/" + fileName, ppu);
+        if (generated != null)
+        {
+            sprites[key] = generated;
+            return;
+        }
+
+        if (sprites.ContainsKey(fallbackKey))
+        {
+            sprites[key] = sprites[fallbackKey];
+            return;
+        }
+
+        sprites[key] = LoadSprite("RedBall/" + fallbackKey, ppu);
     }
 
     private void AddImportedSprite(string key, string path, float ppu)
@@ -2193,6 +2372,20 @@ public sealed class RedBallGame : MonoBehaviour
     private Sprite LoadSprite(string resourcesPath, float ppu)
     {
         var texture = LoadTexture(resourcesPath);
+        return Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), ppu, 0, SpriteMeshType.FullRect);
+    }
+
+    private Sprite TryLoadSprite(string resourcesPath, float ppu)
+    {
+        var texture = Resources.Load<Texture2D>(resourcesPath);
+        if (texture == null)
+        {
+            Debug.LogWarning("Missing generated sprite resource, using fallback: " + resourcesPath);
+            return null;
+        }
+
+        texture.filterMode = FilterMode.Bilinear;
+        texture.wrapMode = TextureWrapMode.Clamp;
         return Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), ppu, 0, SpriteMeshType.FullRect);
     }
 

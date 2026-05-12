@@ -166,7 +166,8 @@ body {
 .section-tools,
 .segmented-control,
 .agent-foot,
-.doc-links {
+.doc-links,
+.topbar-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -1623,6 +1624,24 @@ main {
   color: var(--muted);
   font-size: 0.78rem;
   line-height: 1.35;
+}
+
+.topbar-inline-status {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.topbar-inline-status[data-state="visible"] {
+  border-color: rgba(35, 109, 166, 0.24);
+  color: var(--ink);
 }
 
 .refresh-meter {

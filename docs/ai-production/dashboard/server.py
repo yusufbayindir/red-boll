@@ -27,6 +27,7 @@ from urllib.parse import unquote, urlparse
 
 
 ROOT_DIR = Path(__file__).resolve().parent
+AI_PRODUCTION_ROOT = ROOT_DIR.parent
 DATA_DIR = ROOT_DIR / "data"
 DASHBOARD_FILE = DATA_DIR / "dashboard.json"
 OUTBOX_FILE = DATA_DIR / "outbox.json"
@@ -36,6 +37,8 @@ MAX_MESSAGE_CHARS = 4000
 SERVER_NAME = "red-ball-dashboard-relay"
 REPO_ROOT = ROOT_DIR.parents[2]
 CODEX_APP_PATH = Path("/Applications/Codex.app")
+DOCS_ROUTE_PREFIX = "/docs"
+REPO_ROUTE_PREFIX = "/repo"
 
 
 def iso_now() -> str:
@@ -150,6 +153,25 @@ def is_local_client(address: str) -> bool:
     return address in {"127.0.0.1", "::1", "localhost"}
 
 
+def is_within_root(target: Path, root: Path) -> bool:
+    try:
+        target.relative_to(root)
+    except ValueError:
+        return False
+    return True
+
+
+def resolve_static_target(root: Path, request_path: str) -> Path | None:
+    clean_path = posixpath.normpath(unquote(request_path or "/")).lstrip("/")
+    if clean_path in {"", "."}:
+        return None
+
+    target = (root / clean_path).resolve()
+    if not is_within_root(target, root.resolve()) or target.is_dir() or not target.exists():
+        return None
+    return target
+
+
 def workspace_search_roots() -> list[Path]:
     roots = [REPO_ROOT, *REPO_ROOT.parents]
     home = Path.home().resolve()
@@ -259,6 +281,10 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 self.send_json(HTTPStatus.OK, load_state())
             elif path == "/api/events":
                 self.send_events()
+            elif path == DOCS_ROUTE_PREFIX or path.startswith(f"{DOCS_ROUTE_PREFIX}/"):
+                self.send_static_from(AI_PRODUCTION_ROOT, path.removeprefix(DOCS_ROUTE_PREFIX))
+            elif path == REPO_ROUTE_PREFIX or path.startswith(f"{REPO_ROUTE_PREFIX}/"):
+                self.send_static_from(REPO_ROOT, path.removeprefix(REPO_ROUTE_PREFIX))
             else:
                 self.send_static(path)
         except ValueError as exc:
@@ -351,13 +377,18 @@ class DashboardHandler(BaseHTTPRequestHandler):
         if length > MAX_BODY_BYTES:
             self.send_error_json(HTTPStatus.REQUEST_ENTITY_TOO_LARGE, "Request body is too large")
             return
+        payload: dict[str, Any] = {}
         if length:
             try:
                 payload = json.loads(self.rfile.read(length).decode("utf-8"))
             except json.JSONDecodeError:
                 self.send_error_json(HTTPStatus.BAD_REQUEST, "Request body must be valid JSON")
                 return
-            if payload not in ({}, {"action": "open-workspace"}):
+            if not isinstance(payload, dict):
+                self.send_error_json(HTTPStatus.BAD_REQUEST, "JSON body must be an object")
+                return
+            unsupported = set(payload) - {"action", "dryRun"}
+            if unsupported or payload.get("action", "open-workspace") != "open-workspace":
                 self.send_error_json(HTTPStatus.BAD_REQUEST, "Unsupported workspace action")
                 return
 
@@ -374,17 +405,19 @@ class DashboardHandler(BaseHTTPRequestHandler):
             )
             return
 
-        try:
-            subprocess.run(["open", str(workspace)], check=True)
-        except (OSError, subprocess.CalledProcessError) as exc:
-            self.send_error_json(HTTPStatus.INTERNAL_SERVER_ERROR, f"Unable to open workspace: {exc}")
-            return
+        dry_run = bool(payload.get("dryRun", False))
+        if not dry_run:
+            try:
+                subprocess.run(["open", str(workspace)], check=True)
+            except (OSError, subprocess.CalledProcessError) as exc:
+                self.send_error_json(HTTPStatus.INTERNAL_SERVER_ERROR, f"Unable to open workspace: {exc}")
+                return
 
         self.send_json(
             HTTPStatus.OK,
             {
                 "ok": True,
-                "status": "opened",
+                "status": "dry-run" if dry_run else "opened",
                 "workspace": str(workspace),
                 "workspaceName": workspace.name,
             },
@@ -431,12 +464,11 @@ class DashboardHandler(BaseHTTPRequestHandler):
         if request_path in {"", "/"}:
             request_path = "/index.html"
 
-        clean_path = posixpath.normpath(unquote(request_path)).lstrip("/")
-        target = (ROOT_DIR / clean_path).resolve()
-        if not str(target).startswith(str(ROOT_DIR)) or target.is_dir():
-            self.send_error_json(HTTPStatus.NOT_FOUND, "Not found")
-            return
-        if not target.exists():
+        self.send_static_from(ROOT_DIR, request_path)
+
+    def send_static_from(self, root: Path, request_path: str) -> None:
+        target = resolve_static_target(root, request_path)
+        if target is None:
             self.send_error_json(HTTPStatus.NOT_FOUND, "Not found")
             return
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-05-12 08:10:02Z" end-time="2026-05-12 08:10:07Z" duration="4.2962265">
+  <test-suite type="TestSuite" id="1012" name="RedBall" fullname="RedBall" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-05-12 08:10:02Z" end-time="2026-05-12 08:10:07Z" duration="4.296227" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1007" name="RedBall.Tests.PlayMode.dll" fullname="/Users/yusufbayindir/Desktop/ai game/red_ball/Library/ScriptAssemblies/RedBall.Tests.PlayMode.dll" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-05-12 08:10:02Z" end-time="2026-05-12 08:10:07Z" duration="4.282553" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="41833" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1008" name="RedBall" fullname="RedBall" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-05-12 08:10:02Z" end-time="2026-05-12 08:10:07Z" duration="4.267395" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1009" name="Tests" fullname="RedBall.Tests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-05-12 08:10:02Z" end-time="2026-05-12 08:10:07Z" duration="4.250684" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1010" name="PlayMode" fullname="RedBall.Tests.PlayMode" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-05-12 08:10:02Z" end-time="2026-05-12 08:10:07Z" duration="4.234068" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="RedBallTraversalSmokePlayModeTests" fullname="RedBall.Tests.PlayMode.RedBallTraversalSmokePlayModeTests" classname="RedBall.Tests.PlayMode.RedBallTraversalSmokePlayModeTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-05-12 08:10:02Z" end-time="2026-05-12 08:10:07Z" duration="4.217058" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1006" name="BadgeMasksRoundTripThroughPlayerPrefsAndRuntimeLoad" fullname="RedBall.Tests.PlayMode.RedBallTraversalSmokePlayModeTests.BadgeMasksRoundTripThroughPlayerPrefsAndRuntimeLoad" methodname="BadgeMasksRoundTripThroughPlayerPrefsAndRuntimeLoad" classname="RedBall.Tests.PlayMode.RedBallTraversalSmokePlayModeTests" runstate="Runnable" seed="36522255" result="Passed" start-time="2026-05-12 08:10:02Z" end-time="2026-05-12 08:10:03Z" duration="0.116619" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1005" name="GoalTriggerCompletesLevelAndPersistsBadgeMasks" fullname="RedBall.Tests.PlayMode.RedBallTraversalSmokePlayModeTests.GoalTriggerCompletesLevelAndPersistsBadgeMasks" methodname="GoalTriggerCompletesLevelAndPersistsBadgeMasks" classname="RedBall.Tests.PlayMode.RedBallTraversalSmokePlayModeTests" runstate="Runnable" seed="1139504503" result="Passed" start-time="2026-05-12 08:10:03Z" end-time="2026-05-12 08:10:03Z" duration="0.348683" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1003" name="Level14VerticalLiftMovesDuringPhysicsStep" fullname="RedBall.Tests.PlayMode.RedBallTraversalSmokePlayModeTests.Level14VerticalLiftMovesDuringPhysicsStep" methodname="Level14VerticalLiftMovesDuringPhysicsStep" classname="RedBall.Tests.PlayMode.RedBallTraversalSmokePlayModeTests" runstate="Runnable" seed="443168728" result="Passed" start-time="2026-05-12 08:10:03Z" end-time="2026-05-12 08:10:05Z" duration="1.616632" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1004" name="Level15FirstCrumblingTileCollapsesAfterPlayerContact" fullname="RedBall.Tests.PlayMode.RedBallTraversalSmokePlayModeTests.Level15FirstCrumblingTileCollapsesAfterPlayerContact" methodname="Level15FirstCrumblingTileCollapsesAfterPlayerContact" classname="RedBall.Tests.PlayMode.RedBallTraversalSmokePlayModeTests" runstate="Runnable" seed="531321135" result="Passed" start-time="2026-05-12 08:10:05Z" end-time="2026-05-12 08:10:06Z" duration="1.916646" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1002" name="TargetLevelsBuildExpectedTraversalObjects" fullname="RedBall.Tests.PlayMode.RedBallTraversalSmokePlayModeTests.TargetLevelsBuildExpectedTraversalObjects" methodname="TargetLevelsBuildExpectedTraversalObjects" classname="RedBall.Tests.PlayMode.RedBallTraversalSmokePlayModeTests" runstate="Runnable" seed="1810054068" result="Passed" start-time="2026-05-12 08:10:06Z" end-time="2026-05-12 08:10:07Z" duration="0.199905" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: /Users/yusufbayindir/Desktop/ai game/red_ball/TestResults/task0035-playmode-results.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

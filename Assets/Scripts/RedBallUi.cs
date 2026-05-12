@@ -61,7 +61,6 @@ public static class RedBallUi
 
     public static string GetLevelButtonLabel(int levelNumber, RedBallLevelButtonState state, bool clearBadge, bool allCoinsBadge, bool cleanRunBadge)
     {
-        string badges = GetLevelBadgeSummary(clearBadge, allCoinsBadge, cleanRunBadge);
         string feature = GetFeaturedLevelLabel(levelNumber);
         switch (state)
         {
@@ -71,20 +70,20 @@ public static class RedBallUi
                     : levelNumber + "\n" + feature + "\nKilit";
             case RedBallLevelButtonState.Completed:
                 return string.IsNullOrEmpty(feature)
-                    ? levelNumber + "\nGecti\n" + badges
-                    : levelNumber + "\n" + feature + "\n" + badges;
+                    ? levelNumber + "\nGecti"
+                    : levelNumber + "\n" + feature;
             case RedBallLevelButtonState.ContinueTarget:
                 return string.IsNullOrEmpty(feature)
-                    ? levelNumber + "\nDevam\n" + badges
+                    ? levelNumber + "\nDevam"
                     : levelNumber + "\n" + feature + "\nDevam";
             case RedBallLevelButtonState.Current:
                 return string.IsNullOrEmpty(feature)
-                    ? levelNumber + "\nOynuyor\n" + badges
+                    ? levelNumber + "\nOynuyor"
                     : levelNumber + "\n" + feature + "\nOynuyor";
             default:
                 return string.IsNullOrEmpty(feature)
-                    ? levelNumber + "\n" + badges
-                    : levelNumber + "\n" + feature + "\n" + badges;
+                    ? levelNumber.ToString()
+                    : levelNumber + "\n" + feature;
         }
     }
 

@@ -13,6 +13,7 @@ const visibleAgentCount = document.querySelector("#visibleAgentCount");
 const emptyState = document.querySelector("#agentEmptyState");
 const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
 const dashboardRefreshStatus = document.querySelector("#dashboardRefreshStatus");
+const workspaceTopbarStatus = document.querySelector("#workspaceTopbarStatus");
 const railRefreshStatus = document.querySelector("#railRefreshStatus");
 const railAgentList = document.querySelector("#railAgentList");
 const railMessageStream = document.querySelector("#railMessageStream");
@@ -129,6 +130,15 @@ function formatClock(date = new Date()) {
   });
 }
 
+function setWorkspaceStatus(message) {
+  if (workspaceOpenStatus) workspaceOpenStatus.textContent = message;
+  if (workspaceTopbarStatus) {
+    workspaceTopbarStatus.textContent = message;
+    workspaceTopbarStatus.hidden = !message;
+    workspaceTopbarStatus.dataset.state = message ? "visible" : "hidden";
+  }
+}
+
 function formatSourceTime(value) {
   if (!value) return "source time unknown";
   const parsed = new Date(value);
@@ -163,10 +173,21 @@ function sortByTime(items) {
 function dashboardHref(href) {
   if (!href) return "#";
   if (/^(https?:|mailto:|#)/.test(href)) return href;
-  if (href.startsWith("../../")) return href.replace("../../", "../");
-  if (href === "README.md") return "data/README.md";
-  if (href === "dashboard.schema.json") return "data/dashboard.schema.json";
+  if (href.startsWith("/docs/") || href.startsWith("/repo/")) return href;
+  if (href.startsWith("../../../../")) return `/repo/${href.slice(12)}`;
+  if (href.startsWith("../../")) return `/docs/${href.slice(6)}`;
+  if (href.startsWith("../")) return `/docs/${href.slice(3)}`;
+  if (href === "README.md") return "/docs/dashboard/data/README.md";
+  if (href === "dashboard.schema.json") return "/docs/dashboard/data/dashboard.schema.json";
   return href;
+}
+
+function normalizeDocumentLinks(root = document) {
+  for (const link of root.querySelectorAll("a[href]")) {
+    const href = link.getAttribute("href");
+    const normalized = dashboardHref(href);
+    if (normalized !== href) link.setAttribute("href", normalized);
+  }
 }
 
 function allAgents(data) {
@@ -398,9 +419,8 @@ function makeAgentSelectable(element, agent) {
   }
 
   element.addEventListener("click", event => {
-    if (event.target.closest("a")) return;
+    if (event.target.closest("a, button, input, textarea, select, summary, label")) return;
     setSelectedAgent(agent.id);
-    openCodexAgent(agent, { passive: true });
   });
 
   return element;
@@ -436,9 +456,9 @@ async function postRelayMessage(agent, message) {
 }
 
 async function openBuildWorkspace() {
-  if (!workspaceOpenStatus || !openWorkspaceButton) return;
+  if (!openWorkspaceButton) return;
 
-  workspaceOpenStatus.textContent = "Opening workspace...";
+  setWorkspaceStatus("Opening workspace...");
   openWorkspaceButton.disabled = true;
 
   try {
@@ -449,23 +469,23 @@ async function openBuildWorkspace() {
     const payload = await response.json().catch(() => ({}));
 
     if (response.ok && payload.ok) {
-      workspaceOpenStatus.textContent = payload.workspaceName
+      setWorkspaceStatus(payload.workspaceName
         ? `Opened ${payload.workspaceName}.`
-        : "Workspace open request sent.";
+        : "Workspace open request sent.");
       redBallMenu?.removeAttribute("open");
       return;
     }
 
     if (response.status === 404 || payload.status === "needs-build") {
-      workspaceOpenStatus.textContent = "No .xcworkspace found. Build workspace first.";
+      setWorkspaceStatus("No .xcworkspace found. Build workspace first.");
       return;
     }
 
-    workspaceOpenStatus.textContent = payload.error || `Workspace open failed (HTTP ${response.status}).`;
+    setWorkspaceStatus(payload.error || `Workspace open failed (HTTP ${response.status}).`);
   } catch (error) {
-    workspaceOpenStatus.textContent = canTryRelay()
+    setWorkspaceStatus(canTryRelay()
       ? `Workspace relay unavailable (${error.message}).`
-      : "Open from the local dashboard server to use this.";
+      : "Open from the local dashboard server to use this.");
   } finally {
     openWorkspaceButton.disabled = false;
   }
@@ -761,10 +781,10 @@ function renderMessageStream(events) {
 function taskLink(task) {
   if (task.link) return dashboardHref(task.link);
   if (Array.isArray(task.links) && task.links.length) return dashboardHref(task.links[0]);
-  if (task.id === "TASK-0013") return "../tasks/TASK-0013-asset-pipeline-downloads.md";
-  if (task.id === "TASK-0014") return "../tasks/TASK-0014-marketing-production-assets.md";
-  if (task.id === "TASK-0015") return "../tasks/TASK-0015-live-agent-dashboard-system.md";
-  return `../tasks/${task.id?.toLowerCase()}-${String(task.title || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.md`;
+  if (task.id === "TASK-0013") return dashboardHref("../tasks/TASK-0013-asset-pipeline-downloads.md");
+  if (task.id === "TASK-0014") return dashboardHref("../tasks/TASK-0014-marketing-production-assets.md");
+  if (task.id === "TASK-0015") return dashboardHref("../tasks/TASK-0015-live-agent-dashboard-system.md");
+  return dashboardHref(`../tasks/${task.id?.toLowerCase()}-${String(task.title || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.md`);
 }
 
 function renderTasks(tasks) {
@@ -959,6 +979,7 @@ function renderRefreshStatus(data, liveAgents, events) {
 function renderLiveData(data) {
   mountLiveSection();
   latestData = data;
+  normalizeDocumentLinks();
 
   const liveAgents = Array.isArray(data.liveAgents) ? data.liveAgents : [];
   const agents = Array.isArray(data.agents) ? data.agents : [];
@@ -1008,6 +1029,8 @@ function renderOfflineState(error) {
     state.textContent = "Static mode";
   }
 }
+
+normalizeDocumentLinks();
 
 async function fetchRelayState() {
   const response = await fetch(`${API_STATE_URL}?t=${Date.now()}`, { cache: "no-store" });

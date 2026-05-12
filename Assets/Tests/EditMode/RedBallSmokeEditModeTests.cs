@@ -101,6 +101,35 @@ namespace RedBall.Tests.EditMode
             Assert.That(playerTransform.GetValue(game), Is.Not.Null, "Loading a level should create a player.");
         }
 
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(6)]
+        [TestCase(7)]
+        [TestCase(8)]
+        [TestCase(9)]
+        [TestCase(10)]
+        [TestCase(11)]
+        [TestCase(12)]
+        public void ExistingLevelExposesSprint02PolishMarkers(int zeroBasedLevelIndex)
+        {
+            MethodInfo loadLevel = RequireMethod(gameType, "LoadLevelForSmokeTest", BindingFlags.Public | BindingFlags.Instance);
+
+            InvokeString(loadLevel, game, zeroBasedLevelIndex);
+
+            Assert.That(
+                CountNamedSpriteObjects("Generated Route Sparkle"),
+                Is.GreaterThanOrEqualTo(1),
+                "Level " + (zeroBasedLevelIndex + 1) + " should expose at least one Sprint02 route sparkle.");
+            Assert.That(
+                CountNamedSpriteObjects("Generated Warning Spark"),
+                Is.GreaterThanOrEqualTo(1),
+                "Level " + (zeroBasedLevelIndex + 1) + " should expose at least one Sprint02 warning sparkle.");
+        }
+
         private static Type RequireType(string typeName)
         {
             Type type = Type.GetType(typeName + ", Assembly-CSharp");
@@ -136,6 +165,20 @@ namespace RedBall.Tests.EditMode
                 ExceptionDispatchInfo.Capture(exception.InnerException).Throw();
                 throw;
             }
+        }
+
+        private static int CountNamedSpriteObjects(string objectName)
+        {
+            int count = 0;
+            foreach (SpriteRenderer renderer in UnityEngine.Object.FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None))
+            {
+                if (renderer != null && renderer.gameObject.name == objectName)
+                {
+                    count += 1;
+                }
+            }
+
+            return count;
         }
 
         private static void ClearProgressPrefs()
