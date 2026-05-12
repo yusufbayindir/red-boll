@@ -1,0 +1,57 @@
+{
+  "asset_id": "RB-AI-20260512-001",
+  "title": "Red Ball Creative Board V1",
+  "asset_type": "concept_board",
+  "task": "TASK-0029",
+  "owner": "Generated Asset Archivist / Provenance Recorder",
+  "created_date": "2026-05-12",
+  "archived_date": "2026-05-12",
+  "source_method": "chatgpt_image_generation",
+  "provider": "ChatGPT/imagegen built-in",
+  "model_or_provider": "ChatGPT/imagegen built-in",
+  "model_version_or_checkpoint": "not exposed",
+  "generation_settings": "not exposed",
+  "seed": "not exposed",
+  "reproducibility_note": "Exact regeneration is not guaranteed because model version, seed, and generation settings were not exposed.",
+  "source_inputs": [
+    "Text prompt only; no referenced source image recorded in this handoff."
+  ],
+  "source_files": [
+    "/Users/yusufbayindir/.codex/generated_images/019e18ab-d4f8-7900-8ff2-acedef537c89/ig_03797b2b58a83e7b016a02699c30ec8191bc064479554a16d2.png"
+  ],
+  "output_files": [
+    "docs/ai-production/generated-assets/2026-05-12/red-ball-creative-board-v1.png",
+    "docs/ai-production/generated-assets/2026-05-12/red-ball-creative-board-v1.provenance.md",
+    "docs/ai-production/generated-assets/2026-05-12/red-ball-creative-board-v1.provenance.json"
+  ],
+  "prompt_summary": "Creative board for Red Ball AI asset direction, combining app icon/key art exploration, mastery badge set concepts, and a crumbling-tile ad/key-art still direction in the polished mobile platformer style defined by docs/ai-production/reports/creative-asset-prompt-pack-v1.md.",
+  "prompt": "Full original prompt not available in this handoff; see prompt summary and related creative prompt pack.",
+  "negative_prompt": "not separately recorded in this handoff",
+  "intended_use": [
+    "Internal concept board",
+    "App icon/key art art-direction exploration",
+    "Mastery badge set visual direction",
+    "Crumbling tile ad still / marketing composition exploration"
+  ],
+  "export_targets": [
+    "concept_board"
+  ],
+  "metadata": {
+    "format": "PNG",
+    "dimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "color": "8-bit/color RGB, non-interlaced",
+    "file_size_bytes": 2084800,
+    "sha256": "e4783cfe4e8ba41c92a0f2e569bab3b5cd0d4ef6f99ddf441aa2ededb79568ac"
+  },
+  "usage_rights": "Pending manual review against ChatGPT/imagegen output terms and project policy before runtime, store, paid-media, or public use.",
+  "attribution_required": "unknown / pending review",
+  "review_status": "archived_provenance_recorded",
+  "reviewer": "pending",
+  "review_date": null,
+  "claims_gate": "Concept only; not final, not imported into Unity, not approved for marketing/public use.",
+  "technical_debt_reference": "TD-0013",
+  "notes": "Original generated source was preserved and not deleted. Unity runtime code and import folders were not touched."
+}

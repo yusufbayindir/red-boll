@@ -34,6 +34,27 @@ No candidate below was downloaded in TASK-0013. These are approved-for-planning 
 | 3 | UI Audio | Kenney | `https://kenney.nl/assets/ui-audio` | Creative Commons CC0 | `docs/ai-production/downloads/2026-05-12/kenney-ui-audio/` | `Assets/ThirdParty/Kenney/UIAudio/` | Optional. Official page lists 50 files. Use only after a UI/audio task chooses exact clips. |
 | 3 | Interface Sounds | Kenney | `https://kenney.nl/assets/interface-sounds` | Creative Commons CC0 | `docs/ai-production/downloads/2026-05-12/kenney-interface-sounds/` | `Assets/ThirdParty/Kenney/InterfaceSounds/` | Optional alternative to UI Audio. Official page lists 100 files. Do not import both unless audio task needs both. |
 
+## AI-Generated Asset Planning
+
+Prompt pack: `docs/ai-production/reports/creative-asset-prompt-pack-v1.md`  
+Storyboard pack: `docs/ai-production/marketing/ad-creative-storyboards-v1.md`
+
+One ChatGPT/imagegen concept board has been archived as generated-asset source material. TASK-0032 copied that exact board into Unity `Resources` only as a first-screen concept preview so the Sprint 01 update is visible in Play mode. It is not approved as final UI, store screenshot, app icon, paid media, or shipping key art. TD-0013 remains the manifest validator/export-gate debt; until that debt is closed, every generated creative asset requires manual manifest and provenance review before use.
+
+### Archived AI-Generated Outputs
+
+| Asset ID | Asset | Provider / tool | Generation date | Local path | Metadata | Intended use | Review status | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `RB-AI-20260512-001` | Red Ball Creative Board V1 | ChatGPT/imagegen built-in | 2026-05-12 | Source archive: `docs/ai-production/generated-assets/2026-05-12/red-ball-creative-board-v1.png`; concept-only runtime copy: `Assets/Resources/Generated/Sprint01/mastery_update_concept.png` | PNG, 1536x1024, 2,084,800 bytes, SHA-256 `e4783cfe4e8ba41c92a0f2e569bab3b5cd0d4ef6f99ddf441aa2ededb79568ac` | Internal concept board for app icon/key art, mastery badge set, and crumbling-tile ad still direction; temporary main-menu preview in TASK-0032 | Concept-only Unity preview / provenance recorded; final art, license, QA, store, and marketing approval pending | Provenance: `docs/ai-production/generated-assets/2026-05-12/red-ball-creative-board-v1.provenance.md` and `.json`. Runtime copy is not final UI or public marketing art. Manual gate required while TD-0013 is open. |
+
+| Planned asset family | Prompt IDs | Tool | Current status | Provenance requirement |
+| --- | --- | --- | --- | --- |
+| App icon / key art | `A01` | ChatGPT imagegen recommended | Concept board archived; no final selected output | Record exact prompt, negative prompt, generation date, model/tool name, seed/settings if available, and selected output path. |
+| Mastery badges | `A02` | ChatGPT imagegen recommended | Concept board archived; no runtime badge export | Record selected output and any manual edits before runtime or marketing use. |
+| Gameplay polish concepts | `A03`-`A06` | ChatGPT imagegen or equivalent | Prompt only | Treat as concept art until a later implementation/import task approves scale, readability, and collision-safe simplification. |
+| Ad stills | `A07`-`A12`, `S01`-`S06` | ChatGPT imagegen or equivalent | Concept board archived for crumbling-tile direction; no ad export approved | Mark as key art/concept unless replaced by real gameplay capture; avoid deceptive gameplay claims. |
+| Video storyboard frames | `V01`-`V03` | ChatGPT imagegen/video tooling or editor storyboard | Prompt only | Store source prompts and confirm Sprint 01 feature accuracy before public use. |
+
 ## Sprint 01 Manual Download Prep
 
 Detailed execution prep: `docs/ai-production/reports/asset-pipeline-sprint-01-execution.md`.

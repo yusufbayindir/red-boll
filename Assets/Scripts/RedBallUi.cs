@@ -62,18 +62,42 @@ public static class RedBallUi
     public static string GetLevelButtonLabel(int levelNumber, RedBallLevelButtonState state, bool clearBadge, bool allCoinsBadge, bool cleanRunBadge)
     {
         string badges = GetLevelBadgeSummary(clearBadge, allCoinsBadge, cleanRunBadge);
+        string feature = GetFeaturedLevelLabel(levelNumber);
         switch (state)
         {
             case RedBallLevelButtonState.Locked:
-                return levelNumber + "\nKilit";
+                return string.IsNullOrEmpty(feature)
+                    ? levelNumber + "\nKilit"
+                    : levelNumber + "\n" + feature + "\nKilit";
             case RedBallLevelButtonState.Completed:
-                return levelNumber + "\nGecti\n" + badges;
+                return string.IsNullOrEmpty(feature)
+                    ? levelNumber + "\nGecti\n" + badges
+                    : levelNumber + "\n" + feature + "\n" + badges;
             case RedBallLevelButtonState.ContinueTarget:
-                return levelNumber + "\nDevam\n" + badges;
+                return string.IsNullOrEmpty(feature)
+                    ? levelNumber + "\nDevam\n" + badges
+                    : levelNumber + "\n" + feature + "\nDevam";
             case RedBallLevelButtonState.Current:
-                return levelNumber + "\nOynuyor\n" + badges;
+                return string.IsNullOrEmpty(feature)
+                    ? levelNumber + "\nOynuyor\n" + badges
+                    : levelNumber + "\n" + feature + "\nOynuyor";
             default:
-                return levelNumber + "\n" + badges;
+                return string.IsNullOrEmpty(feature)
+                    ? levelNumber + "\n" + badges
+                    : levelNumber + "\n" + feature + "\n" + badges;
+        }
+    }
+
+    public static string GetFeaturedLevelLabel(int levelNumber)
+    {
+        switch (levelNumber)
+        {
+            case 14:
+                return "LIFTS";
+            case 15:
+                return "CRUMBLE";
+            default:
+                return string.Empty;
         }
     }
 

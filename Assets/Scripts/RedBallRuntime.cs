@@ -25,6 +25,7 @@ public sealed class RedBallGame : MonoBehaviour
     public const int LevelCount = 15;
     private const int MaxHealth = 5;
     private const int HeartRechargeSeconds = 3600;
+    private const string SprintKeyArtResourcePath = "Generated/Sprint01/mastery_update_concept";
     private const string SaveUnlockedCountKey = "RedBall.UnlockedCount";
     private const string SaveCompletedMaskKey = "RedBall.CompletedMask";
     private const string SaveBadgeClearMaskKey = "RedBall.Badges.ClearMask";
@@ -1653,28 +1654,48 @@ public sealed class RedBallGame : MonoBehaviour
         CreateUiButton(hudRoot.transform, "Menu", "home", new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-174f, -66f), new Vector2(88f, 88f), ShowMainMenu);
         CreateUiButton(hudRoot.transform, "Restart", "return", new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-66f, -66f), new Vector2(88f, 88f), RestartLevel);
 
-        CreateSolidPanel(mainMenuRoot.transform, "Menu Background", new Color(0.45f, 0.72f, 0.87f, 0.96f));
-        var title = CreateUiText(mainMenuRoot.transform, "Title", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 255f), new Vector2(900f, 120f), 78, TextAnchor.MiddleCenter);
-        title.text = "RED BALL";
-        title.color = new Color(0.86f, 0.08f, 0.08f, 1f);
-        var subtitle = CreateUiText(mainMenuRoot.transform, "Subtitle", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 170f), new Vector2(760f, 70f), 34, TextAnchor.MiddleCenter);
-        subtitle.text = "15 level";
-        subtitle.color = new Color(0.08f, 0.16f, 0.2f, 0.95f);
-        menuHeartText = CreateUiText(mainMenuRoot.transform, "Menu Hearts", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 82f), new Vector2(820f, 66f), 34, TextAnchor.MiddleCenter);
-        menuHeartText.color = new Color(0.08f, 0.16f, 0.2f, 0.95f);
-        menuStatusText = CreateUiText(mainMenuRoot.transform, "Menu Status", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 22f), new Vector2(900f, 54f), 28, TextAnchor.MiddleCenter);
-        menuStatusText.color = new Color(0.2f, 0.08f, 0.08f, 0.95f);
-        CreateTextButton(mainMenuRoot.transform, "Continue", "Devam Et", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, -72f), new Vector2(360f, 92f), StartContinueLevel);
-        CreateTextButton(mainMenuRoot.transform, "Levels", "Leveller", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, -188f), new Vector2(360f, 92f), ShowLevelSelect);
+        CreateSolidPanel(mainMenuRoot.transform, "Menu Background", new Color(0.08f, 0.18f, 0.2f, 0.98f));
+        CreateUiPanel(mainMenuRoot.transform, "Mastery Top Banner", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -36f), new Vector2(1920f, 72f), new Color(1f, 0.68f, 0.12f, 0.92f));
+        var banner = CreateUiText(mainMenuRoot.transform, "Mastery Banner Text", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -36f), new Vector2(1160f, 54f), 30, TextAnchor.MiddleCenter);
+        banner.text = "SPRINT 01 MASTERY UPDATE";
+        banner.color = new Color(0.08f, 0.12f, 0.14f, 1f);
 
-        CreateSolidPanel(levelSelectRoot.transform, "Level Background", new Color(0.45f, 0.72f, 0.87f, 0.96f));
-        var levelTitle = CreateUiText(levelSelectRoot.transform, "Level Select Title", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -72f), new Vector2(780f, 80f), 52, TextAnchor.MiddleCenter);
-        levelTitle.text = "Leveller";
-        levelTitle.color = new Color(0.08f, 0.16f, 0.2f, 0.96f);
-        levelSelectHeartText = CreateUiText(levelSelectRoot.transform, "Level Hearts", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -134f), new Vector2(820f, 52f), 30, TextAnchor.MiddleCenter);
-        levelSelectHeartText.color = new Color(0.08f, 0.16f, 0.2f, 0.95f);
-        levelSelectStatusText = CreateUiText(levelSelectRoot.transform, "Level Status", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -184f), new Vector2(960f, 48f), 26, TextAnchor.MiddleCenter);
-        levelSelectStatusText.color = new Color(0.2f, 0.08f, 0.08f, 0.95f);
+        CreateUiPanel(mainMenuRoot.transform, "Concept Art Frame", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(-495f, 64f), new Vector2(690f, 482f), new Color(0.02f, 0.06f, 0.08f, 0.72f));
+        CreateUiRawImage(mainMenuRoot.transform, "Mastery Concept Preview", SprintKeyArtResourcePath, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(-495f, 64f), new Vector2(650f, 433f), Color.white);
+
+        var title = CreateUiText(mainMenuRoot.transform, "Title", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, 270f), new Vector2(780f, 150f), 64, TextAnchor.MiddleCenter);
+        title.text = "RED BALL\nMASTERY UPDATE";
+        title.lineSpacing = 0.82f;
+        title.color = new Color(1f, 0.18f, 0.14f, 1f);
+        var subtitle = CreateUiText(mainMenuRoot.transform, "Subtitle", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, 165f), new Vector2(760f, 70f), 34, TextAnchor.MiddleCenter);
+        subtitle.text = "15 levels + badges + late-game preview";
+        subtitle.color = new Color(0.9f, 0.98f, 1f, 0.96f);
+
+        CreateUiPanel(mainMenuRoot.transform, "Sprint Feature Panel", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, 35f), new Vector2(760f, 148f), new Color(0.98f, 0.94f, 0.78f, 0.94f));
+        var featureText = CreateUiText(mainMenuRoot.transform, "Sprint Feature Text", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, 35f), new Vector2(706f, 112f), 28, TextAnchor.MiddleCenter);
+        featureText.text = "New: Level 14 Lifts | Level 15 Crumbling Tiles\nBadges: Clear / All Coins / Clean Run\nLocked levels now show feature hints";
+        featureText.lineSpacing = 0.88f;
+        featureText.color = new Color(0.07f, 0.12f, 0.15f, 1f);
+
+        menuHeartText = CreateUiText(mainMenuRoot.transform, "Menu Hearts", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, -74f), new Vector2(820f, 54f), 30, TextAnchor.MiddleCenter);
+        menuHeartText.color = new Color(0.9f, 0.98f, 1f, 0.96f);
+        menuStatusText = CreateUiText(mainMenuRoot.transform, "Menu Status", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(380f, -128f), new Vector2(900f, 48f), 26, TextAnchor.MiddleCenter);
+        menuStatusText.color = new Color(1f, 0.82f, 0.3f, 0.98f);
+        CreateTextButton(mainMenuRoot.transform, "Continue", "Devam Et", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(190f, -230f), new Vector2(320f, 86f), StartContinueLevel);
+        CreateTextButton(mainMenuRoot.transform, "Levels", "Level Select", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(570f, -230f), new Vector2(320f, 86f), ShowLevelSelect);
+
+        CreateSolidPanel(levelSelectRoot.transform, "Level Background", new Color(0.08f, 0.18f, 0.2f, 0.98f));
+        CreateUiPanel(levelSelectRoot.transform, "Level Select Banner", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -40f), new Vector2(1920f, 80f), new Color(1f, 0.68f, 0.12f, 0.92f));
+        var levelTitle = CreateUiText(levelSelectRoot.transform, "Level Select Title", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -40f), new Vector2(980f, 66f), 46, TextAnchor.MiddleCenter);
+        levelTitle.text = "Mastery Level Select";
+        levelTitle.color = new Color(0.08f, 0.12f, 0.14f, 1f);
+        var levelSubtitle = CreateUiText(levelSelectRoot.transform, "Level Select Subtitle", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -104f), new Vector2(1180f, 44f), 25, TextAnchor.MiddleCenter);
+        levelSubtitle.text = "15 levels | Clear / All Coins / Clean Run badges | New Level 14/15 previews stay visible";
+        levelSubtitle.color = new Color(0.9f, 0.98f, 1f, 0.96f);
+        levelSelectHeartText = CreateUiText(levelSelectRoot.transform, "Level Hearts", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -150f), new Vector2(820f, 46f), 28, TextAnchor.MiddleCenter);
+        levelSelectHeartText.color = new Color(0.9f, 0.98f, 1f, 0.95f);
+        levelSelectStatusText = CreateUiText(levelSelectRoot.transform, "Level Status", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -194f), new Vector2(960f, 42f), 24, TextAnchor.MiddleCenter);
+        levelSelectStatusText.color = new Color(1f, 0.82f, 0.3f, 0.98f);
         CreateTextButton(levelSelectRoot.transform, "Back", "Geri", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(95f, -70f), new Vector2(150f, 68f), ShowMainMenu);
 
         for (int i = 0; i < LevelCount; i++)
@@ -1684,11 +1705,30 @@ public sealed class RedBallGame : MonoBehaviour
             int row = i / 5;
             float rowWidth = 5 * 230f;
             float x = -rowWidth * 0.5f + 115f + 230f * column;
-            var buttonImage = CreateNumberButton(levelSelectRoot.transform, (i + 1).ToString(), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(x, 120f - row * 148f), new Vector2(188f, 104f), () => TryStartLevel(index));
+            float y = 100f - row * 148f;
+            if (i >= 13)
+            {
+                CreateUiPanel(levelSelectRoot.transform, "Level " + (i + 1) + " Feature Glow", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(x, y), new Vector2(214f, 130f), new Color(1f, 0.68f, 0.12f, 0.3f));
+            }
+
+            var buttonImage = CreateNumberButton(levelSelectRoot.transform, (i + 1).ToString(), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(x, y), new Vector2(188f, 104f), () => TryStartLevel(index));
             levelButtonImages.Add(buttonImage);
             levelButtons.Add(buttonImage.GetComponent<Button>());
             levelButtonTexts.Add(buttonImage.GetComponentInChildren<Text>());
         }
+
+        var liftTag = CreateUiText(levelSelectRoot.transform, "Level 14 New Tag", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(230f, -126f), new Vector2(188f, 34f), 21, TextAnchor.MiddleCenter);
+        liftTag.text = "NEW LIFT";
+        liftTag.color = new Color(1f, 0.82f, 0.3f, 1f);
+        var crumbleTag = CreateUiText(levelSelectRoot.transform, "Level 15 New Tag", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(460f, -126f), new Vector2(188f, 34f), 21, TextAnchor.MiddleCenter);
+        crumbleTag.text = "NEW CRUMBLE";
+        crumbleTag.color = new Color(1f, 0.82f, 0.3f, 1f);
+
+        CreateUiPanel(levelSelectRoot.transform, "Mastery Legend Panel", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 86f), new Vector2(1320f, 118f), new Color(0.98f, 0.94f, 0.78f, 0.94f));
+        var masteryLegend = CreateUiText(levelSelectRoot.transform, "Mastery Legend Text", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 86f), new Vector2(1240f, 86f), 26, TextAnchor.MiddleCenter);
+        masteryLegend.text = "Sprint 01 preview: Level 14 vertical lift timing, Level 15 crumbling tiles.\nBadge marks: G = Clear, C = All Coins, T = Clean Run.";
+        masteryLegend.lineSpacing = 0.88f;
+        masteryLegend.color = new Color(0.07f, 0.12f, 0.15f, 1f);
     }
 
     private GameObject CreateUiRoot(Transform parent, string name)
@@ -1735,6 +1775,48 @@ public sealed class RedBallGame : MonoBehaviour
         image.sprite = sprites[spriteKey];
         image.color = color;
         image.preserveAspect = true;
+        return image;
+    }
+
+    private RawImage CreateUiRawImage(Transform parent, string name, string resourcesPath, Vector2 anchorMin, Vector2 anchorMax, Vector2 position, Vector2 size, Color color)
+    {
+        var texture = Resources.Load<Texture2D>(resourcesPath);
+        if (texture == null)
+        {
+            Debug.LogWarning("Missing UI texture resource: " + resourcesPath);
+            return null;
+        }
+
+        var gameObject = new GameObject(name);
+        gameObject.transform.SetParent(parent, false);
+        var rect = gameObject.AddComponent<RectTransform>();
+        rect.anchorMin = anchorMin;
+        rect.anchorMax = anchorMax;
+        rect.pivot = new Vector2(0.5f, 0.5f);
+        rect.anchoredPosition = position;
+        rect.sizeDelta = size;
+
+        var image = gameObject.AddComponent<RawImage>();
+        image.texture = texture;
+        image.color = color;
+        image.raycastTarget = false;
+        return image;
+    }
+
+    private Image CreateUiPanel(Transform parent, string name, Vector2 anchorMin, Vector2 anchorMax, Vector2 position, Vector2 size, Color color)
+    {
+        var gameObject = new GameObject(name);
+        gameObject.transform.SetParent(parent, false);
+        var rect = gameObject.AddComponent<RectTransform>();
+        rect.anchorMin = anchorMin;
+        rect.anchorMax = anchorMax;
+        rect.pivot = new Vector2(0.5f, 0.5f);
+        rect.anchoredPosition = position;
+        rect.sizeDelta = size;
+
+        var image = gameObject.AddComponent<Image>();
+        image.color = color;
+        image.raycastTarget = false;
         return image;
     }
 
@@ -1837,6 +1919,18 @@ public sealed class RedBallGame : MonoBehaviour
             bool continueTarget = screenMode == ScreenMode.LevelSelect && i == continueLevelIndex;
             RedBallLevelButtonState state = RedBallUi.GetLevelButtonState(unlocked, completed, current, continueTarget);
             levelButtonImages[i].color = RedBallUi.GetLevelButtonColor(state);
+            if (i == 13 && !completed)
+            {
+                levelButtonImages[i].color = unlocked
+                    ? new Color(0.82f, 0.46f, 0.12f, 0.9f)
+                    : new Color(0.46f, 0.27f, 0.1f, 0.74f);
+            }
+            else if (i == 14 && !completed)
+            {
+                levelButtonImages[i].color = unlocked
+                    ? new Color(0.72f, 0.28f, 0.2f, 0.9f)
+                    : new Color(0.44f, 0.18f, 0.16f, 0.74f);
+            }
 
             if (i < levelButtons.Count && levelButtons[i] != null)
             {
