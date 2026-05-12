@@ -36,14 +36,14 @@ public static class RedBallUi
         switch (state)
         {
             case RedBallLevelButtonState.Locked:
-                return new Color(0.1f, 0.12f, 0.14f, 0.42f);
+                return new Color(0.11f, 0.14f, 0.17f, 0.62f);
             case RedBallLevelButtonState.Completed:
-                return new Color(0.18f, 0.58f, 0.32f, 0.76f);
+                return new Color(0.12f, 0.58f, 0.34f, 0.9f);
             case RedBallLevelButtonState.ContinueTarget:
             case RedBallLevelButtonState.Current:
-                return new Color(1f, 0.76f, 0.18f, 0.82f);
+                return new Color(0.94f, 0.36f, 0.22f, 0.94f);
             default:
-                return new Color(0.08f, 0.13f, 0.18f, 0.66f);
+                return new Color(0.08f, 0.18f, 0.23f, 0.9f);
         }
     }
 
@@ -62,29 +62,35 @@ public static class RedBallUi
     public static string GetLevelButtonLabel(int levelNumber, RedBallLevelButtonState state, bool clearBadge, bool allCoinsBadge, bool cleanRunBadge)
     {
         string feature = GetFeaturedLevelLabel(levelNumber);
+        string stateLabel = string.Empty;
         switch (state)
         {
             case RedBallLevelButtonState.Locked:
-                return string.IsNullOrEmpty(feature)
-                    ? levelNumber + "\nKilit"
-                    : levelNumber + "\n" + feature + "\nKilit";
+                stateLabel = RedBallLocalization.T("level.state.locked");
+                break;
             case RedBallLevelButtonState.Completed:
-                return string.IsNullOrEmpty(feature)
-                    ? levelNumber + "\nGecti"
-                    : levelNumber + "\n" + feature;
+                stateLabel = RedBallLocalization.T("level.state.completed");
+                break;
             case RedBallLevelButtonState.ContinueTarget:
-                return string.IsNullOrEmpty(feature)
-                    ? levelNumber + "\nDevam"
-                    : levelNumber + "\n" + feature + "\nDevam";
+                stateLabel = RedBallLocalization.T("level.state.continue");
+                break;
             case RedBallLevelButtonState.Current:
-                return string.IsNullOrEmpty(feature)
-                    ? levelNumber + "\nOynuyor"
-                    : levelNumber + "\n" + feature + "\nOynuyor";
-            default:
-                return string.IsNullOrEmpty(feature)
-                    ? levelNumber.ToString()
-                    : levelNumber + "\n" + feature;
+                stateLabel = RedBallLocalization.T("level.state.current");
+                break;
         }
+
+        string label = levelNumber.ToString("00");
+        if (!string.IsNullOrEmpty(feature))
+        {
+            label += "\n" + feature;
+        }
+
+        if (!string.IsNullOrEmpty(stateLabel))
+        {
+            label += "\n" + stateLabel;
+        }
+
+        return label;
     }
 
     public static string GetFeaturedLevelLabel(int levelNumber)
@@ -92,9 +98,9 @@ public static class RedBallUi
         switch (levelNumber)
         {
             case 14:
-                return "LIFTS";
+                return RedBallLocalization.T("level.feature.14");
             case 15:
-                return "CRUMBLE";
+                return RedBallLocalization.T("level.feature.15");
             default:
                 return string.Empty;
         }
@@ -107,12 +113,12 @@ public static class RedBallUi
 
     public static string GetCompletionBadgeSummary(bool clearBadge, bool allCoinsBadge, bool cleanRunBadge, bool hasCoins, string cleanRunFailReason)
     {
-        string clear = clearBadge ? "Gecis var" : "Gecis yok";
-        string coins = !hasCoins ? "Coin yok" : allCoinsBadge ? "Tum coin var" : "Coin eksik";
-        string clean = cleanRunBadge ? "Temiz var" : "Temiz yok";
+        string clear = clearBadge ? RedBallLocalization.T("completion.clear.yes") : RedBallLocalization.T("completion.clear.no");
+        string coins = !hasCoins ? RedBallLocalization.T("completion.coins.none") : allCoinsBadge ? RedBallLocalization.T("completion.coins.yes") : RedBallLocalization.T("completion.coins.no");
+        string clean = cleanRunBadge ? RedBallLocalization.T("completion.clean.yes") : RedBallLocalization.T("completion.clean.no");
         if (!cleanRunBadge && !string.IsNullOrEmpty(cleanRunFailReason))
         {
-            clean += " (" + cleanRunFailReason + ")";
+            clean += " (" + RedBallLocalization.CleanReason(cleanRunFailReason) + ")";
         }
 
         return clear + " | " + coins + " | " + clean;

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="22" result="Passed" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.3647072">
+  <test-suite type="TestSuite" id="1000" name="RedBall" fullname="RedBall" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.364707" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1026" name="RedBall.Tests.EditMode.dll" fullname="/Users/yusufbayindir/Desktop/ai game/red_ball/Library/ScriptAssemblies/RedBall.Tests.EditMode.dll" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.361414" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="50633" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1027" name="RedBall" fullname="RedBall" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.361193" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1028" name="Tests" fullname="RedBall.Tests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.361104" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1029" name="EditMode" fullname="RedBall.Tests.EditMode" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.360978" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="RedBallSmokeEditModeTests" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.360685" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1003" name="BadgeMaskHelperReportsTargetLevelBits" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.BadgeMaskHelperReportsTargetLevelBits" methodname="BadgeMaskHelperReportsTargetLevelBits" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="908160862" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.151051" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1025" name="ExistingLevelExposesRuntimePolishMarkers" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.151687" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1010" name="ExistingLevelExposesRuntimePolishMarkers(0)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(0)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="685473221" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.014868" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1011" name="ExistingLevelExposesRuntimePolishMarkers(1)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(1)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="405805843" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.011240" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1012" name="ExistingLevelExposesRuntimePolishMarkers(2)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(2)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="1382585772" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.008732" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1013" name="ExistingLevelExposesRuntimePolishMarkers(3)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(3)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="605833140" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.009347" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1014" name="ExistingLevelExposesRuntimePolishMarkers(4)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(4)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="611290038" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.009284" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1015" name="ExistingLevelExposesRuntimePolishMarkers(5)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(5)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="158610508" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.008113" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1016" name="ExistingLevelExposesRuntimePolishMarkers(6)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(6)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="376626010" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.010758" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1017" name="ExistingLevelExposesRuntimePolishMarkers(7)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(7)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="73866788" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.008331" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1018" name="ExistingLevelExposesRuntimePolishMarkers(8)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(8)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="1319192918" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.009382" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1019" name="ExistingLevelExposesRuntimePolishMarkers(9)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(9)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="1698904327" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.008306" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1020" name="ExistingLevelExposesRuntimePolishMarkers(10)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(10)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="51233290" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.009530" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1021" name="ExistingLevelExposesRuntimePolishMarkers(11)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(11)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="1110357913" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.008602" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1022" name="ExistingLevelExposesRuntimePolishMarkers(12)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(12)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="1277039922" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.012060" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1023" name="ExistingLevelExposesRuntimePolishMarkers(13)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(13)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="641800699" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.008694" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1024" name="ExistingLevelExposesRuntimePolishMarkers(14)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.ExistingLevelExposesRuntimePolishMarkers(14)" methodname="ExistingLevelExposesRuntimePolishMarkers" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="198685411" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.010528" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1005" name="LocalizationSupportsRequiredRuntimeLanguages" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.LocalizationSupportsRequiredRuntimeLanguages" methodname="LocalizationSupportsRequiredRuntimeLanguages" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="225717041" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.008026" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1002" name="RuntimeConstantsExposeFifteenLevels" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.RuntimeConstantsExposeFifteenLevels" methodname="RuntimeConstantsExposeFifteenLevels" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="1529922148" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.008095" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1009" name="TargetLevelsLoadWithoutThrowing" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.TargetLevelsLoadWithoutThrowing" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.029125" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1006" name="TargetLevelsLoadWithoutThrowing(0,&quot;Level 01&quot;)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.TargetLevelsLoadWithoutThrowing(0,&quot;Level 01&quot;)" methodname="TargetLevelsLoadWithoutThrowing" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="1986440972" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.008594" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1007" name="TargetLevelsLoadWithoutThrowing(13,&quot;Level 14&quot;)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.TargetLevelsLoadWithoutThrowing(13,&quot;Level 14&quot;)" methodname="TargetLevelsLoadWithoutThrowing" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="1736485307" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.011500" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1008" name="TargetLevelsLoadWithoutThrowing(14,&quot;Level 15&quot;)" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.TargetLevelsLoadWithoutThrowing(14,&quot;Level 15&quot;)" methodname="TargetLevelsLoadWithoutThrowing" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="2050577617" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.008004" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1004" name="UiBadgeSummarySurfaceFormatsThreeBadgeStates" fullname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests.UiBadgeSummarySurfaceFormatsThreeBadgeStates" methodname="UiBadgeSummarySurfaceFormatsThreeBadgeStates" classname="RedBall.Tests.EditMode.RedBallSmokeEditModeTests" runstate="Runnable" seed="1843372186" result="Passed" start-time="2026-05-12 09:18:39Z" end-time="2026-05-12 09:18:39Z" duration="0.007600" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: /Users/yusufbayindir/Desktop/ai game/red_ball/TestResults/editmode-modern-ui-localization-sprint04.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
